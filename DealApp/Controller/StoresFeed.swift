@@ -11,10 +11,16 @@ import CoreData
 
 
 
+
 class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
+  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
+        
         getLocation()
         tableView
             .rx.setDelegate(self)
@@ -24,14 +30,16 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         configureConstr()
         tableView.backgroundColor = .gray
         bindTableViewMain()
-        getMainData()
        
+        getMainData()
         subscribeTo()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        subscribeTo()
     }
     
     //MARK: - Properties
     static let shared = StoresFeed()
+    
     lazy var tableView = UITableView()
     var locationManager = CLLocationManager()
     let storesFeedCellId = "StoresFeedCellID"
@@ -67,32 +75,28 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         let type = segments[segmentControl.selectedSegmentIndex]
         switch type {
         case .allStores:
-        getMainData()
-   
+           
+        businesses.accept(businessDataMain)
         case .favorites:
+  
         getFavDataforFavSegment()
+        businesses.accept(businessDataFav)
           
         }
     }
 //MARK: - Get Favorites via core data - and main data
+   
     func getFavDataforFavSegment() {
-        var fetchedIDs = [StoreIDs]()
-        fetchStoreIdCoreData()
-        for i in 0..<fetchedIDs.count {
-            print(fetchedIDs[i].favoriteStoreID)
-        }
+        StoresTabCell.shared.fetchStoreIdCoreData()
         
-        print(businessDataFav)
-        
-        func fetchStoreIdCoreData() {
-            let request: NSFetchRequest<StoreIDs> = StoreIDs.fetchRequest()
-            do {
-                 fetchedIDs = try context.fetch(request).removingDuplicates()
-                
-            } catch {
-                print("Error fetching data from CoreData \(error)")
+        for i in 0..<StoresTabCell.shared.favIDsCoreData.count {
+            print(StoresTabCell.shared.favIDsCoreData[i].favoriteStoreID)
+            YelpAPIManager.shared.getFavStoreInfo(id: StoresTabCell.shared.favIDsCoreData[i].favoriteStoreID!) { favsFromApi in
+                    self.businessDataFav = favsFromApi
             }
         }
+        
+     
     }
     func getMainData() {
         YelpAPIManager.shared.getPlaceInfo { dataFromRequest in
@@ -104,6 +108,7 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     
         businesses.accept(data)
     }
+
 
 //MARK: - Constraints.
     func configureConstr() {
@@ -142,8 +147,9 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
             )
         {
             row, businessData, cell in
-
+            print("businessData = \(businessData)")
             cell.configureWithData(dataModel: businessData)
+            
         }
             .disposed(by: disposeBag)
     }
@@ -152,7 +158,6 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         businesses.asObservable()
           .subscribe(onNext: {
             [weak self] businessData in
-              
           }) .disposed(by: disposeBag) //3
     }
     
@@ -179,10 +184,10 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
             print("location long: \(currentLocation.coordinate.longitude)")
             print("location lat: \(currentLocation.coordinate.latitude)")
             
-            if currentLocation.coordinate.longitude != nil, currentLocation.coordinate.latitude != nil {
-                StoresFeed.longtitude = currentLocation.coordinate.longitude // these params might change and it should be responsive in network side, too.
+       
+                StoresFeed.longtitude = currentLocation.coordinate.longitude 
                 StoresFeed.latitude = currentLocation.coordinate.latitude
-            }
+            
         }
     }
     }

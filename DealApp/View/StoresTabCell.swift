@@ -1,9 +1,4 @@
-//
-//  StoresTabCell.swift
-//  DealApp
-//
-//  Created by Emir Gurdal on 20.11.2021.
-// ImageView is for Store's Logo. It can be empty if no one adds or no Api data exissts.
+
 
 import UIKit
 import SnapKit
@@ -13,16 +8,16 @@ import FirebaseAuth
 import RxSwift
 import RxDataSources
 
+
 class StoresTabCell: UITableViewCell {
+  
+    
   
     var favIDsCoreData = [StoreIDs]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     static let shared = StoresTabCell()
     var storeid = String()
-    
-    
-    
+
     let storeImage : UIImageView = {
     let imgView = UIImageView()
     imgView.contentMode = .scaleAspectFit
@@ -59,6 +54,7 @@ class StoresTabCell: UITableViewCell {
         deleteFav.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
         return deleteFav
     }()
+  
     
     @objc func addFavTapped(_ sender: UIButton) {
         print("addFavTapped")
@@ -68,6 +64,7 @@ class StoresTabCell: UITableViewCell {
          }
 
 //MARK: - Locally save favoreStore Ids
+      
         save(favoriteStoreID: storeid)
         func save(favoriteStoreID: String) {
             let Ids = StoreIDs(context: context)
@@ -79,11 +76,10 @@ class StoresTabCell: UITableViewCell {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
-        
-        YelpAPIManager.shared.getFavStoreInfo(id: storeid) { dataFavAdded in
-            
-        }
+     
     
+      
+            
     }
     @objc func deleteTapped(_ sender: UIButton){
         print("deleteTapped")
@@ -93,7 +89,7 @@ class StoresTabCell: UITableViewCell {
          }
         deleteFavIdCoreData(id: storeid)
         let newFavDataAfterDeleting = StoresFeed.shared.businessDataFav.filter { $0.id != storeid }
-        StoresFeed.shared.businessDataFav = newFavDataAfterDeleting
+        StoresFeed.shared.getValue(data: newFavDataAfterDeleting)
     }
     //Fetch with predicate, delete, and save.
     func deleteFavIdCoreData(id: String) {
@@ -116,7 +112,7 @@ class StoresTabCell: UITableViewCell {
         } catch {
             print("error fetching request with predicate to delete = \(error)")
         }
-        fetchStoreIdCoreData()
+        
     }
 //Fetch storeids from coredata:
     func fetchStoreIdCoreData() {
@@ -130,6 +126,7 @@ class StoresTabCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

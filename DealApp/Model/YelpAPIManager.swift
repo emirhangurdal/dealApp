@@ -43,7 +43,7 @@ class YelpAPIManager {
                                                                   id: (decodedData.businesses?[i].id)!))
 //                        print(decodedData.businesses?[i].id)
                 }
-                    completionHandler(StoresFeed.shared.businessDataMain)
+                    completionHandler(StoresFeed.shared.businessDataMain.removingDuplicates())
                 }
             } catch {
                 print(error)

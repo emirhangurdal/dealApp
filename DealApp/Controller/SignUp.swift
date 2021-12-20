@@ -1,5 +1,4 @@
 
-// Authentication via Google Firebase. Properties and constraints created programmatically. 
 
 import UIKit
 import SnapKit
