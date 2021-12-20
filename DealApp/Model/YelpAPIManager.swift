@@ -12,7 +12,7 @@ class YelpAPIManager {
     
     
     let clientID = "S6sOmJNG-Zz7tKpzuJEZ4Q"
-    let apiKey = "ITau8YIoBuyE67gI0KYDefW4EKhwtrqbon7B9K4AGrDPiTWleRXDVebYm2jvCmRt72LjZxDcS9DVseeUKLpXPl8H8up_bhRLv9Z4-M-Oi2JtwF6zRqbt4G-rGAKmYXYx"
+    let apiKey = ""
     let baseURL = "https://api.yelp.com/v3/businesses/search?longitude=\(StoresFeed.longtitude)&latitude=\(StoresFeed.latitude)&radius=2000"
 //    let baseURL = "https://api.yelp.com/v3/businesses/search?location=NYC&categories=bars&open_now=true"
     
