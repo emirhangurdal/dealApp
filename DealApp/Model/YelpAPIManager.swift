@@ -53,7 +53,7 @@ class YelpAPIManager {
     }
     func getFavStoreInfo(id: String,completionHandler: @escaping ([StoresFeedModel]) -> Void) {
         let baseURLFavorite = "https://api.yelp.com/v3/businesses/\(id)"
-       let novalueImageUrl = "https://firebasestorage.googleapis.com/v0/b/dealapp-f1ce1.appspot.com/o/no%20value.jpg?alt=media&token=df6afb68-402f-4681-ad9b-5a30532376a1"
+       let novalueImageUrl = ""
        let url = URL(string: baseURLFavorite)
        var request = URLRequest(url: url!)
         request.httpMethod = "GET"

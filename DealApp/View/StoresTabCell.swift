@@ -62,9 +62,7 @@ class StoresTabCell: UITableViewCell {
          DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
              sender.alpha = 1.0
          }
-
 //MARK: - Locally save favoreStore Ids
-      
         save(favoriteStoreID: storeid)
         func save(favoriteStoreID: String) {
             let Ids = StoreIDs(context: context)
@@ -76,10 +74,7 @@ class StoresTabCell: UITableViewCell {
                 print("Could not save. \(error), \(error.userInfo)")
             }
         }
-     
-    
-      
-            
+        
     }
     @objc func deleteTapped(_ sender: UIButton){
         print("deleteTapped")
@@ -89,7 +84,6 @@ class StoresTabCell: UITableViewCell {
          }
         deleteFavIdCoreData(id: storeid)
         let newFavDataAfterDeleting = StoresFeed.shared.businessDataFav.filter { $0.id != storeid }
-        StoresFeed.shared.getValue(data: newFavDataAfterDeleting)
     }
     //Fetch with predicate, delete, and save.
     func deleteFavIdCoreData(id: String) {

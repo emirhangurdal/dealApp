@@ -18,9 +18,7 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
-        
+
         getLocation()
         tableView
             .rx.setDelegate(self)
@@ -32,7 +30,8 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         bindTableViewMain()
        
         getMainData()
-        subscribeTo()
+        getFavDataforFavSegment()
+     
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         subscribeTo()
     }
@@ -52,7 +51,7 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     static var longtitude = Double()
     static var latitude = Double()
-    let noValueImage = "https://firebasestorage.googleapis.com/v0/b/dealapp-f1ce1.appspot.com/o/no%20value.jpg?alt=media&token=df6afb68-402f-4681-ad9b-5a30532376a1"
+    let noValueImage = ""
     enum SegmentType: String {
         case allStores = "All Stores"
         case favorites = "Favorites"
@@ -79,7 +78,7 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         businesses.accept(businessDataMain)
         case .favorites:
   
-        getFavDataforFavSegment()
+      
         businesses.accept(businessDataFav)
           
         }
@@ -96,7 +95,7 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
             }
         }
         
-     
+  
     }
     func getMainData() {
         YelpAPIManager.shared.getPlaceInfo { dataFromRequest in
