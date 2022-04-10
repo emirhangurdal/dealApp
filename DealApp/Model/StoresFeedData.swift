@@ -1,10 +1,8 @@
 
 import Foundation
-
 struct StoresFeedData: Codable {
     let businesses: [Businesses]?
     let total: Int?
-  
     let location: [Location]?
 }
 

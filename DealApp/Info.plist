@@ -8,6 +8,8 @@
 	<string>Permit location info for listing nearby businesses</string>
 	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
 	<dict/>
+	<key>NSCameraUsageDescription</key>
+	<string>Give access to your camera</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

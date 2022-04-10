@@ -1,16 +1,10 @@
-//
-//  Confirm.swift
-//  DealApp
-//
-//  Created by Emir Gurdal on 18.11.2021.
-//
 
 import UIKit
 import SnapKit
 
 class Confirm: UIViewController {
-    var confirmationMessage = UILabel()
-    let text = "An email sent to you. Login Now."
+    private var confirmationMessage = UILabel()
+    private let text = "An email sent to you. Login Now."
     func configureMessage() {
         confirmationMessage.text = text
         self.confirmationMessage.textColor =  UIColor.white
@@ -24,15 +18,12 @@ class Confirm: UIViewController {
     }
     @objc func tapLabel(gesture: UITapGestureRecognizer) {
     let loginRange = (text as NSString).range(of: "Login Now.")
-        
     if gesture.didTapAttributedTextInLabel(label: confirmationMessage, inRange: loginRange) {
         let loginVC = LogIn()
         self.navigationController?.pushViewController(loginVC, animated: true)
-        
     }
     }
-    
-    var loginNow: UIButton = {
+    private var loginNow: UIButton = {
         var lgn = UIButton()
         lgn.setTitle("Login Now", for: .normal)
         lgn.setTitleColor(UIColor.init(white: 1, alpha: 0.3), for: .highlighted)
@@ -40,50 +31,41 @@ class Confirm: UIViewController {
         lgn.addTarget(self, action: #selector(goToLogin), for: .touchUpInside)
         return lgn
     }()
-    
     @objc func goToLogin(){
     let loginVC = LogIn()
     self.navigationController?.pushViewController(loginVC, animated: true)
     }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .black
         configureMessage()
         configureConst()
     }
-    
     func configureConst(){
         self.view.addSubview(confirmationMessage)
         confirmationMessage.snp.makeConstraints { lbl in
-            lbl.right.equalTo(view).offset(-20)
-            lbl.left.equalTo(view).offset(20)
-            lbl.centerY.equalTo(view)
-            lbl.centerX.equalTo(view)
+        lbl.right.equalTo(view).offset(-20)
+        lbl.left.equalTo(view).offset(20)
+        lbl.centerY.equalTo(view)
+        lbl.centerX.equalTo(view)
         }
-    
     }
 }
-
 extension UITapGestureRecognizer {
-
     func didTapAttributedTextInLabel(label: UILabel, inRange targetRange: NSRange) -> Bool {
         // Create instances of NSLayoutManager, NSTextContainer and NSTextStorage
         let layoutManager = NSLayoutManager()
         let textContainer = NSTextContainer(size: CGSize.zero)
         let textStorage = NSTextStorage(attributedString: label.attributedText!)
-
         // Configure layoutManager and textStorage
         layoutManager.addTextContainer(textContainer)
         textStorage.addLayoutManager(layoutManager)
-
         // Configure textContainer
         textContainer.lineFragmentPadding = 0.0
         textContainer.lineBreakMode = label.lineBreakMode
         textContainer.maximumNumberOfLines = label.numberOfLines
         let labelSize = label.bounds.size
         textContainer.size = labelSize
-
         // Find the tapped character location and compare it to the specified range
         let locationOfTouchInLabel = self.location(in: label)
         let textBoundingBox = layoutManager.usedRect(for: textContainer)
@@ -94,7 +76,6 @@ extension UITapGestureRecognizer {
         let indexOfCharacter = layoutManager.characterIndex(for: locationOfTouchInTextContainer, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
         return NSLocationInRange(indexOfCharacter, targetRange)
     }
-
 }
 
 
