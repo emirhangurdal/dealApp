@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5805C5A528058B7800D0A937 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805C5A428058B7800D0A937 /* Profile.swift */; };
 		580B42E3278E2D5F00000FD2 /* PostDeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B42E2278E2D5F00000FD2 /* PostDeal.swift */; };
 		580B42E5278EFF3300000FD2 /* ChooseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B42E4278EFF3300000FD2 /* ChooseStore.swift */; };
+		582F9C5528253E7700082C38 /* StoreDealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F9C5428253E7700082C38 /* StoreDealsModel.swift */; };
 		58320E11274682EC00AFA044 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58320E10274682EC00AFA044 /* LogIn.swift */; };
 		583BA15A2754C95E002E8821 /* YelpAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583BA1592754C95D002E8821 /* YelpAPIManager.swift */; };
 		58400392278B75F4000ABBCB /* StoreDeals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400391278B75F4000ABBCB /* StoreDeals.swift */; };
@@ -20,8 +22,10 @@
 		5870DFDE2795D76A00C85AC6 /* DealsContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */; };
 		5870DFE12796DC1100C85AC6 /* DealTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5870DFE02796DC1100C85AC6 /* DealTabCell.swift */; };
 		5886315E27A8057600DF4382 /* MGPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5886315D27A8057600DF4382 /* MGPhotoHelper.swift */; };
+		58B2123928084108007722BD /* ProfileDealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B2123828084107007722BD /* ProfileDealsModel.swift */; };
 		58CA299D2758BC8A0044AB5D /* StoresFeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */; };
 		58CA299F2758BDAF0044AB5D /* StoresFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */; };
+		58EE13C7280A18F900283F98 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EE13C6280A18F900283F98 /* MapVC.swift */; };
 		58F059F52743D05700F689E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58F059F42743D05700F689E6 /* GoogleService-Info.plist */; };
 		58F1D9712795594E00165420 /* DealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F1D9702795594D00165420 /* DealDetail.swift */; };
 		58FCA425273FE62500F3569D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FCA424273FE62500F3569D /* AppDelegate.swift */; };
@@ -36,8 +40,10 @@
 
 /* Begin PBXFileReference section */
 		4BC99C6AF5B5BA2A5B60D7B7 /* Pods-DealApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DealApp.debug.xcconfig"; path = "Target Support Files/Pods-DealApp/Pods-DealApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5805C5A428058B7800D0A937 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		580B42E2278E2D5F00000FD2 /* PostDeal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeal.swift; sourceTree = "<group>"; };
 		580B42E4278EFF3300000FD2 /* ChooseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseStore.swift; sourceTree = "<group>"; };
+		582F9C5428253E7700082C38 /* StoreDealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDealsModel.swift; sourceTree = "<group>"; };
 		58320E10274682EC00AFA044 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		583BA1592754C95D002E8821 /* YelpAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPIManager.swift; sourceTree = "<group>"; };
 		58400391278B75F4000ABBCB /* StoreDeals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDeals.swift; sourceTree = "<group>"; };
@@ -49,8 +55,10 @@
 		5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsContentModel.swift; sourceTree = "<group>"; };
 		5870DFE02796DC1100C85AC6 /* DealTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealTabCell.swift; sourceTree = "<group>"; };
 		5886315D27A8057600DF4382 /* MGPhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGPhotoHelper.swift; sourceTree = "<group>"; };
+		58B2123828084107007722BD /* ProfileDealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDealsModel.swift; sourceTree = "<group>"; };
 		58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeedData.swift; sourceTree = "<group>"; };
 		58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeedModel.swift; sourceTree = "<group>"; };
+		58EE13C6280A18F900283F98 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		58F059F42743D05700F689E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58F1D9702795594D00165420 /* DealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealDetail.swift; sourceTree = "<group>"; };
 		58FCA421273FE62500F3569D /* DealApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DealApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +95,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5805C5A328058A1500D0A937 /* Tab3 - User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5805C5A428058B7800D0A937 /* Profile.swift */,
+			);
+			path = "Tab3 - User Profile";
+			sourceTree = "<group>";
+		};
 		580B42E6278EFFEC00000FD2 /* PostDeal - MiddleButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,10 +135,12 @@
 		5850DC3227466391007D0D34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5870DFDF2795D76E00C85AC6 /* DealsContent */,
+				58B2123828084107007722BD /* ProfileDealsModel.swift */,
+				5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */,
 				583BA1592754C95D002E8821 /* YelpAPIManager.swift */,
 				58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */,
 				58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */,
+				582F9C5428253E7700082C38 /* StoreDealsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,7 +157,9 @@
 		5850DC342746639B007D0D34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				58EE13C5280A18D200283F98 /* Tab4 - Map */,
 				5870DFE22796DF5B00C85AC6 /* Tab2 - DealsFeed */,
+				5805C5A328058A1500D0A937 /* Tab3 - User Profile */,
 				58400398278C47BD000ABBCB /* TabBar */,
 				58400395278C2853000ABBCB /* Tab1 - StoresFeed */,
 				58FCA428273FE62500F3569D /* SignUp.swift */,
@@ -150,20 +170,20 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5870DFDF2795D76E00C85AC6 /* DealsContent */ = {
-			isa = PBXGroup;
-			children = (
-				5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */,
-			);
-			path = DealsContent;
-			sourceTree = "<group>";
-		};
 		5870DFE22796DF5B00C85AC6 /* Tab2 - DealsFeed */ = {
 			isa = PBXGroup;
 			children = (
 				58400396278C28A3000ABBCB /* DealsContentVC.swift */,
 			);
 			path = "Tab2 - DealsFeed";
+			sourceTree = "<group>";
+		};
+		58EE13C5280A18D200283F98 /* Tab4 - Map */ = {
+			isa = PBXGroup;
+			children = (
+				58EE13C6280A18F900283F98 /* MapVC.swift */,
+			);
+			path = "Tab4 - Map";
 			sourceTree = "<group>";
 		};
 		58FCA418273FE62500F3569D = {
@@ -328,13 +348,16 @@
 				58400394278C25CF000ABBCB /* TabBarVC.swift in Sources */,
 				580B42E5278EFF3300000FD2 /* ChooseStore.swift in Sources */,
 				58FCA429273FE62500F3569D /* SignUp.swift in Sources */,
+				5805C5A528058B7800D0A937 /* Profile.swift in Sources */,
 				58320E11274682EC00AFA044 /* LogIn.swift in Sources */,
 				5870DFE12796DC1100C85AC6 /* DealTabCell.swift in Sources */,
+				58B2123928084108007722BD /* ProfileDealsModel.swift in Sources */,
 				58FCA425273FE62500F3569D /* AppDelegate.swift in Sources */,
 				580B42E3278E2D5F00000FD2 /* PostDeal.swift in Sources */,
 				58CA299D2758BC8A0044AB5D /* StoresFeedData.swift in Sources */,
 				58CA299F2758BDAF0044AB5D /* StoresFeedModel.swift in Sources */,
 				5886315E27A8057600DF4382 /* MGPhotoHelper.swift in Sources */,
+				58EE13C7280A18F900283F98 /* MapVC.swift in Sources */,
 				58FCA427273FE62500F3569D /* SceneDelegate.swift in Sources */,
 				587016C42747C42000BEAFB9 /* StoresFeed.swift in Sources */,
 				5870DFDE2795D76A00C85AC6 /* DealsContentModel.swift in Sources */,
@@ -344,6 +367,7 @@
 				58F1D9712795594E00165420 /* DealDetail.swift in Sources */,
 				583BA15A2754C95E002E8821 /* YelpAPIManager.swift in Sources */,
 				58FCA42F273FE62500F3569D /* DealApp.xcdatamodeld in Sources */,
+				582F9C5528253E7700082C38 /* StoreDealsModel.swift in Sources */,
 				5850DC3627466409007D0D34 /* Confirm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

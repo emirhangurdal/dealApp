@@ -9,33 +9,38 @@ import RxDataSources
 protocol UpdateCustomCell: class {
     func updateTableView()
 }
+protocol UpdateButtonImage: class {
+    func updateButton()
+}
 class StoresTabCell: UITableViewCell {
     weak var delegate: UpdateCustomCell?
+    weak var delegate2: UpdateButtonImage?
     var storeid = String()
-    
-    var newData = NewData()
+    var distance = Double()
+    var fav = false
+    var newData = StoresData()
     let db = Firestore.firestore()
     var storeIDsArray = [String]()
     let storeImage : UIImageView = {
-    let imgView = UIImageView()
-    imgView.contentMode = .scaleAspectFit
-    imgView.backgroundColor = .clear
-    imgView.clipsToBounds = true
-    imgView.layer.cornerRadius = 10
-    return imgView
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFit
+        imgView.backgroundColor = .clear
+        imgView.clipsToBounds = true
+        imgView.layer.cornerRadius = 10
+        return imgView
     }()
     var storeName : UILabel = {
-    let lbl = UILabel()
-    lbl.textColor = .black
-    lbl.font = UIFont.boldSystemFont(ofSize: 25)
-    lbl.textColor = .white
-    lbl.textAlignment = .center
-    lbl.numberOfLines = 0
-    lbl.textAlignment = .left
-    lbl.backgroundColor = .clear
-    return lbl
+        let lbl = UILabel()
+        lbl.textColor = .black
+        lbl.font = UIFont.boldSystemFont(ofSize: 25)
+        lbl.textColor = .white
+        lbl.textAlignment = .center
+        lbl.numberOfLines = 0
+        lbl.textAlignment = .left
+        lbl.backgroundColor = .clear
+        return lbl
     }()
-     var addFavButton: UIButton = {
+    var addFavButton: UIButton = {
         var addFav = UIButton()
         let image = UIImage(named: "icons8-checked-checkbox-50") as UIImage?
         addFav.setImage(image, for: .normal)
@@ -43,7 +48,7 @@ class StoresTabCell: UITableViewCell {
         addFav.addTarget(self, action: #selector(addFavTapped), for: .touchUpInside)
         return addFav
     }()
-     var deleteFromFavsButton: UIButton = {
+    var deleteFromFavsButton: UIButton = {
         var deleteFav = UIButton()
         let image = UIImage(named: "icons8-close-50") as UIImage?
         deleteFav.setImage(image, for: .normal)
@@ -52,15 +57,16 @@ class StoresTabCell: UITableViewCell {
         return deleteFav
     }()
     @objc func addFavTapped(_ sender: UIButton) {
-        print("addFavTapped")
-         sender.alpha = 0.5
-         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-             sender.alpha = 1.0
-         }
-//MARK: - Save favIDs to Firestore
+        print("addFavTapped")        
+        sender.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1.0
+        }
+        //MARK: - Save favIDs to Firestore
         if Auth.auth().currentUser != nil {
             let favStoresDocRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid)
             let favStoreIdsColRef = favStoresDocRef.collection("storeIDs").document(storeid)
+            self.delegate2?.updateButton()
             favStoreIdsColRef.setData(["email" : Auth.auth().currentUser?.email]) { error in
                 if let err = error {
                     print("error = \(err)")
@@ -70,7 +76,8 @@ class StoresTabCell: UITableViewCell {
                 }
             }
         }
-//MARK: - Locally save favoreStore Ids
+        
+        //MARK: - Locally save favoreStore Ids
         
         func save(favoriteStoreID: String) { //not used
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -86,15 +93,15 @@ class StoresTabCell: UITableViewCell {
     }
     @objc func deleteTapped(_ sender: UIButton){
         print("deleteTapped")
-         sender.alpha = 0.5
-         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-             sender.alpha = 1.0
-         }
+        sender.alpha = 0.5
+        addFavButton.setImage(UIImage(named: "icons8-checked-checkbox-50"), for: .normal)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1.0
+        }
         print("self.storeID = \(self.storeid)")
-       
         delegate?.updateTableView()
         print("storeid = \(storeid)")
-        let favStoresDocRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid) // data fucks up when you delete here. find why
+        let favStoresDocRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid)
         let favStoreIdsColRef = favStoresDocRef.collection("storeIDs").document(storeid).delete { error in
             if let err = error {
                 print("error deleting favstoreID = \(err)")
@@ -125,7 +132,7 @@ class StoresTabCell: UITableViewCell {
             print("error fetching request with predicate to delete = \(error)")
         }
     }
-   private func fetchtheLatest() {
+    private func fetchtheLatest() {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let request: NSFetchRequest<StoreIDs> = StoreIDs.fetchRequest()
         do {
@@ -134,6 +141,7 @@ class StoresTabCell: UITableViewCell {
             print("Error fetching data from CoreData \(error)")
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -147,14 +155,14 @@ class StoresTabCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//MARK: - Constraints
+    //MARK: - Constraints
     func configureConstraints() {
         self.contentView.addSubview(storeImage)
         self.contentView.addSubview(storeName)
         self.contentView.addSubview(addFavButton)
         self.contentView.addSubview(deleteFromFavsButton)
-        contentView.backgroundColor = UIColor(red: 65/255, green: 76/255, blue: 97/255, alpha: 0.8)
-        
+//        contentView.backgroundColor = UIColor(red: 65/255, green: 76/255, blue: 97/255, alpha: 0.8) - 108, 106, 117
+        contentView.backgroundColor = UIColor(red: 108/255, green: 106/255, blue: 117/255, alpha: 0.8)
         storeImage.snp.makeConstraints { storeImage in
             storeImage.edges.equalTo(self.contentView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 300))
         }
@@ -176,13 +184,13 @@ class StoresTabCell: UITableViewCell {
             deleteFromFavsButton.bottom.equalTo(self.contentView).offset(-10)
             deleteFromFavsButton.top.equalTo(storeName.snp.bottom).offset(10)
         }
-
     }
-//MARK: - Configure with Data
+    //MARK: - Configure with Data
     func configureWithData(dataModel: StoresFeedModel) {
         storeName.text = dataModel.title
         storeImage.downloaded(from: dataModel.image)
         storeid = dataModel.id // use this id to recall api
+        distance = dataModel.distance // use this to list only the deals nearby
     }
 }
 //MARK: - Extensions
@@ -196,7 +204,7 @@ extension UIImageView {
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
-                else {  return }
+            else {  return }
             DispatchQueue.main.async() { [weak self] in
                 self?.image = image
             }

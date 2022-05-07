@@ -11,7 +11,6 @@ class DealDetail: UIViewController {
         view.backgroundColor = .black
         self.title = "DealDetail"
         configureConst()
-        
         if self.delegate == nil {
             print("delegate is nil")
         }
@@ -67,6 +66,7 @@ class DealDetail: UIViewController {
         img.image = UIImage(named: "ExampleDeal")!
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
         img.layer.borderColor = white.cgColor
+        img.contentMode = .scaleAspectFit
         img.layer.borderWidth = 2.0
         img.layer.masksToBounds = true
         img.layer.cornerRadius = 5

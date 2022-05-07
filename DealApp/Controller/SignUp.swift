@@ -47,7 +47,7 @@ class SignUp: UIViewController {
     }()
     
 // MARK:- OrLogin
-   private var orLogin: UIButton = {
+   lazy private var orLogin: UIButton = {
         var orlgn = UIButton()
         orlgn.setTitle("Already Member? Login!", for: .normal)
         orlgn.setTitleColor(UIColor.init(white: 1, alpha: 0.3), for: .highlighted)
@@ -78,7 +78,6 @@ class SignUp: UIViewController {
         view.addSubview(errorMessageForPass)
         view.addSubview(textFieldUserName)
         let blue = UIColor(red: 49.0/255.0, green: 87.0/255.0, blue: 100.0/255.0, alpha: 0.5)
-        
         orLogin.snp.makeConstraints { orLogin in
             orLogin.centerX.equalTo(view)
             orLogin.top.equalTo(signUp.snp.bottom).offset(10)

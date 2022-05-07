@@ -34,6 +34,7 @@ class Confirm: UIViewController {
     @objc func goToLogin(){
     let loginVC = LogIn()
     self.navigationController?.pushViewController(loginVC, animated: true)
+    self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

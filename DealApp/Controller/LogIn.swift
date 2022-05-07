@@ -120,13 +120,14 @@ extension LogIn: UITextFieldDelegate {
                 print("Error \(error?.localizedDescription)")
                return
             } else {
-                print("login successful")
-                let storesFeedVC = StoresFeed()
-                self?.navigationController?.pushViewController(storesFeedVC, animated: true)
-                self?.dismiss(animated: false, completion: nil)
-                
-                
-                
+                    let storesFeedVC = StoresFeed()
+                    let tabVC = TabBarViewController()
+    //             self.navigationController?.pushViewController(tabVC, animated: true)
+                    
+                    self?.view.window!.rootViewController = tabVC
+    //             self.navigationController?.setViewControllers([tabVC], animated: false)
+                    self?.navigationController?.popToRootViewController(animated: false)
+                    self?.dismiss(animated: false, completion: nil)
                 
             }
         }

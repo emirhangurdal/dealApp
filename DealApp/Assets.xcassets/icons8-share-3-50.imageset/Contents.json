@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "icons8-add-shopping-cart-80.png",
+      "filename" : "icons8-share-3-50.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icons8-add-shopping-cart-80@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icons8-add-shopping-cart-80@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,8 +17,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

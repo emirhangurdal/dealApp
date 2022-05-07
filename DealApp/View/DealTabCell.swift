@@ -24,6 +24,7 @@ class DealTabCell: UITableViewCell {
               contentView.frame = contentView.frame.inset(by: margins)
               contentView.layer.cornerRadius = 8
     }
+    var btnTapClosure: ((DealTabCell)->())?
     let db = Firestore.firestore()
     var senderEmail: String? = Auth.auth().currentUser?.email
     var storeID = String()
@@ -34,24 +35,27 @@ class DealTabCell: UITableViewCell {
     imgView.contentMode = .scaleAspectFit
     imgView.backgroundColor = .clear
     imgView.clipsToBounds = true
-    
     imgView.layer.cornerRadius = 15
     return imgView
     }()
     var dealTitle : UILabel = {
     let lbl = UILabel()
-    lbl.font = UIFont(name: "Optima-Regular", size: 20)
+//    lbl.font = UIFont(name: "Optima-Regular", size: 20)
+    lbl.font = UIFont.boldSystemFont(ofSize: 25)
     lbl.textAlignment = .natural
     lbl.numberOfLines = 0
-    lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
+//    lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
+        lbl.textColor = .white
     lbl.textAlignment = .left
     lbl.backgroundColor = .clear
     return lbl
     }()
     var dealDesc : UILabel = {
     let lbl = UILabel()
-    lbl.font = UIFont(name: "Optima-Regular", size: 15)
-    lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
+//    lbl.font = UIFont(name: "Optima-Regular", size: 15)
+    lbl.font = UIFont.boldSystemFont(ofSize: 15)
+//    lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
+        lbl.textColor = .white
     lbl.textAlignment = .natural
     lbl.numberOfLines = 0
     lbl.textAlignment = .left
@@ -60,7 +64,8 @@ class DealTabCell: UITableViewCell {
     }()
     var sender : UILabel = {
     let lbl = UILabel()
-    lbl.font = UIFont(name: "Optima-Bold", size: 12)
+//    lbl.font = UIFont(name: "Optima-Bold", size: 12)
+    lbl.font = UIFont.boldSystemFont(ofSize: 12)
     lbl.textAlignment = .natural
     lbl.numberOfLines = 0
     lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
@@ -77,6 +82,17 @@ class DealTabCell: UITableViewCell {
        deleteDeal.addTarget(self, action: #selector(deleteTapped), for: .touchUpInside)
        return deleteDeal
    }()
+    lazy var share: UIButton = {
+       var shr = UIButton()
+       let image = UIImage(named: "icons8-share-3-50") as UIImage?
+       shr.setImage(image, for: .normal)
+       shr.backgroundColor = .clear
+       shr.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
+       return shr
+   }()
+    @objc func shareTapped(){
+        btnTapClosure?(self)
+    }
     @objc func deleteTapped(_ sender: UIButton) {
         print("deleteTapped")
         sender.alpha = 0.5
@@ -98,7 +114,6 @@ class DealTabCell: UITableViewCell {
             }
         }
     }
-    
     func configureConstraints(){
         print("configureConstraints")
         self.contentView.addSubview(dealImage)
@@ -106,8 +121,9 @@ class DealTabCell: UITableViewCell {
         self.contentView.addSubview(dealDesc)
         self.contentView.addSubview(deleteDealFromFirebase)
         self.contentView.addSubview(sender)
-        self.contentView.backgroundColor = UIColor(red: 65/255, green: 76/255, blue: 97/255, alpha: 0.8)
-        
+        self.contentView.addSubview(share)
+//        self.contentView.backgroundColor = UIColor(red: 65/255, green: 76/255, blue: 97/255, alpha: 0.8)
+        contentView.backgroundColor = UIColor(red: 108/255, green: 106/255, blue: 117/255, alpha: 0.8)
         dealImage.snp.makeConstraints { dealImage in
             dealImage.edges.equalTo(self.contentView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 240))
         }
@@ -115,25 +131,35 @@ class DealTabCell: UITableViewCell {
             dealTitle.right.equalTo(self.contentView.snp.right).offset(-5)
             dealTitle.left.equalTo(dealImage.snp.right).offset(28)
             dealTitle.top.equalTo(self.contentView.snp.top).offset(2)
-            dealTitle.bottom.equalTo(self.contentView.snp.bottom).offset(-90)
+            dealTitle.bottom.equalTo(self.contentView.snp.bottom).offset(-100)
         }
         dealDesc.snp.makeConstraints { dealDesc in
             dealDesc.right.equalTo(self.contentView.snp.right).offset(-5)
             dealDesc.left.equalTo(dealImage.snp.right).offset(28)
             dealDesc.top.equalTo(dealTitle.snp.bottom).offset(2)
-            dealDesc.bottom.equalTo(self.contentView.snp.bottom).offset(-25)
+            dealDesc.bottom.equalTo(self.contentView.snp.bottom).offset(-30)
         }
         deleteDealFromFirebase.snp.makeConstraints { deleteDealFromFirebase in
-            deleteDealFromFirebase.right.equalTo(self.contentView).offset(-15)
+            deleteDealFromFirebase.height.equalTo(20)
+            deleteDealFromFirebase.width.equalTo(20)
+//            deleteDealFromFirebase.right.equalTo(self.contentView).offset(-15)
             deleteDealFromFirebase.left.equalTo(dealImage.snp.right).offset(205)
             deleteDealFromFirebase.bottom.equalTo(self.contentView).offset(-5)
-            deleteDealFromFirebase.top.equalTo(dealDesc.snp.bottom).offset(2)
+//            deleteDealFromFirebase.top.equalTo(dealDesc.snp.bottom).offset(2)
         }
         sender.snp.makeConstraints { sender in
-            sender.right.equalTo(deleteDealFromFirebase.snp.left).offset(-2)
+            sender.right.equalTo(share.snp.left).offset(-2)
             sender.left.equalTo(dealImage.snp.right).offset(28)
             sender.bottom.equalTo(self.contentView).offset(-5)
             sender.top.equalTo(dealDesc.snp.bottom).offset(2)
+        }
+        share.snp.makeConstraints { share in
+            share.height.equalTo(20)
+            share.width.equalTo(20)
+            share.right.equalTo(deleteDealFromFirebase.snp.left).offset(-5)
+//            share.left.equalTo(sender).offset(2)
+            share.bottom.equalTo(self.contentView).offset(-5)
+//            share.top.equalTo(dealDesc.snp.bottom).offset(2)
         }
     }
     func configureWithData(dataModel: SectionOfCustomData.Item) {
@@ -146,6 +172,17 @@ class DealTabCell: UITableViewCell {
         } else {
             self.deleteDealFromFirebase.isHidden = false
         }
+    }
+    func configureProfile(dataModel: DealModel) {
+        dealImage.image = dataModel.dealImage
+        dealTitle.text = dataModel.dealTitle
+        dealDesc.text = dataModel.dealDesc
+//        deleteDealFromFirebase.isHidden = true
+    }
+    func configureStoreDeals(dataModel: DealModel) {
+        dealImage.image = dataModel.dealImage
+        dealTitle.text = dataModel.dealTitle
+        dealDesc.text = dataModel.dealDesc
     }
     func UIColorFromRGB(rgbValue: UInt) -> UIColor {
         return UIColor(
@@ -172,10 +209,10 @@ class MyCustomHeader: UITableViewHeaderFooterView {
         title.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(image)
         contentView.addSubview(title)
-        self.contentView.backgroundColor = .gray
+        self.contentView.backgroundColor = .white
         
         // Center the image vertically and place it near the leading
-        // edge of the view. Constrain its width and height to 50 points.
+        // edge of the view. Constrain its width and height to 50 points
         NSLayoutConstraint.activate([
             image.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             image.widthAnchor.constraint(equalToConstant: 50),
@@ -190,6 +227,5 @@ class MyCustomHeader: UITableViewHeaderFooterView {
                    contentView.layoutMarginsGuide.trailingAnchor),
             title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
- 
     }
 }

@@ -13,7 +13,7 @@ class ChooseStore: UIViewController, UITableViewDelegate, UITableViewDataSource 
     }
     var chooseStoreData = [StoresFeedModel]()
     private let storesFeedCellId = "StoresFeedCellID"
-    var newData = NewData()
+    var newData = StoresData()
     var disposeBag = DisposeBag()
     lazy var tableView : UITableView = {
     let tbv = UITableView()

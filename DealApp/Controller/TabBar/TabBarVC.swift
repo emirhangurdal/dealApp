@@ -9,19 +9,25 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
         UITabBar.appearance().barTintColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
 //        self.tabBar.isTranslucent = false
         configureTabs()
-    }
     
+    }
     let photoHelper = MGPhotoHelper()
     var firstTabNavigationController : UINavigationController!
-    var secondTabNavigationController : UINavigationController!
+    var dealContentNav : UINavigationController!
     var middleTabNavigationController : UINavigationController!
+    var profileNavBar: UINavigationController!
+    var mapNavBar: UINavigationController!
     var tabBarNavi : UINavigationController!
     let tab1 = StoresFeed()
     let tab2 = DealsContentVC()
+    let tab3 = Profile()
+    let tab4 = MapVC()
     let deals = DealsData()
     let postDeal = PostDealVC()
     let middleButtonVC = UIViewController()
     func configureTabs(){
+        tab1.delegate = tab4
+        
         // style:
         
         if #available(iOS 15.0, *) {
@@ -31,22 +37,26 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         } else {
-            
+           
         }
-
-        
         //TABS
-        let tab1bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-add-shopping-cart-80")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-add-shopping-cart-50-filled")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal))
+        let tab1bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-shop-local-100")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-shop-local-100-selected")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal))
         tab1.tabBarItem = tab1bar
-        let tab2bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-add-shopping-cart-80")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-add-shopping-cart-50-filled")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal))
+        let tab2bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-discount-100")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-discount-100-selected")!, targetSize: CGSize(width: 40, height:  40)).withRenderingMode(.alwaysOriginal))
         tab2.tabBarItem = tab2bar
-        let middleButtonTap = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-edit-production-order-80")!, targetSize: CGSize(width: 40, height: 40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-edit-production-order-80")!, targetSize: CGSize(width: 40, height: 40)).withRenderingMode(.alwaysOriginal))
-        middleButtonVC.tabBarItem = middleButtonTap
-        firstTabNavigationController = UINavigationController.init(rootViewController: tab1 )
-        secondTabNavigationController = UINavigationController.init(rootViewController: tab2)
-        middleTabNavigationController = UINavigationController.init(rootViewController: middleButtonVC)
-        self.viewControllers = [firstTabNavigationController, middleButtonVC, secondTabNavigationController]
+        let middleButtonTap = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-add-100")!, targetSize: CGSize(width: 40, height: 40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-add-100")!, targetSize: CGSize(width: 40, height: 40)).withRenderingMode(.alwaysOriginal))
+        let tab3bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-profile-not-selected-50")!, targetSize: CGSize(width: 40, height: 40)), selectedImage: resizeImage(image: UIImage(named: "selected-profile-tab-50")!, targetSize: CGSize(width: 40, height: 40)))
+        let tab4bar = UITabBarItem(title: "Map", image: resizeImage(image: UIImage(named: "icons8-map-48")!, targetSize: CGSize(width: 40, height: 40)), selectedImage: resizeImage(image: UIImage(named: "icons8-map-48-selected")!, targetSize: CGSize(width: 40, height: 40)))
+        tab4.tabBarItem = tab4bar
+        tab3.tabBarItem = tab3bar
         
+        middleButtonVC.tabBarItem = middleButtonTap
+        firstTabNavigationController = UINavigationController.init(rootViewController: tab1)
+        dealContentNav = UINavigationController.init(rootViewController: tab2)
+        middleTabNavigationController = UINavigationController.init(rootViewController: middleButtonVC)
+        profileNavBar = UINavigationController.init(rootViewController: tab3)
+        mapNavBar = UINavigationController.init(rootViewController: tab4)
+        self.viewControllers = [firstTabNavigationController, dealContentNav, middleButtonVC, profileNavBar, mapNavBar]
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if viewController.title == "DealsContentVC" {

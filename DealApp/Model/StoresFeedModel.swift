@@ -11,13 +11,21 @@ struct StoresFeedModel: Codable, Hashable {
     var title = String()
     var image = String()
     var id = String()
+    var distance = Double()
+    var latitude = Double()
+    var longitude = Double()
+    var address1 = String()
+    var address2 = String()
 }
 protocol NewDataDelegate{
      func didFetchData()
 }
 
-class NewData {
+class StoresData {
     let novalueImageUrl = "https://firebasestorage.googleapis.com/v0/b/dealapp-f1ce1.appspot.com/o/no%20value.jpg?alt=media&token=df6afb68-402f-4681-ad9b-5a30532376a1"
+    static let shared = StoresData()
+    var lat = Double()
+    var lon = Double()
     var selectedSegment = Int()
     var storeIDSelected = String()
     var delegate: NewDataDelegate?
@@ -26,6 +34,7 @@ class NewData {
         didSet {
         }
     }
+
     var favIDsFirebase = [String]()
     var businessDataMain = [StoresFeedModel]()
     var businessDataFav = [StoresFeedModel]()
@@ -47,7 +56,7 @@ class NewData {
             } else {
                 print("querySnapshot!.documents.count = \(querySnapshot!.documents.count)")
                 if querySnapshot!.documents.count == 0 {
-                    self.businessDataFav = [StoresFeedModel(title: "No Stores Yet", image: self.novalueImageUrl, id: "No ID")]
+                    self.businessDataFav = [StoresFeedModel(title: "No Stores Yet", image: self.novalueImageUrl, id: "No ID", distance: 0.0)]
                     self.businesses.accept(self.businessDataFav)
                 }
                 querySnapshot!.documents.enumerated().forEach { indexS, storeDocument in

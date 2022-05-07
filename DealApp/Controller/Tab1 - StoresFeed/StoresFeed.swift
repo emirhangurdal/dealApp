@@ -8,9 +8,16 @@ import CoreLocation
 import CoreData
 import Firebase
 import FirebaseAuth
-class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UpdateCustomCell, CLLocationManagerDelegate {
+
+protocol StoresFeedDelegate: class {
+    func createAnnotations(mainData: [StoresFeedModel])
+}
+
+
+class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UpdateCustomCell, CLLocationManagerDelegate, UpdateButtonImage {
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("storesfeed viewdidload")
         locationManager.delegate = self
         tableView.register(StoresTabCell.self, forCellReuseIdentifier: storesFeedCellId)
         tableView
@@ -19,11 +26,26 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         bindTableViewMain()
         configureConstr()
         configureNavBar()
-        getMainData()
         selectedCell()
+        print("UserUID = \(Auth.auth().currentUser?.uid)")
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        
         self.navigationItem.rightBarButtonItem = logOut
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("storesfeed viewwillappear")
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewdidappear")
+        self.locationManager.requestWhenInUseAuthorization()
+        self.locationManager.requestAlwaysAuthorization()
+        if
+            CLLocationManager.authorizationStatus() != .authorizedWhenInUse || CLLocationManager.authorizationStatus() != .authorizedAlways {
+            
+          
+            print("authorization not granted")
+        }
     }
     //MARK: - Properties
     lazy var tableView = UITableView()
@@ -32,13 +54,15 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         print("logOut")
         let firebaseAuth = Auth.auth()
         do {
-          try firebaseAuth.signOut()
+            try firebaseAuth.signOut()
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
+    weak var delegate: StoresFeedDelegate?
+    let db = Firestore.firestore()
     let apiDispatchGroup = DispatchGroup()
-    private let locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     private let storesFeedCellId = "StoresFeedCellID"
     var selectedID = String()
     private let disposeBag = DisposeBag()
@@ -48,14 +72,14 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     private let refreshControlFavs = UIRefreshControl()
     private let refreshControlMain = UIRefreshControl()
     var spinner = SpinnerViewController()
-    var newData = NewData()
+    var storesData = StoresData()
     private let noValueImage = "https://firebasestorage.googleapis.com/v0/b/dealapp-f1ce1.appspot.com/o/no%20value.jpg?alt=media&token=df6afb68-402f-4681-ad9b-5a30532376a1"
     enum SegmentType: String {
         case allStores = "All Stores"
         case favorites = "Favorites"
     }
     
-   //MARK: - Segments
+    //MARK: - Segments
     let segments: [SegmentType] = [.allStores, .favorites]
     lazy var segmentControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: segments.map({ $0.rawValue }))
@@ -70,32 +94,26 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         let type = segments[segmentControl.selectedSegmentIndex]
         switch type {
         case .allStores:
-//            addSpinner()
+            //            addSpinner()
             configureRefreshControlMain()
             getMainData()
-//            stopSpinner()
+            //            stopSpinner()
         case .favorites:
             self.configureRefreshControlFav()
             reCallApi()
         }
     }
     func reCallApi(){
-        self.newData.getFavDataFromFirebase { favData in
+        self.storesData.getFavDataFromFirebase { favData in
             self.addSpinner()
             print("favData in closure = \(favData)")
-            self.newData.businessDataFav = favData
-            self.newData.businesses.accept(self.newData.businessDataFav.removingDuplicates())
+            self.storesData.businessDataFav = favData
+            self.storesData.businesses.accept(self.storesData.businessDataFav.removingDuplicates())
             self.stopSpinner()
             favData.map { favData in
                 print("favData.title = \(favData.title)")
             }
         }
-//        newData.getFavData { favData in
-//            self.addSpinner()
-//            self.newData.businessDataFav = favData
-//            self.newData.businesses.accept(favData.removingDuplicates())
-//            self.stopSpinner()
-//        }
     }
     func configureRefreshControlMain() {
         refreshControlMain.attributedTitle = NSAttributedString(string: "Pull to refresh")
@@ -119,16 +137,64 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     }
     //MARK: - Get Favorites via core data - and main data
     func getMainData() {
-//        segmentControl.isUserInteractionEnabled = false
-        self.newData.businesses.accept(newData.businessDataMain)
-        YelpAPIManager.shared.getPlaceInfo(latitude: self.latitude, longitude: self.longitude) { dataFromRequest in
-            self.newData.businessDataMain = dataFromRequest
-            self.newData.businesses.accept(self.newData.businessDataMain)
-//            self.segmentControl.isUserInteractionEnabled = true
+        // Ask for Authorisation from the User.
+        // For use in foreground
+        var currentLocation: CLLocation!
+        if
+            CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
+            currentLocation = locationManager.location
+            StoresData.shared.lat = currentLocation.coordinate.latitude
+            StoresData.shared.lon = currentLocation.coordinate.longitude
+            YelpAPIManager.shared.getPlaceInfo(latitude: StoresData.shared.lat, longitude: StoresData.shared.lon) { dataFromRequest in
+                self.storesData.businessDataMain = dataFromRequest
+                DispatchQueue.main.async {
+                    self.storesData.businesses.accept(self.storesData.businessDataMain)
+                    self.delegate?.createAnnotations(mainData: self.storesData.businessDataMain)
+                }
+               
+                //self.segmentControl.isUserInteractionEnabled = true
+                
+                // location manager location is cached
+            }
+
+        } else {
+            print("authorization problem")
+            
         }
     }
     func updateTableView() { // this works in delete button on StoresTabCell.swift where id of the selected store is removed from firebase.
+        fadingLabelConfig(message: "Store Removed From Favorites", color: UIColor.gray, finalAlpha: 0.0)
         reCallApi()
+    }
+    func updateButton() {
+        fadingLabelConfig(message: "Store Added To Favorites", color: UIColor.gray, finalAlpha: 0.0)
+    }
+    func fadingLabelConfig(message: String, color: UIColor, finalAlpha: CGFloat){
+        var fadingLabel: UILabel!
+        fadingLabel = UILabel()
+        fadingLabel.text = "Text"
+        view.addSubview(fadingLabel)
+        fadingLabel.isHidden = true
+        fadingLabel.snp.makeConstraints { fadingLabel in
+            fadingLabel.height.equalTo(100)
+            fadingLabel.width.equalTo(300)
+            fadingLabel.centerX.equalTo(self.view.snp.centerX)
+            fadingLabel.centerY.equalTo(self.view.snp.centerY).offset(300)
+        }
+        fadeMessage()
+        func fadeMessage() {
+            fadingLabel.text          = message
+            fadingLabel.alpha         = 0.8
+            fadingLabel.isHidden      = false
+            fadingLabel.textAlignment = .center
+            fadingLabel.backgroundColor     = color
+            fadingLabel.layer.cornerRadius  = 5
+            fadingLabel.layer.masksToBounds = true
+            fadingLabel.font = UIFont.systemFont(ofSize: 20)
+            UIView.animate(withDuration: 2.0, animations: { () -> Void in
+                fadingLabel.alpha = finalAlpha
+            })
+        }
     }
     //MARK: - Spinner
     func addSpinner(){
@@ -146,14 +212,15 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
             self.tableView.isHidden = false
         }
     }
-//MARK: - Constraints.
+    //MARK: - Constraints.
     func configureConstr() {
         self.title = "StoresFeed"
         self.tabBarItem.title = ""
         self.view.addSubview(tableView)
         self.view.addSubview(segmentControl)
         
-        tableView.backgroundColor = UIColor(red: 58/255, green: 67/255, blue: 86/255, alpha: 1.0)
+//        tableView.backgroundColor = UIColor(red: 58/255, green: 67/255, blue: 86/255, alpha: 1.0) - 179, 178, 184
+        tableView.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.delegate = self
@@ -175,9 +242,9 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         self.navigationItem.title = "Stores Near You"
         self.navigationController?.navigationBar.isTranslucent = true
     }
-//MARK: - RxSwift TableViewbind
+    //MARK: - RxSwift TableViewbind
     func bindTableViewMain() {
-            newData.businesses.asObservable()
+        storesData.businesses.asObservable()
             .bind(to: tableView
                     .rx
                     .items(cellIdentifier: storesFeedCellId, cellType: StoresTabCell.self)
@@ -185,7 +252,9 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         {
             row, businessData, cell in
             cell.delegate = self
+            cell.delegate2 = self
             cell.configureWithData(dataModel: businessData)
+            
             if self.segmentControl.selectedSegmentIndex == 1 {
                 cell.addFavButton.isHidden = true
                 cell.deleteFromFavsButton.isHidden = false
@@ -196,18 +265,22 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
                 cell.deleteFromFavsButton.isHidden = true
             }
         }
-            .disposed(by: disposeBag)
+        .disposed(by: disposeBag)
     }
     func selectedCell() {
         tableView.rx
-                    .modelSelected(StoresFeedModel.self)
-                    .subscribe(onNext:  { value in
-                    self.newData.storeIDSelected = value.id
-//                        let storeDeals = StoreDeals()
-//                        self.navigationController?.pushViewController(storeDeals, animated: false)
-                    })
-                    .disposed(by: disposeBag)
+            .modelSelected(StoresFeedModel.self)
+            .subscribe(onNext:  { store in
+                self.storesData.storeIDSelected = store.id
+                print("store.lat = \(store.latitude)")
+                print("store long = \(store.longitude)")
+                print(".distance = \(store.distance)")
+                let storeDeals = StoreDeals(storeDetail: store)
+                self.navigationController?.pushViewController(storeDeals, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let verticalPadding: CGFloat = 10
         let maskLayer = CALayer()
@@ -222,23 +295,63 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-//MARK: - Location
+    //MARK: - Location
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("location did update")
-        locationManager.requestWhenInUseAuthorization()
-        var currentLocation: CLLocation!
-        if
-           CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-           CLLocationManager.authorizationStatus() ==  .authorizedAlways
-        {
-            currentLocation = locationManager.location
-            print("location long: \(currentLocation.coordinate.longitude)")
-            print("location lat: \(currentLocation.coordinate.latitude)")
-                longitude = currentLocation.coordinate.longitude
-                latitude = currentLocation.coordinate.latitude
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+            print("didUpdateLocations")
+//        latitude = locValue.latitude
+//        longitude = locValue.longitude
+//        getMainData()
+            }
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager, status: CLAuthorizationStatus) {
+        print("locationManagerDidChangeAuthorization")
+     
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("didFailWithError = \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("didChangeAuthorization")
+        switch status {
+        case .denied:
+            
+            let alert = UIAlertController(title: "Please Authorize The App To Get Your Location", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Settings", style: .cancel, handler: { action in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                                print("Settings opened: \(success)") // Prints true
+                            })
+                        }
+            }))
+            self.present(alert, animated: true, completion: nil)
+        case .notDetermined:
+            manager.requestLocation()
+          
+            print("authorization not determined")
+        case .authorizedAlways, .authorizedWhenInUse:
+            // Do your thing here
+            getMainData()
+            print("authorized")
+        default:
+            // Permission denied, create alertview here.
+            
+            print("Permission denied, do something else")
         }
     }
+    
+    func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+        print("locationManagerDidPauseLocationUpdates")
+    }
+    func locationManagerDidResumeLocationUpdates(_ manager: CLLocationManager) {
+        print("locationManagerDidResumeLocationUpdates")
+    }
+    
+    //MARK: - Resize
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size
         let widthRatio  = targetSize.width  / size.width
@@ -262,5 +375,6 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     }
 }
 
- 
+
+
 

@@ -4,9 +4,12 @@ import RxSwift
 import RxCocoa
 import Firebase
 import FirebaseAuth
+import CoreLocation
 
 //This is where the middle button of tabBar will go to. The data from here will be collecton in DealsContentVC.
-class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+// try creating a protocol to notify DealsContentVC to trigger loadfromFirebase. simple instance of PostdealVC on DealsContent breaks the hierarchy probably and won't work.
+
+class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate { 
     override func viewDidLoad() {
         configureConstraints()
         print("PostDeal")
@@ -17,19 +20,24 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         initialStoreSelection()
         disablePostButtonIfDocIdNil()
     }
+    var disposeBag = DisposeBag()
     var storeTitle = String()
+    var imagePath = String()
     var ref: DocumentReference? = nil
+    var userDealRef: DocumentReference? = nil
     var spinner = SpinnerViewController()
     let storesFeed = StoresFeed()
     let dealDetail = DealDetail()
+    var distance = Double()
     private let storage = Storage.storage()
     let db = Firestore.firestore()
     var dealsData = DealsData()
-    var newData = NewData()
+    var newData = StoresData()
     var stopTextFieldTitle = false
     var textContentBool = Bool()
     var dealImage: UIImageView = {
         let img = UIImageView()
+        img.contentMode = .scaleAspectFit
         return img
     }()
     private var textFieldTitle: UITextField = {
@@ -108,20 +116,22 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                               limit: 100)
     }
     //MARK: - PostDealButton
-     lazy var postDeal: UIButton = {
-       var bttn = UIButton()
+    lazy var postDeal: UIButton = {
+        var bttn = UIButton()
         bttn.setTitle("Post!", for: .normal)
         bttn.backgroundColor = .yellow
         bttn.addTarget(self, action: #selector(posttheDeal), for: .touchUpInside)
-       return bttn
-   }()
+        return bttn
+    }()
     @objc func posttheDeal(sender: UIButton){
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             sender.alpha = 1.0
         }
         print(ref?.documentID)
-        uploadingImageToFirestore()
+        print("dealsData.id = \(DealsData.shared.id)")
+        print("storeTitle = \(DealsData.shared.storeTitle)")
+        self.createDocument(storeID: DealsData.shared.id, storeTitle: DealsData.shared.storeTitle)
     }
     func disablePostButtonIfDocIdNil(){
         if ref?.documentID == nil || ref?.documentID.isEmpty == true {
@@ -136,30 +146,33 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         let alert = UIAlertController(title: "Please Choose A Store First", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Go to Stores Near You", style: .cancel, handler: { (action) in
             let modalStyle = UIModalTransitionStyle.crossDissolve
+            self.storesFeed.getMainData()
             self.storesFeed.modalTransitionStyle = modalStyle
             self.present(self.storesFeed, animated: true, completion: nil)
             self.storesFeed.tableView.rx
-                        .modelSelected(StoresFeedModel.self)
-                        .subscribe(onNext:  { value in
-                            print("value.id = \(value.id)")
-                            DealsData.shared.id = value.id
-                            if value.id.isEmpty == false {
-                                self.postDeal.isEnabled = true
-                            }
-                            self.createDocument(storeID: value.id, storeTitle: value.title)
-                            self.storeTitle = value.title
-                            print("document ID in initialstoreSelection = \(self.ref?.documentID)")
-                            self.storesFeed.dismiss(animated: true, completion: nil)
-                            let alert = UIAlertController(title: "Store Selected", message: "", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel, handler: { (action) in
-                                }))
-                            self.present(alert, animated: true, completion: nil)
-                        })
-                        .disposed(by: self.newData.disposeBag)
-            }))
+                .modelSelected(StoresFeedModel.self)
+                .subscribe(onNext:  { value in
+                    print("value.id = \(value.id)")
+                    DealsData.shared.id = value.id
+                    DealsData.shared.storeTitle = value.title
+                    DealsData.shared.distance = value.distance
+                    DealsData.shared.lat = value.latitude
+                    DealsData.shared.long = value.longitude
+                    self.distance = value.distance
+                    if value.id.isEmpty == false {
+                        self.postDeal.isEnabled = true
+                    }
+                    self.storesFeed.dismiss(animated: true, completion: nil)
+                    let alert = UIAlertController(title: "Store Selected", message: "", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel, handler: { (action) in
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                })
+                .disposed(by: self.disposeBag)
+        }))
         self.present(alert, animated: true, completion: nil)
     }
-    func uploadingImageToFirestore() {
+    func createDocument(storeID: String, storeTitle: String){
         addSpinner()
         let dealImageToUpload = self.dealImage.image
         guard let newImageData = dealImageToUpload?.pngData() else {
@@ -177,43 +190,53 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                 print("sucessfully uploaded image")
             }
         }
-        // waiting for the upload to complete and only then updateData() to add path, deal
-        uploadTask.observe(.progress) { snapshot in
-            print("snapshot.progress?.completedUnitCount = \(snapshot.progress?.completedUnitCount)")
-        }
-        uploadTask.observe(.success) { snapshot in
-            let collectionRef = self.db.collection("dealsCollection/\(self.storeTitle)/deals")
-            collectionRef.document(self.ref!.documentID).updateData(["ImagePath" : path, "DealTitle": self.textFieldTitle.text!, "DealDesc" : self.textFieldContent.text!, "DealID" : self.ref!.documentID])
-            self.stopSpinner()
-            self.dealDetail.dealImage.image = self.dealImage.image
-            self.dealDetail.labelTitle.text = self.textFieldTitle.text
-            self.dealDetail.labelContent.text = self.textFieldContent.text
-            self.navigationController?.pushViewController(self.dealDetail, animated: true)
-        }
-    }
-    func createDocument(storeID: String, storeTitle: String){
-        if let dealSender = Auth.auth().currentUser?.email {
-            let newStoreDocRef = self.db.collection("dealsCollection").document(storeTitle)
-            newStoreDocRef.setData(["String" : "Any"]) { error in
-                guard error == nil else { return }
-                print("newStoreDocRef setData error nil = \(error)")
+        print("storeTitle in create Document = \(storeTitle)")
+        let newStoreDocRef = self.db.collection("dealsCollection").document(storeTitle)
+        newStoreDocRef.setData(["Lat" : DealsData.shared.lat, "Long" : DealsData.shared.long]) { error in
+            if let err = error {
+                print("err = \(err)")
+            } else {
+                print("store document created with ID = \(newStoreDocRef.documentID)")
             }
-            ref = self.db.collection("dealsCollection/\(storeTitle)/deals").addDocument(
-                data: ["Sender" : dealSender,
-                       "StoreID": storeID,
-                       "StoreTitle" : storeTitle,
-                       "ImagePath" : "",
-                       "DealTitle" : "",
-                       "DealDesc" : "",
-                       "DealID" : "",
-                       "UserName" : Auth.auth().currentUser?.displayName ?? "A User"]) { error in
-                           if let e = error {
-                               print("there was an issue sending data storeid of the deal to Firestore, \(e)")
-                           } else {
-                               print("Document added with ID: \(self.ref!.documentID)")
-                               print("successfully saved storeid of the deal")
-                           }
-                       }
+        }
+        if let dealSender = Auth.auth().currentUser?.email {
+            uploadTask.observe(.progress) { snapshot in
+                print("snapshot.progress?.completedUnitCount = \(snapshot.progress?.completedUnitCount)")
+            }
+            uploadTask.observe(.success) { snapshot in
+                // writing to under store
+                //                let collectionRef = self.db.collection("dealsCollection/\(self.storeTitle)/deals")
+                //                collectionRef.document(self.ref!.documentID).updateData(["ImagePath" : path, "DealTitle": self.textFieldTitle.text!, "DealDesc" : self.textFieldContent.text!, "DealID" : self.ref!.documentID])
+                let newDocumentID = UUID().uuidString
+                //  self.ref = self.db.collection("dealsCollection").document(storeTitle).collection("deals").document(newDocumentID)
+                self.ref = newStoreDocRef.collection("deals").document(newDocumentID)
+                let dealData: [String : Any] = ["Sender" : dealSender,
+                                                "StoreID": storeID,
+                                                "StoreTitle" : storeTitle,
+                                                "ImagePath" : path,
+                                                "DealTitle" : self.textFieldTitle.text ?? "no title please edit",
+                                                "DealDesc" : self.textFieldContent.text ?? "no desc please edit",
+                                                "DealID" : newDocumentID,
+                                                "UserName" : Auth.auth().currentUser?.displayName ?? "A User",
+                                                "Distance" : DealsData.shared.distance,
+                                                "Lat" : DealsData.shared.lat,
+                                                "Long" : DealsData.shared.long]
+                self.ref?.setData(dealData, completion: { error in
+                    if let err = error {
+                        print("error creating document = \(err)")
+                    } else {
+                        print("success: created document for deal. ")
+                    }
+                })
+                self.stopSpinner()
+                self.dealDetail.dealImage.image = self.dealImage.image
+                self.dealDetail.labelTitle.text = self.textFieldTitle.text
+                self.dealDetail.labelContent.text = self.textFieldContent.text
+                self.navigationController?.pushViewController(self.dealDetail, animated: true)
+            }
+        } else {
+            print("check if let dealSender = Auth.auth().currentUser?.email")
+            return
         }
     }
     func addSpinner(){
@@ -224,48 +247,47 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
     func stopSpinner(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-             self.spinner.willMove(toParent: nil)
-             self.spinner.view.removeFromSuperview()
-             self.spinner.removeFromParent()
+            self.spinner.willMove(toParent: nil)
+            self.spinner.view.removeFromSuperview()
+            self.spinner.removeFromParent()
         }
     }
-//    func getDownloadURLforImage(){
-//        dealImageRef.downloadURL { urloftheDealImage, error in
-//            if let error = error {
-//                print("error getting download URL = \(error)")
-//            } else {
-//
-//            }
-//        }
-//    }
+    //    func getDownloadURLforImage(){
+    //        dealImageRef.downloadURL { urloftheDealImage, error in
+    //            if let error = error {
+    //                print("error getting download URL = \(error)")
+    //            } else {
+    //
+    //            }
+    //        }
+    //    }
     //MARK: - ChooseStoreButton
     var chooseStore: UIButton = {
-       var bttn = UIButton()
+        var bttn = UIButton()
         bttn.setTitle("ChooseStore!", for: .normal)
         bttn.backgroundColor = .black
         bttn.addTarget(self, action: #selector(goToChooseStore), for: .touchUpInside)
-       return bttn
-   }()
+        return bttn
+    }()
     @objc func goToChooseStore(){
         let modalStyle = UIModalTransitionStyle.crossDissolve
         storesFeed.modalTransitionStyle = modalStyle
         present(storesFeed, animated: true, completion: nil)
         storesFeed.tableView.rx
-                    .modelSelected(StoresFeedModel.self)
-                    .subscribe(onNext:  { value in
-                        print("value.id = \(value.id)")
-                        DealsData.shared.id = value.id
-                        print("DealsData.shared.id = \(DealsData.shared.id)")
-//                        let docReference = self.db.collection("storeIDsofDeals").document(self.ref!.documentID)
-//                        docReference.updateData(["StoreID" : value.id])
-                        
-                        self.storesFeed.dismiss(animated: true, completion: nil)
-                        let alert = UIAlertController(title: "Store Selected", message: "", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel, handler: { (action) in
-                            }))
-                        self.present(alert, animated: true, completion: nil)
-                    })
-                    .disposed(by: newData.disposeBag)
+            .modelSelected(StoresFeedModel.self)
+            .subscribe(onNext:  { value in
+                DealsData.shared.id = value.id
+                DealsData.shared.storeTitle = value.title
+                print("DealsData.shared.id = \(DealsData.shared.id)")
+                //                        let docReference = self.db.collection("storeIDsofDeals").document(self.ref!.documentID)
+                //                        docReference.updateData(["StoreID" : value.id])
+                self.storesFeed.dismiss(animated: true, completion: nil)
+                let alert = UIAlertController(title: "Store Selected", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel, handler: { (action) in
+                }))
+                self.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: newData.disposeBag)
     }
     @objc func viewTapped(){
         makeTextFieldTitleBorderPale()
@@ -317,5 +339,5 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
             chooseStore.bottom.equalTo(dealImage.snp.top).offset(-5)
         }
     }
-
+    
 }
