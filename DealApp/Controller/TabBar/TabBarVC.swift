@@ -9,7 +9,11 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
         UITabBar.appearance().barTintColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
 //        self.tabBar.isTranslucent = false
         configureTabs()
-    
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tabBar.frame.size.height = 85
+        tabBar.frame.origin.y = view.frame.height - 85
     }
     let photoHelper = MGPhotoHelper()
     var firstTabNavigationController : UINavigationController!
@@ -21,13 +25,14 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
     let tab1 = StoresFeed()
     let tab2 = DealsContentVC()
     let tab3 = Profile()
-    let tab4 = MapVC()
+    let tab4 = MapVC()  
     let deals = DealsData()
     let postDeal = PostDealVC()
     let middleButtonVC = UIViewController()
     func configureTabs(){
         tab1.delegate = tab4
-        
+        tab1.delegate2 = tab2
+       
         // style:
         
         if #available(iOS 15.0, *) {
@@ -46,10 +51,10 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
         tab2.tabBarItem = tab2bar
         let middleButtonTap = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-add-100")!, targetSize: CGSize(width: 40, height: 40)).withRenderingMode(.alwaysOriginal), selectedImage: resizeImage(image: UIImage(named: "icons8-add-100")!, targetSize: CGSize(width: 40, height: 40)).withRenderingMode(.alwaysOriginal))
         let tab3bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-profile-not-selected-50")!, targetSize: CGSize(width: 40, height: 40)), selectedImage: resizeImage(image: UIImage(named: "selected-profile-tab-50")!, targetSize: CGSize(width: 40, height: 40)))
-        let tab4bar = UITabBarItem(title: "Map", image: resizeImage(image: UIImage(named: "icons8-map-48")!, targetSize: CGSize(width: 40, height: 40)), selectedImage: resizeImage(image: UIImage(named: "icons8-map-48-selected")!, targetSize: CGSize(width: 40, height: 40)))
+        let tab4bar = UITabBarItem(title: "", image: resizeImage(image: UIImage(named: "icons8-map-48")!, targetSize: CGSize(width: 40, height: 40)), selectedImage: resizeImage(image: UIImage(named: "icons8-map-48-selected")!, targetSize: CGSize(width: 40, height: 40)))
         tab4.tabBarItem = tab4bar
         tab3.tabBarItem = tab3bar
-        
+
         middleButtonVC.tabBarItem = middleButtonTap
         firstTabNavigationController = UINavigationController.init(rootViewController: tab1)
         dealContentNav = UINavigationController.init(rootViewController: tab2)

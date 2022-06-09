@@ -26,14 +26,15 @@ class LogIn: UIViewController {
    private var textFieldEmail: UITextField = {
         var txt = UITextField()
         txt.font = UIFont(name: "Optima-Bold", size: 13)
-        txt.backgroundColor = .white
-        
+       txt.backgroundColor = .white
+       txt.textColor = .black
         return txt
     }()
    private var textFieldPass: UITextField = {
         var txt = UITextField()
         txt.font = UIFont(name: "Optima-Bold", size: 13)
         txt.backgroundColor = .white
+       txt.textColor = .black
         txt.isSecureTextEntry = true
         return txt
     }()
@@ -56,7 +57,10 @@ class LogIn: UIViewController {
     }()
     @objc func signUpPressed() {
         let signUpVC = SignUp()
-        self.navigationController?.pushViewController(signUpVC, animated: true)
+//        self.navigationController?.pushViewController(signUpVC, animated: true)
+//        self.dismiss(animated: true, completion: nil)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 //MARK: -Configure constraints.
 

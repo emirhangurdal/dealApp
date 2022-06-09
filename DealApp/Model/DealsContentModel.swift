@@ -13,7 +13,9 @@ struct DealModel: Hashable {
     var sender: String?
     var userName: String?
     var distance: Double?
-    init(storeID: String?, dealImage: UIImage?, dealTitle: String?, dealDesc: String?, dealID: String?, storeTitle: String?, sender: String?, userName: String?, distance: Double?) {
+    var senderUID: String?
+    
+    init(storeID: String?, dealImage: UIImage?, dealTitle: String?, dealDesc: String?, dealID: String?, storeTitle: String?, sender: String?, userName: String?, distance: Double?, senderUID: String?) {
         self.storeID = storeID
         self.dealImage = dealImage
         self.dealDesc = dealDesc
@@ -23,12 +25,15 @@ struct DealModel: Hashable {
         self.sender = sender
         self.userName = userName
         self.distance = distance
+        self.senderUID = senderUID
     }
 }
 
 struct SectionOfCustomData {
-  var header: String
-  var items: [Item]
+    var header: String
+    
+    var id: String
+    var items: [Item]
 }
 extension SectionOfCustomData: SectionModelType, Hashable {
     typealias Item = DealModel
@@ -38,7 +43,6 @@ extension SectionOfCustomData: SectionModelType, Hashable {
   }
 }
 class DealsData {
-    
     static let shared = DealsData()
 //    let dealsData : BehaviorRelay<[DealModel]> = BehaviorRelay(value: [])
     let dealsData : BehaviorRelay<[SectionOfCustomData]> = BehaviorRelay(value: [])
@@ -48,5 +52,6 @@ class DealsData {
     var long = Double()
     var distance = Double()
     var storeTitle = String()
+    var dealCount = Int()
 }
 

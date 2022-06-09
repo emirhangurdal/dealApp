@@ -24,7 +24,6 @@ class customAnnotationView: MKPinAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         canShowCallout = true
         rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,13 +31,10 @@ class customAnnotationView: MKPinAnnotationView {
 }
 
 //MARK: - MapVC
-
-
 class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, StoresFeedDelegate {
-  
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Map"
+        
         mapView.delegate = self
         locationManager.delegate = self
         view.backgroundColor = .gray
@@ -83,6 +79,7 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, Sto
         mapView.setRegion(region, animated: true)
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+        configureNavBar()
     }
     func createAnnotations(mainData: [StoresFeedModel]) {
         mainData.map { storesData in
@@ -93,15 +90,17 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, Sto
         print("calloutAccessoryControlTapped")
         if let annotation = view.annotation as? Place {
                print("Your annotation title: \(annotation.id)")
-            YelpAPIManager.shared.getFavStoreInfo(id: annotation.id) { data in
-                        let storeDeals = StoreDeals(storeDetail: data)
-                        self.navigationController?.pushViewController(storeDeals, animated: true)
+//            YelpAPIManager.shared.getFavStoreInfo(id: annotation.id) { data in
+//                        let storeDeals = StoreDeals(storeDetail: data)
+//                        self.navigationController?.pushViewController(storeDeals, animated: true)
+//            }
+            
+            GoogleApiManager.shared.getFavStoreInfo(id: annotation.id) { data in
+                let storeDeals = StoreDeals(storeDetail: data)
+                self.navigationController?.pushViewController(storeDeals, animated: true)
             }
            }
         // make an api call with id here. Get data from createAnnotaions(). and init the StoreDeals view controller. be careful about it because data is already coming from an api call.
-        
-        
-
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
             print("annotation selected")
@@ -120,5 +119,22 @@ class MapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, Sto
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("didFailWithError = \(error.localizedDescription)")
+    }
+    
+    //MARK: - Navigation Appeareance
+    
+    func configureNavBar(){
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
+        self.navigationItem.title = "Map"
+        self.navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
+            
+            // Customizing our navigation bar
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
 }

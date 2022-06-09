@@ -8,7 +8,8 @@ protocol DealDetailDelegate: AnyObject {
 class DealDetail: UIViewController {
     override func viewDidLoad() {
         print("DealDetail")
-        view.backgroundColor = .black
+        var gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        view.backgroundColor = .white
         self.title = "DealDetail"
         configureConst()
         if self.delegate == nil {
@@ -22,11 +23,12 @@ class DealDetail: UIViewController {
     var spinner = SpinnerViewController()
     var labelMessage : UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Optima-Bold", size: 15)
+        lbl.font = UIFont.boldSystemFont(ofSize: 15)
         lbl.text = "Your Deal Has Been Posted!"
-        lbl.textColor = .white
+        lbl.textColor = .black
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        lbl.layer.borderColor = white.cgColor
+        var gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        lbl.layer.borderColor = gray.cgColor
         lbl.layer.borderWidth = 2.0
         lbl.layer.masksToBounds = true
         lbl.layer.cornerRadius = 5
@@ -36,11 +38,12 @@ class DealDetail: UIViewController {
     }()
     var labelContent : UILabel = {
         let lbl = UILabel()
-        lbl.font = UIFont(name: "Optima-Bold", size: 15)
-        lbl.text = "labelContent"
-        lbl.textColor = .white
+        lbl.font = UIFont.boldSystemFont(ofSize: 15)
+        lbl.text = "Deal Description"
+        lbl.textColor = .black
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        lbl.layer.borderColor = white.cgColor
+        var gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        lbl.layer.borderColor = gray.cgColor
         lbl.layer.borderWidth = 2.0
         lbl.layer.masksToBounds = true
         lbl.layer.cornerRadius = 5
@@ -51,11 +54,26 @@ class DealDetail: UIViewController {
     }()
     var labelTitle: UILabel = {
         let lbl = UILabel()
-        lbl.text = "labelTitle"
-        lbl.font = UIFont(name: "Optima-Bold", size: 15)
-        lbl.textColor = .white
+        lbl.text = "Title"
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        lbl.layer.borderColor = white.cgColor
+        var gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        lbl.font = UIFont.boldSystemFont(ofSize: 15)
+        lbl.textColor = .black
+        lbl.layer.borderColor = gray.cgColor
+        lbl.layer.borderWidth = 2.0
+        lbl.layer.masksToBounds = true
+        lbl.layer.cornerRadius = 5
+        return lbl
+    }()
+    var storeTitle = String()
+    var labelStoreTitle: UILabel = {
+        let lbl = UILabel()
+        lbl.text = "Deal at ... "
+        var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
+        var gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        lbl.font = UIFont.boldSystemFont(ofSize: 12)
+        lbl.textColor = .black
+        lbl.layer.borderColor = gray.cgColor
         lbl.layer.borderWidth = 2.0
         lbl.layer.masksToBounds = true
         lbl.layer.cornerRadius = 5
@@ -65,7 +83,8 @@ class DealDetail: UIViewController {
         let img = UIImageView()
         img.image = UIImage(named: "ExampleDeal")!
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        img.layer.borderColor = white.cgColor
+        var gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        img.layer.borderColor = gray.cgColor
         img.contentMode = .scaleAspectFit
         img.layer.borderWidth = 2.0
         img.layer.masksToBounds = true
@@ -97,35 +116,43 @@ class DealDetail: UIViewController {
         view.addSubview(labelTitle)
         view.addSubview(dealImage)
         view.addSubview(labelMessage)
+        view.addSubview(labelStoreTitle)
+        labelStoreTitle.text = "Deal at \(storeTitle)"
         dealImage.snp.makeConstraints { dealImage in
-            dealImage.right.equalTo(view.snp.right).offset(-5)
-            dealImage.left.equalTo(view.snp.left).offset(5)
-            dealImage.bottom.equalTo(view.snp.bottom).offset(-550)
-            dealImage.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            dealImage.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            dealImage.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-400)
+            dealImage.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            dealImage.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
+        }
+        labelStoreTitle.snp.makeConstraints { labelStoreTitle in
+            labelStoreTitle.top.equalTo(dealImage.snp.bottom).offset(5)
+            labelStoreTitle.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-370)
+            labelStoreTitle.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            labelStoreTitle.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         labelTitle.snp.makeConstraints { labelTitle in
-            labelTitle.right.equalTo(view.snp.right).offset(-5)
-            labelTitle.left.equalTo(view.snp.left).offset(5)
-            labelTitle.bottom.equalTo(view.snp.bottom).offset(-500)
-            labelTitle.top.equalTo(dealImage.snp.bottom).offset(5)
+            labelTitle.top.equalTo(dealImage.snp.bottom).offset(35)
+            labelTitle.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-315)
+            labelTitle.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            labelTitle.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         labelContent.snp.makeConstraints { labelContent in
-            labelContent.right.equalTo(view.snp.right).offset(-5)
-            labelContent.left.equalTo(view.snp.left).offset(5)
-            labelContent.bottom.equalTo(view.snp.bottom).offset(-250)
             labelContent.top.equalTo(labelTitle.snp.bottom).offset(5)
+            labelContent.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-165)
+            labelContent.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            labelContent.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         labelMessage.snp.makeConstraints { labelMessage in
-            labelMessage.right.equalTo(view.snp.right).offset(-35)
-            labelMessage.left.equalTo(view.snp.left).offset(35)
-            labelMessage.bottom.equalTo(view.snp.bottom).offset(-150)
             labelMessage.top.equalTo(labelContent.snp.bottom).offset(5)
+            labelMessage.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-115)
+            labelMessage.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            labelMessage.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         seeAllDealsButton.snp.makeConstraints { seeAllDealsButton in
-            seeAllDealsButton.right.equalTo(view.snp.right).offset(-35)
-            seeAllDealsButton.left.equalTo(view.snp.left).offset(35)
-            seeAllDealsButton.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-50)
             seeAllDealsButton.top.equalTo(labelMessage.snp.bottom).offset(5)
+            seeAllDealsButton.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-65)
+            seeAllDealsButton.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            seeAllDealsButton.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
     }
     func addSpinner(){

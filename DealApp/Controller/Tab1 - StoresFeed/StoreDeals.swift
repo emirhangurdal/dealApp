@@ -14,6 +14,8 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         configureConstraints()
         configureTV()
         bindTV()
+        dealSelected()
+        print("store title =\(storeDetail.title)")
     }
     let detailView = UIView()
     var strDeals = StrDeals()
@@ -63,7 +65,7 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
             .rx.setDelegate(self)
             .disposed(by: disposeBag)
         view.addSubview(tableView)
-        tableView.backgroundColor = .gray
+        tableView.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 0.5)
         view.addSubview(tableViewTitle)
         tableView.snp.makeConstraints { tableView in
             tableView.top.equalTo(detailView.snp.bottom).offset(40)
@@ -74,8 +76,8 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         tableViewTitle.snp.makeConstraints { tableViewTitle in
             tableViewTitle.bottom.equalTo(tableView.snp.top)
             tableViewTitle.top.equalTo(detailView.snp.bottom)
-            tableViewTitle.right.equalTo(view.safeAreaLayoutGuide)
-            tableViewTitle.left.equalTo(view.safeAreaLayoutGuide)
+            tableViewTitle.right.equalTo(view.safeAreaLayoutGuide).offset(-5)
+            tableViewTitle.left.equalTo(view.safeAreaLayoutGuide).offset(5)
         }
     }
     func bindTV(){
@@ -90,84 +92,66 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
             cell.deleteDealFromFirebase.isHidden = true
         }
         .disposed(by: disposeBag)
-        getDataFromFireBase()
+            fetchDataFireBase()
+    }
+    func dealSelected(){
+        let dealDetail = DealDetail()
+        tableView.rx
+            .modelSelected(DealModel.self)
+            .subscribe(onNext:  { deal in
+                dealDetail.dealImage.image = deal.dealImage
+                dealDetail.labelTitle.text = deal.dealTitle
+                dealDetail.labelContent.text = deal.dealDesc
+                dealDetail.seeAllDealsButton.isHidden = true
+                dealDetail.labelMessage.isHidden = true
+                self.navigationController?.pushViewController(dealDetail, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
     }
-    func getDataFromFireBase(){
-        let senderEmail: String? = Auth.auth().currentUser?.email
-        print(senderEmail!)
-        let dealsCol = self.db.collection("dealsCollection")
-        dealsCol.addSnapshotListener { querySnapShot, error in
+    func fetchDataFireBase(){
+        let query = db.collection("dealsCollection").document(storeDetail.id).collection("deals").whereField("StoreID", isEqualTo: storeDetail.id)
+        query.addSnapshotListener { querySnapShot, error in
             if let err = error {
-                print("err = \(err)")
+                print("error storeDeals FB = \(err.localizedDescription)")
             } else {
-                self.strDeals.strDeals.removeAll()
-                for document in querySnapShot!.documents {
-                    print("store doc = \(document.documentID)")
-                    let dealRef = dealsCol.document(document.documentID).collection("deals")
-                    let query = dealRef.whereField("StoreID", isEqualTo: self.storeDetail.id)
-                    query.addSnapshotListener { querySnapShot, error in
-                        if let err = error {
-                            print("error reading senderDeals = \(err)")
-                        } else {
-                            for document in querySnapShot!.documents {
-                              
-                                let data = document.data()
-                                if let sender = data["Sender"] as? String,
-                                   let image = data["ImagePath"] as? String,
-                                   let dealTitle = data["DealTitle"] as? String,
-                                   let dealDesc = data["DealDesc"] as? String,
-                                   let storeID = data["StoreID"] as? String,
-                                   let storeTitle = data["StoreTitle"] as? String,
-                                   let dealID = data["DealID"] as? String,
-                                   let userName = data["UserName"] as? String {
-                                
-                                } else {
-                                    print("something wrong with if let sender")
-                                }
-                            }
-                        }
-                        querySnapShot?.documentChanges.enumerated().forEach { indexDeal, diff in
-                            if (diff.type == .added) {
-                                let data = diff.document.data()
-                                if let sender = data["Sender"] as? String,
-                                   let image = data["ImagePath"] as? String,
-                                   let dealTitle = data["DealTitle"] as? String,
-                                   let dealDesc = data["DealDesc"] as? String,
-                                   let storeID = data["StoreID"] as? String,
-                                   let storeTitle = data["StoreTitle"] as? String,
-                                   let dealID = data["DealID"] as? String,
-                                   let userName = data["UserName"] as? String,
-                                   let distance = data["Distance"] as? Double {
-                                    self.getImageFromURLfromFirebase(path: image, dealTitle: dealTitle, dealDesc: dealDesc, storeTitle: storeTitle, storeID: storeID, dealID: dealID, sender: sender, userName: userName, distance: distance)
-                                    } else {
-                                    print("something wrong with if let in added.")
-                                
-                                }
-                                if (diff.type == .removed) {
-//
-//                                    let data = diff.document.data()
-//                                    print("if (diff.type == .removed)")
-//                                    if let dealID = data["DealID"] as? String {
-//                                        self.strDeals.strDeals.removeAll(where: {$0.dealID == dealID })
-//                                        print("Dealsdata after deleted deal = \(DealsData.shared.dealsArray)")
-//                                        DispatchQueue.main.async {
-//                                            self.strDeals.strDealsRelay.accept(self.strDeals.strDeals)
-//                                        }
-//                                    } else {
-//                                        print("something wrong with .removed")
-//                                    }
-                                }
-                            }
+                querySnapShot?.documentChanges.enumerated().forEach { indexD, documentChange in
+                    print(documentChange.document.documentID)
+                    if (documentChange.type == .added) {
+                        let data = documentChange.document.data()
+                        if let sender = data["Sender"] as? String,
+                           let image = data["ImagePath"] as? String,
+                           let dealTitle = data["DealTitle"] as? String,
+                           let dealDesc = data["DealDesc"] as? String,
+                           let storeID = data["StoreID"] as? String,
+                           let storeTitle = data["StoreTitle"] as? String,
+                           let dealID = data["DealID"] as? String,
+                           let userName = data["UserName"] as? String,
+                           let distance = data["Distance"] as? Double,
+                           let senderUID = data["SenderUID"] as? String {
+                            self.getImageFromURLfromFirebase(path: image, dealTitle: dealTitle, dealDesc: dealDesc, storeTitle: storeTitle, storeID: storeID, dealID: dealID, sender: sender, userName: userName, distance: distance, senderUID: senderUID)
+                            } else {
+                            print("something wrong with if let in added.")
                         }
                     }
                 }
             }
         }
     }
-    func getImageFromURLfromFirebase(path: String, dealTitle: String, dealDesc: String, storeTitle: String, storeID: String, dealID: String, sender: String, userName: String, distance: Double){
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let verticalPadding: CGFloat = 10
+        let maskLayer = CALayer()
+        maskLayer.cornerRadius = 10    //if you want round edges
+        maskLayer.backgroundColor = UIColor.blue.cgColor
+        maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
+        cell.layer.mask = maskLayer
+    }
+    func getImageFromURLfromFirebase(path: String, dealTitle: String, dealDesc: String, storeTitle: String, storeID: String, dealID: String, sender: String, userName: String, distance: Double, senderUID: String){
         print("getimagefromURL")
         let storageRef = storage.reference()
         let dealImageRef = storageRef.child(path)
@@ -182,7 +166,7 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
             let dealImageView = UIImageView()
             dealImageView.downloadImage(from: "\(url)") { response in
                 print("downloadImageWithURL")
-                self.strDeals.strDeals.append(DealModel(storeID: storeID, dealImage: response.image, dealTitle: dealTitle, dealDesc: dealDesc, dealID: dealID, storeTitle: storeTitle, sender: sender, userName: userName, distance: distance))
+                self.strDeals.strDeals.append(DealModel(storeID: storeID, dealImage: response.image, dealTitle: dealTitle, dealDesc: dealDesc, dealID: dealID, storeTitle: storeTitle, sender: sender, userName: userName, distance: distance, senderUID: senderUID))
                 DispatchQueue.main.async {
                     self.strDeals.strDealsRelay.accept(self.strDeals.strDeals)
                 }
@@ -193,6 +177,7 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
     func configureConstraints(){
         // configure content
         storeImage.downloaded(from: storeDetail.image)
+        
         detailLabel.attributedText = NSMutableAttributedString()
             .bold("\(storeDetail.title)\n")
             .normal("\(storeDetail.address1)\(storeDetail.address2)")
@@ -203,6 +188,7 @@ class StoreDeals: UIViewController, UIScrollViewDelegate, UITableViewDelegate {
         detailView.addSubview(detailLabel)
         let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
         let dimGray = UIColor(red: 105.0/255.0, green: 105.0/255.0, blue: 105.0/255.0, alpha: 0.5)
+        
         detailView.layer.borderColor = dimGray.cgColor
         detailView.layer.borderWidth = 2.0
         detailView.layer.masksToBounds = true

@@ -9,61 +9,67 @@
 /* Begin PBXBuildFile section */
 		5805C5A528058B7800D0A937 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5805C5A428058B7800D0A937 /* Profile.swift */; };
 		580B42E3278E2D5F00000FD2 /* PostDeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B42E2278E2D5F00000FD2 /* PostDeal.swift */; };
-		580B42E5278EFF3300000FD2 /* ChooseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B42E4278EFF3300000FD2 /* ChooseStore.swift */; };
+		581C2BF92843C0F100A8D2B0 /* Pods_DealApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE2B7B4D2FF55651DA5D763 /* Pods_DealApp.framework */; };
 		582F9C5528253E7700082C38 /* StoreDealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F9C5428253E7700082C38 /* StoreDealsModel.swift */; };
 		58320E11274682EC00AFA044 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58320E10274682EC00AFA044 /* LogIn.swift */; };
+		5837B4B7282A614400EDAD16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5837B4B6282A614400EDAD16 /* SceneDelegate.swift */; };
 		583BA15A2754C95E002E8821 /* YelpAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583BA1592754C95D002E8821 /* YelpAPIManager.swift */; };
 		58400392278B75F4000ABBCB /* StoreDeals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400391278B75F4000ABBCB /* StoreDeals.swift */; };
 		58400394278C25CF000ABBCB /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400393278C25CF000ABBCB /* TabBarVC.swift */; };
 		58400397278C28A3000ABBCB /* DealsContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400396278C28A3000ABBCB /* DealsContentVC.swift */; };
+		584007512851C90B006E965D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584007502851C90B006E965D /* Constants.swift */; };
 		5845C2A82749151F00DF3D6B /* StoresTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845C2A72749151F00DF3D6B /* StoresTabCell.swift */; };
 		5850DC3627466409007D0D34 /* Confirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850DC3527466409007D0D34 /* Confirm.swift */; };
 		587016C42747C42000BEAFB9 /* StoresFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587016C32747C42000BEAFB9 /* StoresFeed.swift */; };
 		5870DFDE2795D76A00C85AC6 /* DealsContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */; };
 		5870DFE12796DC1100C85AC6 /* DealTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5870DFE02796DC1100C85AC6 /* DealTabCell.swift */; };
 		5886315E27A8057600DF4382 /* MGPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5886315D27A8057600DF4382 /* MGPhotoHelper.swift */; };
+		5891C98F284396E700D38C49 /* GoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5891C98E284396E700D38C49 /* GoogleAPIManager.swift */; };
 		58B2123928084108007722BD /* ProfileDealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B2123828084107007722BD /* ProfileDealsModel.swift */; };
+		58BEE648284379550060FDC1 /* StoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BEE647284379550060FDC1 /* StoreData.swift */; };
 		58CA299D2758BC8A0044AB5D /* StoresFeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */; };
 		58CA299F2758BDAF0044AB5D /* StoresFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */; };
+		58DD45CF283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DD45CE283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift */; };
 		58EE13C7280A18F900283F98 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EE13C6280A18F900283F98 /* MapVC.swift */; };
 		58F059F52743D05700F689E6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 58F059F42743D05700F689E6 /* GoogleService-Info.plist */; };
 		58F1D9712795594E00165420 /* DealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F1D9702795594D00165420 /* DealDetail.swift */; };
 		58FCA425273FE62500F3569D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FCA424273FE62500F3569D /* AppDelegate.swift */; };
-		58FCA427273FE62500F3569D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FCA426273FE62500F3569D /* SceneDelegate.swift */; };
 		58FCA429273FE62500F3569D /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FCA428273FE62500F3569D /* SignUp.swift */; };
 		58FCA42F273FE62500F3569D /* DealApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 58FCA42D273FE62500F3569D /* DealApp.xcdatamodeld */; };
 		58FCA431273FE62700F3569D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58FCA430273FE62700F3569D /* Assets.xcassets */; };
 		58FCA434273FE62700F3569D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58FCA432273FE62700F3569D /* LaunchScreen.storyboard */; };
 		58FFFACF2782F304001E47DB /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58FFFACE2782F304001E47DB /* Spinner.swift */; };
-		8CB4EEC9513D23177964734F /* Pods_DealApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE2B7B4D2FF55651DA5D763 /* Pods_DealApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4BC99C6AF5B5BA2A5B60D7B7 /* Pods-DealApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DealApp.debug.xcconfig"; path = "Target Support Files/Pods-DealApp/Pods-DealApp.debug.xcconfig"; sourceTree = "<group>"; };
 		5805C5A428058B7800D0A937 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		580B42E2278E2D5F00000FD2 /* PostDeal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDeal.swift; sourceTree = "<group>"; };
-		580B42E4278EFF3300000FD2 /* ChooseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseStore.swift; sourceTree = "<group>"; };
 		582F9C5428253E7700082C38 /* StoreDealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDealsModel.swift; sourceTree = "<group>"; };
 		58320E10274682EC00AFA044 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		5837B4B6282A614400EDAD16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		583BA1592754C95D002E8821 /* YelpAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPIManager.swift; sourceTree = "<group>"; };
 		58400391278B75F4000ABBCB /* StoreDeals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDeals.swift; sourceTree = "<group>"; };
 		58400393278C25CF000ABBCB /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		58400396278C28A3000ABBCB /* DealsContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsContentVC.swift; sourceTree = "<group>"; };
+		584007502851C90B006E965D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5845C2A72749151F00DF3D6B /* StoresTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTabCell.swift; sourceTree = "<group>"; };
 		5850DC3527466409007D0D34 /* Confirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirm.swift; sourceTree = "<group>"; };
 		587016C32747C42000BEAFB9 /* StoresFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeed.swift; sourceTree = "<group>"; };
 		5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsContentModel.swift; sourceTree = "<group>"; };
 		5870DFE02796DC1100C85AC6 /* DealTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealTabCell.swift; sourceTree = "<group>"; };
 		5886315D27A8057600DF4382 /* MGPhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGPhotoHelper.swift; sourceTree = "<group>"; };
+		5891C98E284396E700D38C49 /* GoogleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPIManager.swift; sourceTree = "<group>"; };
 		58B2123828084107007722BD /* ProfileDealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDealsModel.swift; sourceTree = "<group>"; };
+		58BEE647284379550060FDC1 /* StoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
 		58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeedData.swift; sourceTree = "<group>"; };
 		58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeedModel.swift; sourceTree = "<group>"; };
+		58DD45CE283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicPhotoHelper.swift; sourceTree = "<group>"; };
 		58EE13C6280A18F900283F98 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		58F059F42743D05700F689E6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		58F1D9702795594D00165420 /* DealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealDetail.swift; sourceTree = "<group>"; };
 		58FCA421273FE62500F3569D /* DealApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DealApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FCA424273FE62500F3569D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		58FCA426273FE62500F3569D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		58FCA428273FE62500F3569D /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		58FCA42E273FE62500F3569D /* DealApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DealApp.xcdatamodel; sourceTree = "<group>"; };
 		58FCA430273FE62700F3569D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CB4EEC9513D23177964734F /* Pods_DealApp.framework in Frameworks */,
+				581C2BF92843C0F100A8D2B0 /* Pods_DealApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				5805C5A428058B7800D0A937 /* Profile.swift */,
+				58DD45CE283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift */,
 			);
 			path = "Tab3 - User Profile";
 			sourceTree = "<group>";
@@ -108,7 +115,6 @@
 			children = (
 				580B42E2278E2D5F00000FD2 /* PostDeal.swift */,
 				58F1D9702795594D00165420 /* DealDetail.swift */,
-				580B42E4278EFF3300000FD2 /* ChooseStore.swift */,
 				5886315D27A8057600DF4382 /* MGPhotoHelper.swift */,
 			);
 			path = "PostDeal - MiddleButton";
@@ -135,12 +141,12 @@
 		5850DC3227466391007D0D34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				58BEE646284379440060FDC1 /* Google */,
 				58B2123828084107007722BD /* ProfileDealsModel.swift */,
 				5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */,
-				583BA1592754C95D002E8821 /* YelpAPIManager.swift */,
-				58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */,
 				58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */,
 				582F9C5428253E7700082C38 /* StoreDealsModel.swift */,
+				58EEDF23284B5A7E0050144D /* YelpAPI */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,12 +184,30 @@
 			path = "Tab2 - DealsFeed";
 			sourceTree = "<group>";
 		};
+		58BEE646284379440060FDC1 /* Google */ = {
+			isa = PBXGroup;
+			children = (
+				58BEE647284379550060FDC1 /* StoreData.swift */,
+				5891C98E284396E700D38C49 /* GoogleAPIManager.swift */,
+			);
+			path = Google;
+			sourceTree = "<group>";
+		};
 		58EE13C5280A18D200283F98 /* Tab4 - Map */ = {
 			isa = PBXGroup;
 			children = (
 				58EE13C6280A18F900283F98 /* MapVC.swift */,
 			);
 			path = "Tab4 - Map";
+			sourceTree = "<group>";
+		};
+		58EEDF23284B5A7E0050144D /* YelpAPI */ = {
+			isa = PBXGroup;
+			children = (
+				58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */,
+				583BA1592754C95D002E8821 /* YelpAPIManager.swift */,
+			);
+			path = YelpAPI;
 			sourceTree = "<group>";
 		};
 		58FCA418273FE62500F3569D = {
@@ -212,11 +236,12 @@
 				5850DC3327466396007D0D34 /* View */,
 				5850DC3227466391007D0D34 /* Model */,
 				58FCA424273FE62500F3569D /* AppDelegate.swift */,
-				58FCA426273FE62500F3569D /* SceneDelegate.swift */,
+				5837B4B6282A614400EDAD16 /* SceneDelegate.swift */,
 				58FCA430273FE62700F3569D /* Assets.xcassets */,
 				58FCA432273FE62700F3569D /* LaunchScreen.storyboard */,
 				58FCA435273FE62700F3569D /* Info.plist */,
 				58FCA42D273FE62500F3569D /* DealApp.xcdatamodeld */,
+				584007502851C90B006E965D /* Constants.swift */,
 			);
 			path = DealApp;
 			sourceTree = "<group>";
@@ -345,8 +370,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				58400397278C28A3000ABBCB /* DealsContentVC.swift in Sources */,
+				58DD45CF283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift in Sources */,
 				58400394278C25CF000ABBCB /* TabBarVC.swift in Sources */,
-				580B42E5278EFF3300000FD2 /* ChooseStore.swift in Sources */,
 				58FCA429273FE62500F3569D /* SignUp.swift in Sources */,
 				5805C5A528058B7800D0A937 /* Profile.swift in Sources */,
 				58320E11274682EC00AFA044 /* LogIn.swift in Sources */,
@@ -355,16 +380,19 @@
 				58FCA425273FE62500F3569D /* AppDelegate.swift in Sources */,
 				580B42E3278E2D5F00000FD2 /* PostDeal.swift in Sources */,
 				58CA299D2758BC8A0044AB5D /* StoresFeedData.swift in Sources */,
+				584007512851C90B006E965D /* Constants.swift in Sources */,
 				58CA299F2758BDAF0044AB5D /* StoresFeedModel.swift in Sources */,
 				5886315E27A8057600DF4382 /* MGPhotoHelper.swift in Sources */,
 				58EE13C7280A18F900283F98 /* MapVC.swift in Sources */,
-				58FCA427273FE62500F3569D /* SceneDelegate.swift in Sources */,
+				58BEE648284379550060FDC1 /* StoreData.swift in Sources */,
 				587016C42747C42000BEAFB9 /* StoresFeed.swift in Sources */,
+				5891C98F284396E700D38C49 /* GoogleAPIManager.swift in Sources */,
 				5870DFDE2795D76A00C85AC6 /* DealsContentModel.swift in Sources */,
 				58400392278B75F4000ABBCB /* StoreDeals.swift in Sources */,
 				58FFFACF2782F304001E47DB /* Spinner.swift in Sources */,
 				5845C2A82749151F00DF3D6B /* StoresTabCell.swift in Sources */,
 				58F1D9712795594E00165420 /* DealDetail.swift in Sources */,
+				5837B4B7282A614400EDAD16 /* SceneDelegate.swift in Sources */,
 				583BA15A2754C95E002E8821 /* YelpAPIManager.swift in Sources */,
 				58FCA42F273FE62500F3569D /* DealApp.xcdatamodeld in Sources */,
 				582F9C5528253E7700082C38 /* StoreDealsModel.swift in Sources */,
@@ -389,6 +417,7 @@
 		58FCA436273FE62700F3569D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -423,6 +452,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -442,6 +472,8 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -450,6 +482,7 @@
 		58FCA437273FE62700F3569D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -484,6 +517,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -495,7 +529,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -511,6 +548,33 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 36LWVJ2THH;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Differentiator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxRelay\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftLocation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DealApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -539,6 +603,33 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 36LWVJ2THH;
+				EXCLUDED_ARCHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BoringSSL-GRPC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Differentiator\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseAuth\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseCoreDiagnostics\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseStorage\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxDataSources\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxRelay\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/RxSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SnapKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftLocation\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/abseil\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-Core\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/leveldb-library\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/nanopb\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DealApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -550,6 +641,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = muhtar.DealApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

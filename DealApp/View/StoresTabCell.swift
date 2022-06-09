@@ -16,6 +16,7 @@ class StoresTabCell: UITableViewCell {
     weak var delegate: UpdateCustomCell?
     weak var delegate2: UpdateButtonImage?
     var storeid = String()
+    var representedItendifier: String = ""
     var distance = Double()
     var fav = false
     var newData = StoresData()
@@ -31,16 +32,15 @@ class StoresTabCell: UITableViewCell {
     }()
     var storeName : UILabel = {
         let lbl = UILabel()
-        lbl.textColor = .black
         lbl.font = UIFont.boldSystemFont(ofSize: 25)
-        lbl.textColor = .white
+        lbl.textColor = .black
         lbl.textAlignment = .center
         lbl.numberOfLines = 0
         lbl.textAlignment = .left
         lbl.backgroundColor = .clear
         return lbl
     }()
-    var addFavButton: UIButton = {
+    lazy var addFavButton: UIButton = {
         var addFav = UIButton()
         let image = UIImage(named: "icons8-checked-checkbox-50") as UIImage?
         addFav.setImage(image, for: .normal)
@@ -63,6 +63,7 @@ class StoresTabCell: UITableViewCell {
             sender.alpha = 1.0
         }
         //MARK: - Save favIDs to Firestore
+        print(storeid)
         if Auth.auth().currentUser != nil {
             let favStoresDocRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid)
             let favStoreIdsColRef = favStoresDocRef.collection("storeIDs").document(storeid)
@@ -77,7 +78,7 @@ class StoresTabCell: UITableViewCell {
             }
         }
         
-        //MARK: - Locally save favoreStore Ids
+        //MARK: - Locally save favoreStore Ids Core Data
         
         func save(favoriteStoreID: String) { //not used
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -102,6 +103,7 @@ class StoresTabCell: UITableViewCell {
         delegate?.updateTableView()
         print("storeid = \(storeid)")
         let favStoresDocRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid)
+        
         let favStoreIdsColRef = favStoresDocRef.collection("storeIDs").document(storeid).delete { error in
             if let err = error {
                 print("error deleting favstoreID = \(err)")
@@ -162,7 +164,8 @@ class StoresTabCell: UITableViewCell {
         self.contentView.addSubview(addFavButton)
         self.contentView.addSubview(deleteFromFavsButton)
 //        contentView.backgroundColor = UIColor(red: 65/255, green: 76/255, blue: 97/255, alpha: 0.8) - 108, 106, 117
-        contentView.backgroundColor = UIColor(red: 108/255, green: 106/255, blue: 117/255, alpha: 0.8)
+//        contentView.backgroundColor = UIColor(red: 108/255, green: 106/255, blue: 117/255, alpha: 0.8)
+//        contentView.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 0.5)
         storeImage.snp.makeConstraints { storeImage in
             storeImage.edges.equalTo(self.contentView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 300))
         }
@@ -188,33 +191,12 @@ class StoresTabCell: UITableViewCell {
     //MARK: - Configure with Data
     func configureWithData(dataModel: StoresFeedModel) {
         storeName.text = dataModel.title
-        storeImage.downloaded(from: dataModel.image)
+        self.storeImage.downloaded(from: dataModel.image)
         storeid = dataModel.id // use this id to recall api
         distance = dataModel.distance // use this to list only the deals nearby
     }
 }
-//MARK: - Extensions
 
-extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-            else {  return }
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-            }
-        }.resume()
-    }
-    func downloaded(from link: String, contentMode mode: ContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
-        downloaded(from: url, contentMode: mode)
-    }
-}
 
 //MARK: - Remove duplicate elements from array: 
 

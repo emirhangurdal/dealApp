@@ -3,6 +3,7 @@ import SnapKit
 import RxDataSources
 import RxSwift
 import Firebase
+import FirebaseStorage
 
 class DealTabCell: UITableViewCell {
     override func awakeFromNib() {
@@ -26,7 +27,9 @@ class DealTabCell: UITableViewCell {
     }
     var btnTapClosure: ((DealTabCell)->())?
     let db = Firestore.firestore()
+    private let storage = Storage.storage()
     var senderEmail: String? = Auth.auth().currentUser?.email
+    var senderUID: String?
     var storeID = String()
     var storeTitle = String()
     var dealID = String()
@@ -45,7 +48,7 @@ class DealTabCell: UITableViewCell {
     lbl.textAlignment = .natural
     lbl.numberOfLines = 0
 //    lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
-        lbl.textColor = .white
+        lbl.textColor = .black
     lbl.textAlignment = .left
     lbl.backgroundColor = .clear
     return lbl
@@ -55,7 +58,7 @@ class DealTabCell: UITableViewCell {
 //    lbl.font = UIFont(name: "Optima-Regular", size: 15)
     lbl.font = UIFont.boldSystemFont(ofSize: 15)
 //    lbl.textColor = UIColor(red: 194/255, green: 199/255, blue: 219/255, alpha: 1.0)
-        lbl.textColor = .white
+        lbl.textColor = .black
     lbl.textAlignment = .natural
     lbl.numberOfLines = 0
     lbl.textAlignment = .left
@@ -90,6 +93,25 @@ class DealTabCell: UITableViewCell {
        shr.addTarget(self, action: #selector(shareTapped), for: .touchUpInside)
        return shr
    }()
+    lazy var like: UIButton = {
+       var shr = UIButton()
+       let image = UIImage(named: "icons8-heart-100") as UIImage?
+       shr.setImage(image, for: .normal)
+       shr.backgroundColor = .clear
+       shr.addTarget(self, action: #selector(likeTapped), for: .touchUpInside)
+       return shr
+   }()
+    @objc func likeTapped(sender: UIButton){
+        sender.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1.0
+        }
+        
+        print("like tapped")
+        print("senderUID  = \(senderUID ?? "")")
+        let ref = db.collection("favStoreCollection").document(senderUID ?? "")
+        ref.updateData(["Likes" : FieldValue.increment(Int64(1))])
+        }
     @objc func shareTapped(){
         btnTapClosure?(self)
     }
@@ -105,7 +127,7 @@ class DealTabCell: UITableViewCell {
         if Auth.auth().currentUser != nil {
             print("Auth.auth().currentUser?.email = \(Auth.auth().currentUser?.email!)")
         }
-        let subColRef = db.collection("dealsCollection").document(storeTitle).collection("deals")
+        let subColRef = db.collection("dealsCollection").document(storeID).collection("deals")
         subColRef.document(dealID).delete() { err in
             if let err = err {
                 print("Error removing document: \(err)")
@@ -113,6 +135,16 @@ class DealTabCell: UITableViewCell {
                 print("Deal Document successfully removed!")
             }
         }
+        let dealImageRef = storage.reference().child("/deals/\(storeTitle)/\(dealID)")
+        dealImageRef.delete { error in
+            if let error = error {
+             } else {
+               print("file deleted successfully")
+             }
+        }
+        
+        let storeRef = self.db.collection("dealsCollection").document(storeID)
+        storeRef.updateData(["DealCount" : FieldValue.increment(Int64(-1))])
     }
     func configureConstraints(){
         print("configureConstraints")
@@ -122,8 +154,9 @@ class DealTabCell: UITableViewCell {
         self.contentView.addSubview(deleteDealFromFirebase)
         self.contentView.addSubview(sender)
         self.contentView.addSubview(share)
+        self.contentView.addSubview(like)
 //        self.contentView.backgroundColor = UIColor(red: 65/255, green: 76/255, blue: 97/255, alpha: 0.8)
-        contentView.backgroundColor = UIColor(red: 108/255, green: 106/255, blue: 117/255, alpha: 0.8)
+//        contentView.backgroundColor = UIColor(red: 108/255, green: 106/255, blue: 117/255, alpha: 0.8)
         dealImage.snp.makeConstraints { dealImage in
             dealImage.edges.equalTo(self.contentView).inset(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 240))
         }
@@ -142,10 +175,8 @@ class DealTabCell: UITableViewCell {
         deleteDealFromFirebase.snp.makeConstraints { deleteDealFromFirebase in
             deleteDealFromFirebase.height.equalTo(20)
             deleteDealFromFirebase.width.equalTo(20)
-//            deleteDealFromFirebase.right.equalTo(self.contentView).offset(-15)
             deleteDealFromFirebase.left.equalTo(dealImage.snp.right).offset(205)
             deleteDealFromFirebase.bottom.equalTo(self.contentView).offset(-5)
-//            deleteDealFromFirebase.top.equalTo(dealDesc.snp.bottom).offset(2)
         }
         sender.snp.makeConstraints { sender in
             sender.right.equalTo(share.snp.left).offset(-2)
@@ -157,9 +188,13 @@ class DealTabCell: UITableViewCell {
             share.height.equalTo(20)
             share.width.equalTo(20)
             share.right.equalTo(deleteDealFromFirebase.snp.left).offset(-5)
-//            share.left.equalTo(sender).offset(2)
             share.bottom.equalTo(self.contentView).offset(-5)
-//            share.top.equalTo(dealDesc.snp.bottom).offset(2)
+        }
+        like.snp.makeConstraints { like in
+            like.height.equalTo(20)
+            like.width.equalTo(20)
+            like.right.equalTo(share.snp.left).offset(-5)
+            like.bottom.equalTo(self.contentView).offset(-5)
         }
     }
     func configureWithData(dataModel: SectionOfCustomData.Item) {

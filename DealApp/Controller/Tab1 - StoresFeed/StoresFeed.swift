@@ -12,9 +12,14 @@ import FirebaseAuth
 protocol StoresFeedDelegate: class {
     func createAnnotations(mainData: [StoresFeedModel])
 }
+protocol StoresFeedDelegate2: class {
+    func getStoreTitles(mainData: [StoresFeedModel])
+}
+protocol StoresFeedDelegate3: class {
+    func getStoreTitles(mainData: [StoresFeedModel])
+}
 
-
-class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UpdateCustomCell, CLLocationManagerDelegate, UpdateButtonImage {
+class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UpdateCustomCell, CLLocationManagerDelegate, UpdateButtonImage, URLSessionDataDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("storesfeed viewdidload")
@@ -25,11 +30,19 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
             .disposed(by: disposeBag)
         bindTableViewMain()
         configureConstr()
-        configureNavBar()
         selectedCell()
+        getMainData()
+        setDataLikes()
+    
         print("UserUID = \(Auth.auth().currentUser?.uid)")
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         self.navigationItem.rightBarButtonItem = logOut
+    }
+    
+    override func viewWillLayoutSubviews() {
+        print("viewWillLayoutSubviews")
+        configureNavBar()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         print("storesfeed viewwillappear")
@@ -38,17 +51,17 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewdidappear")
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.requestAlwaysAuthorization()
-        if
-            CLLocationManager.authorizationStatus() != .authorizedWhenInUse || CLLocationManager.authorizationStatus() != .authorizedAlways {
-            
-          
-            print("authorization not granted")
-        }
+        //        self.locationManager.requestWhenInUseAuthorization()
+        //        self.locationManager.requestAlwaysAuthorization()
+        //        if
+        //            CLLocationManager.authorizationStatus() != .authorizedWhenInUse || CLLocationManager.authorizationStatus() != .authorizedAlways {
+        //            print("authorization not granted")
+        //        }
     }
     //MARK: - Properties
-    lazy var tableView = UITableView()
+    
+    
+    var tableView = UITableView()
     lazy var logOut = UIBarButtonItem(title: "Log Out", style: .plain, target: self, action: #selector(logOutTapped)) //
     @objc func logOutTapped(){
         print("logOut")
@@ -60,33 +73,35 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         }
     }
     weak var delegate: StoresFeedDelegate?
+    weak var delegate2: StoresFeedDelegate2?
+    weak var delegate3: StoresFeedDelegate3?
     let db = Firestore.firestore()
-    let apiDispatchGroup = DispatchGroup()
     let locationManager = CLLocationManager()
     private let storesFeedCellId = "StoresFeedCellID"
-    var selectedID = String()
     private let disposeBag = DisposeBag()
-    private var longitude = Double()
-    private var latitude = Double()
     private var newFavData = [StoresFeedModel]()
     private let refreshControlFavs = UIRefreshControl()
     private let refreshControlMain = UIRefreshControl()
     var spinner = SpinnerViewController()
+ 
     var storesData = StoresData()
     private let noValueImage = "https://firebasestorage.googleapis.com/v0/b/dealapp-f1ce1.appspot.com/o/no%20value.jpg?alt=media&token=df6afb68-402f-4681-ad9b-5a30532376a1"
+    
+    //MARK: - Segments
     enum SegmentType: String {
         case allStores = "All Stores"
         case favorites = "Favorites"
     }
     
-    //MARK: - Segments
     let segments: [SegmentType] = [.allStores, .favorites]
     lazy var segmentControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: segments.map({ $0.rawValue }))
         sc.layer.cornerRadius = 5
-        sc.backgroundColor = .black
-        sc.tintColor = .white
+        sc.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
+        sc.selectedConfiguration(font: UIFont.systemFont(ofSize: 12), color: .black)
+        sc.defaultConfiguration()
         sc.selectedSegmentIndex = 0
+        sc.tintColor = .white
         sc.addTarget(self, action: #selector(actionofSC), for: .valueChanged)
         return sc
     }()
@@ -94,10 +109,8 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         let type = segments[segmentControl.selectedSegmentIndex]
         switch type {
         case .allStores:
-            //            addSpinner()
-            configureRefreshControlMain()
             getMainData()
-            //            stopSpinner()
+            // stopSpinner()
         case .favorites:
             self.configureRefreshControlFav()
             reCallApi()
@@ -136,31 +149,57 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         refreshControlFavs.endRefreshing()
     }
     //MARK: - Get Favorites via core data - and main data
+    func writeLikesToDB(completionHandler: @escaping (Int) -> Void) {
+        let docRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid)
+        docRef.getDocument() { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                if let lkes = data?["Likes"] as? Int {
+                    completionHandler(lkes)
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    func setDataLikes(){
+        let docRef = self.db.collection("favStoreCollection").document(Auth.auth().currentUser!.uid)
+        writeLikesToDB { lkes in
+            let dataLK = ["Likes": lkes]
+            docRef.setData(dataLK) { error in
+                print("error?.localizedDescription = \(error?.localizedDescription)")
+            }
+        }
+    }
     func getMainData() {
         // Ask for Authorisation from the User.
         // For use in foreground
         var currentLocation: CLLocation!
+        print("get main data")
+        addSpinner()
         if
             CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways {
             currentLocation = locationManager.location
             StoresData.shared.lat = currentLocation.coordinate.latitude
             StoresData.shared.lon = currentLocation.coordinate.longitude
-            YelpAPIManager.shared.getPlaceInfo(latitude: StoresData.shared.lat, longitude: StoresData.shared.lon) { dataFromRequest in
-                self.storesData.businessDataMain = dataFromRequest
+            
+            GoogleApiManager.shared.getPlaceInfo(latitude: StoresData.shared.lat, longitude: StoresData.shared.lon) { dataFromRequest in
+
                 DispatchQueue.main.async {
+                    self.storesData.businessDataMain = dataFromRequest
                     self.storesData.businesses.accept(self.storesData.businessDataMain)
                     self.delegate?.createAnnotations(mainData: self.storesData.businessDataMain)
+                    self.delegate2?.getStoreTitles(mainData: self.storesData.businessDataMain)
+                    self.delegate3?.getStoreTitles(mainData: self.storesData.businessDataMain)
                 }
-               
-                //self.segmentControl.isUserInteractionEnabled = true
-                
-                // location manager location is cached
+                self.stopSpinner()
             }
-
         } else {
             print("authorization problem")
-            
         }
+    }
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        print("urlSessionDidFinishEvents")
     }
     func updateTableView() { // this works in delete button on StoresTabCell.swift where id of the selected store is removed from firebase.
         fadingLabelConfig(message: "Store Removed From Favorites", color: UIColor.gray, finalAlpha: 0.0)
@@ -178,8 +217,8 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         fadingLabel.snp.makeConstraints { fadingLabel in
             fadingLabel.height.equalTo(100)
             fadingLabel.width.equalTo(300)
-            fadingLabel.centerX.equalTo(self.view.snp.centerX)
-            fadingLabel.centerY.equalTo(self.view.snp.centerY).offset(300)
+            fadingLabel.centerX.equalTo(self.view.safeAreaLayoutGuide.snp.centerX)
+            fadingLabel.centerY.equalTo(self.view.safeAreaLayoutGuide.snp.centerY).offset(150)
         }
         fadeMessage()
         func fadeMessage() {
@@ -202,7 +241,8 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         spinner.view.frame = view.frame
         view.addSubview(spinner.view)
         spinner.didMove(toParent: self)
-        self.tableView.isHidden = true
+        tableView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
     func stopSpinner(){
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -210,6 +250,7 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
             self.spinner.view.removeFromSuperview()
             self.spinner.removeFromParent()
             self.tableView.isHidden = false
+            self.tabBarController?.tabBar.isHidden = false
         }
     }
     //MARK: - Constraints.
@@ -218,31 +259,41 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
         self.tabBarItem.title = ""
         self.view.addSubview(tableView)
         self.view.addSubview(segmentControl)
-        
-//        tableView.backgroundColor = UIColor(red: 58/255, green: 67/255, blue: 86/255, alpha: 1.0) - 179, 178, 184
-        tableView.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        tableView.bounces = true
+        //        tableView.backgroundColor = UIColor(red: 58/255, green: 67/255, blue: 86/255, alpha: 1.0) - 179, 178, 184
+        view.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        tableView.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 0.5)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         tableView.delegate = self
         tableView.snp.makeConstraints { tableView in
-            tableView.left.equalTo(view)
-            tableView.right.equalTo(view)
+            tableView.left.equalTo(view.safeAreaLayoutGuide).offset(5)
+            tableView.right.equalTo(view.safeAreaLayoutGuide).offset(-5)
             tableView.bottom.equalTo(view.safeAreaLayoutGuide)
-            tableView.top.equalTo(self.view.safeAreaLayoutGuide).offset(100)
+            tableView.top.equalTo(self.view.safeAreaLayoutGuide).offset(80)
         }
         segmentControl.snp.makeConstraints { sagmentedControl in
-            sagmentedControl.left.equalTo(view).offset(10)
-            sagmentedControl.right.equalTo(view).offset(-10)
-            sagmentedControl.bottom.equalTo(self.tableView.snp.top).offset(-5)
-            sagmentedControl.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            sagmentedControl.bottom.equalTo(self.tableView.snp.top).offset(-30)
+            sagmentedControl.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(5)
+            sagmentedControl.left.equalTo(view.safeAreaLayoutGuide).offset(10)
+            sagmentedControl.right.equalTo(view.safeAreaLayoutGuide).offset(-10)
         }
     }
     func configureNavBar() {
-        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
         self.navigationItem.title = "Stores Near You"
         self.navigationController?.navigationBar.isTranslucent = true
+        if #available(iOS 13, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
+            // Customizing our navigation bar
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     //MARK: - RxSwift TableViewbind
+ 
     func bindTableViewMain() {
         storesData.businesses.asObservable()
             .bind(to: tableView
@@ -253,8 +304,20 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
             row, businessData, cell in
             cell.delegate = self
             cell.delegate2 = self
-            cell.configureWithData(dataModel: businessData)
+            let representedIdentifier = businessData.id
+            cell.representedItendifier = representedIdentifier           
+            cell.storeName.text = businessData.title
+            cell.distance = 0.0
+            cell.storeid = businessData.id
             
+            DispatchQueue.main.async {
+                if cell.representedItendifier == representedIdentifier {
+                cell.storeImage.image = nil
+                cell.storeImage.downloaded(from: businessData.image)
+                    
+                }
+            }
+     
             if self.segmentControl.selectedSegmentIndex == 1 {
                 cell.addFavButton.isHidden = true
                 cell.deleteFromFavsButton.isHidden = false
@@ -299,14 +362,14 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-            print("didUpdateLocations")
-//        latitude = locValue.latitude
-//        longitude = locValue.longitude
-//        getMainData()
-            }
+        print("didUpdateLocations")
+        //        latitude = locValue.latitude
+        //        longitude = locValue.longitude
+        //        getMainData()
+    }
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager, status: CLAuthorizationStatus) {
         print("locationManagerDidChangeAuthorization")
-     
+        
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("didFailWithError = \(error.localizedDescription)")
@@ -323,15 +386,15 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
                     return
                 }
                 if UIApplication.shared.canOpenURL(settingsUrl) {
-                            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                                print("Settings opened: \(success)") // Prints true
-                            })
-                        }
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                        print("Settings opened: \(success)") // Prints true
+                    })
+                }
             }))
             self.present(alert, animated: true, completion: nil)
         case .notDetermined:
             manager.requestLocation()
-          
+            
             print("authorization not determined")
         case .authorizedAlways, .authorizedWhenInUse:
             // Do your thing here
@@ -375,6 +438,25 @@ class StoresFeed: UIViewController, UIScrollViewDelegate, UITableViewDelegate, U
     }
 }
 
-
+extension UISegmentedControl
+{
+    func defaultConfiguration(font: UIFont = UIFont.systemFont(ofSize: 12), color: UIColor = UIColor.white)
+    {
+        let defaultAttributes = [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+        ]
+        setTitleTextAttributes(defaultAttributes, for: .normal)
+    }
+    
+    func selectedConfiguration(font: UIFont = UIFont.boldSystemFont(ofSize: 12), color: UIColor = UIColor.red)
+    {
+        let selectedAttributes = [
+            NSAttributedString.Key.font: font,
+            NSAttributedString.Key.foregroundColor: color
+        ]
+        setTitleTextAttributes(selectedAttributes, for: .selected)
+    }
+}
 
 

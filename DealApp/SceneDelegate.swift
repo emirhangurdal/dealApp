@@ -3,15 +3,24 @@ import UIKit
 @available(iOS 13.0, *)
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        print("sceneDelegate")
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
-        let mainView = SignUp()
-        let navController = UINavigationController(rootViewController: mainView)
-        window?.rootViewController = navController
-        window?.makeKeyAndVisible()
+//        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        if let windowScene = scene as? UIWindowScene {
+            self.window = UIWindow(windowScene: windowScene)
+            window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+//            window = UIWindow(frame: windowScene.screen.bounds)
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+
+            
+            window?.windowScene = windowScene
+            let mainView = SignUp()
+            let googleAPIManager = GoogleApiManager()
+            let navController = UINavigationController(rootViewController: mainView)
+            window?.rootViewController = navController
+            window?.makeKeyAndVisible()
+              }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

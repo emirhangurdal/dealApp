@@ -43,12 +43,12 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     private var textFieldTitle: UITextField = {
         var txt = UITextField()
         txt.font = UIFont(name: "Optima-Bold", size: 13)
-        txt.backgroundColor = .black
-        txt.textColor = .white
+        txt.backgroundColor = .white
+        txt.textColor = .black
         txt.placeholder = "Enter a Title"
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        txt.layer.borderColor = white.cgColor
-        txt.layer.borderWidth = 5.0
+        txt.layer.borderColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0).cgColor
+        txt.layer.borderWidth = 4.0
         txt.textAlignment = .left
         txt.layer.masksToBounds = true
         txt.layer.cornerRadius = 5
@@ -57,21 +57,21 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     private var textFieldContent: UITextView = {
         var txt = UITextView()
         txt.font = UIFont(name: "Optima-Bold", size: 13)
-        txt.backgroundColor = .black
+        txt.backgroundColor = .white
         txt.isEditable = true
-        txt.textColor = .white
-        txt.text = "About deal"
+        txt.textColor = .black
+        txt.text = "About Deal"
         var white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        txt.layer.borderColor = white.cgColor
+        txt.layer.borderColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0).cgColor
         txt.layer.borderWidth = 2.0
         txt.layer.masksToBounds = true
         txt.layer.cornerRadius = 5
         return txt
     }()
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        let gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0).cgColor
         textFieldTitle.layer.borderWidth = 4.0
-        textFieldTitle.layer.borderColor = white.cgColor
+        textFieldTitle.layer.borderColor = gray
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         makeTextFieldTitleBorderPale()
@@ -80,19 +80,19 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
         return stopTextFieldTitle
     }
     func makeTextFieldTitleBorderPale() {
-        let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
-        textFieldTitle.layer.borderColor = white.cgColor
+        let gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0).cgColor
+        textFieldTitle.layer.borderColor = gray
         textFieldTitle.layer.borderWidth = 2.0
     }
     func makeTextContentBorderThick(){
-        let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        let gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0).cgColor
         textFieldContent.layer.borderWidth = 4.0
-        textFieldContent.layer.borderColor = white.cgColor
+        textFieldContent.layer.borderColor = gray
     }
     func makeTextContentBorderPale(){
-        let white = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 0.5)
+        let gray = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0).cgColor
         textFieldContent.layer.borderWidth = 2.0
-        textFieldContent.layer.borderColor = white.cgColor
+        textFieldContent.layer.borderColor = gray
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         stopTextFieldTitle = true
@@ -118,8 +118,8 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     //MARK: - PostDealButton
     lazy var postDeal: UIButton = {
         var bttn = UIButton()
-        bttn.setTitle("Post!", for: .normal)
-        bttn.backgroundColor = .yellow
+        bttn.setTitle("Post", for: .normal)
+        bttn.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
         bttn.addTarget(self, action: #selector(posttheDeal), for: .touchUpInside)
         return bttn
     }()
@@ -158,10 +158,12 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                     DealsData.shared.distance = value.distance
                     DealsData.shared.lat = value.latitude
                     DealsData.shared.long = value.longitude
+                    
                     self.distance = value.distance
                     if value.id.isEmpty == false {
                         self.postDeal.isEnabled = true
                     }
+                                        
                     self.storesFeed.dismiss(animated: true, completion: nil)
                     let alert = UIAlertController(title: "Store Selected", message: "", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Continue Editing", style: .cancel, handler: { (action) in
@@ -174,56 +176,63 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     }
     func createDocument(storeID: String, storeTitle: String){
         addSpinner()
+        let newDealDocID = UUID().uuidString
+       
         let dealImageToUpload = self.dealImage.image
+        guard let dealImageData = dealImageToUpload?.jpeg(.lowest) else {
+            return
+        }
         guard let newImageData = dealImageToUpload?.pngData() else {
             return
         }
-        let timestamp = NSDate().timeIntervalSince1970
-        let myTimeInterval = TimeInterval(timestamp)
-        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
-        let path: String = "\(time)unique"
-        let dealImageRef = storage.reference(withPath: path)
-        let uploadTask = dealImageRef.putData(newImageData, metadata: nil) { metadata, error in
+//        let timestamp = NSDate().timeIntervalSince1970
+//        let myTimeInterval = TimeInterval(timestamp)
+//        let time = NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+
+        let dealImageRef = storage.reference().child("/deals/\(storeTitle)/\(newDealDocID)")
+        let uploadTask = dealImageRef.putData(dealImageData, metadata: nil) { metadata, error in
             if error != nil {
                 print("uploading image error = \(error)")
             } else {
                 print("sucessfully uploaded image")
             }
         }
-        print("storeTitle in create Document = \(storeTitle)")
-        let newStoreDocRef = self.db.collection("dealsCollection").document(storeTitle)
-        newStoreDocRef.setData(["Lat" : DealsData.shared.lat, "Long" : DealsData.shared.long]) { error in
-            if let err = error {
-                print("err = \(err)")
-            } else {
-                print("store document created with ID = \(newStoreDocRef.documentID)")
-            }
+        let newStoreDocRef = self.db.collection("dealsCollection").document(storeID)
+//        newStoreDocRef.setData(["Lat" : DealsData.shared.lat, "Long" : DealsData.shared.long]) { error in
+//            if let err = error {
+//                print("err = \(err)")
+//            } else {
+//                print("store document created with ID = \(newStoreDocRef.documentID)")
+//            }
+//        }
+        callforDealCount(storeID: storeID) { dealCount in
+            let data = ["Lat" : DealsData.shared.lat, "Long" : DealsData.shared.long, "DealCount" : dealCount, "Date" : Date().timeIntervalSince1970, "Store" : storeTitle] as [String : Any]
+            newStoreDocRef.setData(data)
+//            newStoreDocRef.setData(["DealCount" : FieldValue.increment(Int64(1))])
         }
-        if let dealSender = Auth.auth().currentUser?.email {
+        
+        if let dealSender = Auth.auth().currentUser?.email, let senderUID = Auth.auth().currentUser?.uid {
             uploadTask.observe(.progress) { snapshot in
                 print("snapshot.progress?.completedUnitCount = \(snapshot.progress?.completedUnitCount)")
             }
             uploadTask.observe(.success) { snapshot in
-                // writing to under store
-                //                let collectionRef = self.db.collection("dealsCollection/\(self.storeTitle)/deals")
-                //                collectionRef.document(self.ref!.documentID).updateData(["ImagePath" : path, "DealTitle": self.textFieldTitle.text!, "DealDesc" : self.textFieldContent.text!, "DealID" : self.ref!.documentID])
-                let newDocumentID = UUID().uuidString
-                //  self.ref = self.db.collection("dealsCollection").document(storeTitle).collection("deals").document(newDocumentID)
-                self.ref = newStoreDocRef.collection("deals").document(newDocumentID)
+                self.ref = newStoreDocRef.collection("deals").document(newDealDocID)
                 let dealData: [String : Any] = ["Sender" : dealSender,
                                                 "StoreID": storeID,
                                                 "StoreTitle" : storeTitle,
-                                                "ImagePath" : path,
-                                                "DealTitle" : self.textFieldTitle.text ?? "no title please edit",
-                                                "DealDesc" : self.textFieldContent.text ?? "no desc please edit",
-                                                "DealID" : newDocumentID,
+                                                "ImagePath" : "/deals/\(storeTitle)/\(newDealDocID)",
+                                                "DealTitle" : self.textFieldTitle.text ?? "none",
+                                                "DealDesc" : self.textFieldContent.text ?? "none",
+                                                "DealID" : newDealDocID,
                                                 "UserName" : Auth.auth().currentUser?.displayName ?? "A User",
                                                 "Distance" : DealsData.shared.distance,
                                                 "Lat" : DealsData.shared.lat,
-                                                "Long" : DealsData.shared.long]
+                                                "Long" : DealsData.shared.long,
+                                                "SenderUID" : senderUID]
                 self.ref?.setData(dealData, completion: { error in
                     if let err = error {
                         print("error creating document = \(err)")
+                        return
                     } else {
                         print("success: created document for deal. ")
                     }
@@ -232,6 +241,7 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
                 self.dealDetail.dealImage.image = self.dealImage.image
                 self.dealDetail.labelTitle.text = self.textFieldTitle.text
                 self.dealDetail.labelContent.text = self.textFieldContent.text
+                self.dealDetail.storeTitle = storeTitle
                 self.navigationController?.pushViewController(self.dealDetail, animated: true)
             }
         } else {
@@ -239,6 +249,20 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
             return
         }
     }
+    func callforDealCount(storeID: String, completionHandler: @escaping (Int) -> Void) {
+        let dealColRef = self.db.collection("dealsCollection").document(storeID).collection("deals")
+        dealColRef.getDocuments() { querySnapShot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            } else {
+                print("querySnapShot?.documents.count \(querySnapShot?.documents.count)")
+                DealsData.shared.dealCount = (querySnapShot?.documents.count)!
+                completionHandler(DealsData.shared.dealCount)
+            }
+        }
+    }
+    
     func addSpinner(){
         addChild(spinner)
         spinner.view.frame = view.frame
@@ -252,20 +276,11 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
             self.spinner.removeFromParent()
         }
     }
-    //    func getDownloadURLforImage(){
-    //        dealImageRef.downloadURL { urloftheDealImage, error in
-    //            if let error = error {
-    //                print("error getting download URL = \(error)")
-    //            } else {
-    //
-    //            }
-    //        }
-    //    }
     //MARK: - ChooseStoreButton
     var chooseStore: UIButton = {
         var bttn = UIButton()
-        bttn.setTitle("ChooseStore!", for: .normal)
-        bttn.backgroundColor = .black
+        bttn.setTitle("ChooseStore", for: .normal)
+        bttn.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
         bttn.addTarget(self, action: #selector(goToChooseStore), for: .touchUpInside)
         return bttn
     }()
@@ -306,38 +321,71 @@ class PostDealVC: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     func configureConstraints(){
         self.title = "PostDeal"
         self.tabBarItem.title = ""
-        view.backgroundColor = .gray
+//        view.backgroundColor = UIColor(red: 179/255, green: 178/255, blue: 184/255, alpha: 1.0)
+        view.backgroundColor = .white
         view.addSubview(textFieldTitle)
         view.addSubview(textFieldContent)
         view.addSubview(dealImage)
         view.addSubview(postDeal)
         view.addSubview(chooseStore)
         dealImage.snp.makeConstraints { dealImage in
-            dealImage.right.equalTo(view.snp.right).offset(-25)
-            dealImage.left.equalTo(view.snp.left).offset(25)
-            dealImage.bottom.equalTo(view.snp.bottom).offset(-500)
-            dealImage.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
+            dealImage.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            dealImage.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-400)
+            dealImage.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            dealImage.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         textFieldTitle.snp.makeConstraints { textFieldTitle in
-            textFieldTitle.right.equalTo(view.snp.right).offset(-5)
-            textFieldTitle.left.equalTo(view.snp.left).offset(5)
-            textFieldTitle.bottom.equalTo(view.snp.bottom).offset(-450)
             textFieldTitle.top.equalTo(dealImage.snp.bottom).offset(5)
+            textFieldTitle.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-350)
+            textFieldTitle.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            textFieldTitle.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         textFieldContent.snp.makeConstraints { textFieldContent in
-            textFieldContent.right.equalTo(view.snp.right).offset(-5)
-            textFieldContent.left.equalTo(view.snp.left).offset(5)
-            textFieldContent.bottom.equalTo(view.snp.bottom).offset(-200)
             textFieldContent.top.equalTo(textFieldTitle.snp.bottom).offset(5)
-        }
-        postDeal.snp.makeConstraints { postDeal in
-            postDeal.centerX.equalTo(view)
-            postDeal.centerY.equalTo(textFieldContent.snp.centerY).offset(150)
+            textFieldContent.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-200)
+            textFieldContent.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            textFieldContent.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
         chooseStore.snp.makeConstraints { chooseStore in
-            chooseStore.centerX.equalTo(view)
-            chooseStore.bottom.equalTo(dealImage.snp.top).offset(-5)
+            chooseStore.top.equalTo(textFieldContent.snp.bottom).offset(5)
+            chooseStore.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-150)
+            chooseStore.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            chooseStore.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
+        }
+        postDeal.snp.makeConstraints { postDeal in
+            postDeal.top.equalTo(chooseStore.snp.bottom).offset(5)
+            postDeal.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-100)
+            postDeal.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-5)
+            postDeal.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(5)
         }
     }
-    
+}
+extension UIImage {
+    enum JPEGQuality: CGFloat {
+        case lowest  = 0
+        case low     = 0.25
+        case medium  = 0.5
+        case high    = 0.75
+        case highest = 1
+    }
+
+    /// Returns the data for the specified image in JPEG format.
+    /// If the image object’s underlying image data has been purged, calling this function forces that data to be reloaded into memory.
+    /// - returns: A data object containing the JPEG data, or nil if there was a problem generating the data. This function may return nil if the image has no data or if the underlying CGImageRef contains data in an unsupported bitmap format.
+    func jpeg(_ jpegQuality: JPEGQuality) -> Data? {
+        return jpegData(compressionQuality: jpegQuality.rawValue)
+    }
+}
+
+extension UIImage {
+
+    func decodedImage() -> UIImage {
+        guard let cgImage = cgImage else { return self }
+        let size = CGSize(width: cgImage.width, height: cgImage.height)
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let context = CGContext(data: nil, width: Int(size.width), height: Int(size.height), bitsPerComponent: 8, bytesPerRow: cgImage.bytesPerRow, space: colorSpace, bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue)
+        context?.draw(cgImage, in: CGRect(origin: .zero, size: size))
+        guard let decodedImage = context?.makeImage() else { return self }
+        return UIImage(cgImage: decodedImage)
+    }
 }
