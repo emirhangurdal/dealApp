@@ -1,0 +1,119 @@
+// localized keyword
+
+"grocery" = "supermarket";
+"Supermarket" = "Market";
+"Pharmacy" = "Eczane";
+"Restaurant" = "Kafe";
+"Store" = "Mağaza";
+"Clothing" = "Giyim";
+"Refresh This When You Change Category" = "Kategori Değiştirdiğinizde Burayı Yenileyin";
+"Skip/See All Deals" = "Üye Olmadan Devam";
+"See Brand Deals" = "Markalardan İndirimler";
+"store" = "supermarket";
+"supermarket" = "market";
+"en" = "tr";
+"You can't see local stores if you don't authorize Depple to get location since the data is location based. But you can see the deals from major deals. If you wanna see them, you need to allow Depple to get location in your settings." = "Yerel mağazalar lokasyon bazlı bilgi olduğundan, konum bilgisi vermediğiniz takdirde Depple mağazaları gösteremez. Ancak yine de büyük markalardan indirimler görebilirsiniz. Eğer yerel olanları görmek isterseniz ayarlar kısmından Depple'a konum'u açınız";
+"Go to Brand Deals" = "Marka İndirimlere Git";
+"Stores Near You" = "Yakındaki Marketler";
+"All Stores" = "Hepsi";
+"Favorites" = "Favoriler";
+"Deals in last 24 hr" = "24 Saatlik İndirimler";
+"Store Added To Favorites" = "Market Favorilere Eklendi";
+"Store Removed From Favorites" = "Market Favorilerden Kaldırıldı";
+"Please Authorize The App To Get Your Location" = "Lütfen Konum Bilgilerine İzin Verin";
+"Settings" = "Ayarlar";
+"Pull to refresh" = "Yenile";
+"Store's Deals" = "Marketteki İndirimler";
+
+"Your Email isn't verified." = "Email'iniz doğrulanmadı.";
+"Send confirmation email again?" = "Tekrar doğrulama emaili gönder?";
+
+
+"Login Now." = "Giriş Yap";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "Size bir email gönderdik. Lütfen spam dosyasını da kontrol edin. Emailin doğrulandıktan sonra giriş yapabilirsin.";
+
+"Profile" = "Profil";
+"User's Deals" = "İndirimler";
+"Deals" = "İndirimler";
+"Likes" = "Beğeniler";
+"Map" = "Harita";
+"Log Out" = "Çıkış Yap";
+"Change" = "Değiştir";
+
+"Write Something About Yourself" = "Kendiniz Hakkında Birşeyler Yazın";
+"Done!" = "Değiştirildi!";
+"Your Bio Has Been Changed" = "Hakkımda Kısmı Değiştirildi";
+"Change User Name" = "Kullanıcı Adı Değiştir";
+"Delete Your Account" = "Hesabınızı Silin";
+"Sure?" = "Emin Misiniz?";
+"This can't be undone" = "Bu Geri Alınamaz";
+"Login" = "Giriş";
+"Please Enter Your Password" = "Lütfen Şirenizi Girin";
+"Your Password" = "Şifreniz";
+"Enter" = "Gönder";
+"Blocked Users" = "Engellenmiş Kullanıcılar";
+"Check Your Email" = "Emailinizi Kontrol Edin";
+"Password Reset Email Has Been Sent" = "Şifre Yenileme Emaili Gönderildi";
+"Upload from Library" = "Cihazdan Yükle";
+"Change Your Profile Picture" = "Profil Resmini Değiştir";
+"Unblock?" = "Engeli Kaldır?";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "Depple'a Hoşgeldiniz";
+"Let's Get Started" = "Hadi Başlayalım";
+
+
+"User Name" = "Kullanıcı Adı";
+"Password" = "Şifre";
+"Sign Up" = "Kaydol";
+
+"Log In" = "Giriş";
+"Not a member? Sign Up!" = "Üye değil misiniz? Kaydol";
+"Forgot Password" = "Şifremi Unuttum";
+
+"Reset Your Password?" = "Şifreyi Yenile?";
+"Check Your Email" = "Emailinizi Kontrol Edin";
+"Password Reset Email Has Been Sent" = "Şifre Yenileme Emaili gönderildi";
+"Cancel" = "İptal";
+"Done" = "Tamam";
+"Yes" = "Evet";
+
+
+"Do You Wanna Change Your Password?" = "Şifrenizi Değiştirmek İstiyor Musunuz?";
+"An Error Occured" = "Bir Hata Oldu";
+"Try Again Later" = "Lütfen Daha Sonra Deneyin";
+"No" = "Hayır";
+"Your Username" = "Kullanıcı Adınız";
+"Change User Name" = "Kullanıcı Adı Değiştir";
+"Change Password" = "Şifre Değiştir";
+
+
+// Deals Content VC
+
+"Congrats!" = "Tebrikler";
+"Your deal has been posted." = "İndiriminiz Gönderildi!";
+"Ok" = "Tamam";
+"Delete This Deal?" = "Bu İndirimi Sil?";
+"Delete" = "Sil";
+
+// post deal
+
+"Write a Title" = "Bir Başlık Yazın";
+"Deal Description" = "İndirim Açıklaması";
+"Post" = "Gönder";
+"Choose Store" = "Market Seç";
+"Post Deal" = "İnidirim Gönder";
+"Take Pic or Pick From Phone" = "Bir Fotoğraf Çek ya da Cihazdan Seç";
+"Take Photo" = "Bir Fotoğraf Çek";
+"Upload from Phone" = "Cihazdan Seç";
+
+// deal detail
+
+"Deal Detail" = "İnidirim Detayı";
+"Your Deal Has Been Posted!" = "İndiriminiz Gönderildi";
+"Deal Description" = "İndirim Açıklaması";
+"Title" = "Başlık";
+"Deal at ... " = "Şuradaki İndirim:";
+"Deal @" = "Şuradaki İndirim:";
+"Deals @" = "";

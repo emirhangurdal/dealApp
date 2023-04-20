@@ -1,0 +1,116 @@
+
+"store" = "convenience-store";
+"supermarket" = "convenience-store";
+"Supermarket" = "スーパーマーケット";
+"Pharmacy" = "薬局";
+"Restaurant" = "レストラン";
+"Store" = "店";
+"Clothing" = "衣類";
+"en" = "ja";
+"Refresh This When You Change Category" = "カテゴリを変更するときにこれを更新";
+"Skip/See All Deals" = "スキップ/すべての取引を見る";
+"See Brand Deals" = "ブランドの取引を見る";
+
+"Stores Near You" = "お近くの店舗";
+"All Stores" = "全店舗";
+"Favorites" = "お気に入り";
+"Deals in last 24 hr" = "過去 24 時間の取引";
+"Store Added To Favorites" = "お気に入りに追加されたストア";
+"Store Removed From Favorites" = "お気に入りから削除されたストア";
+"Please Authorize The App To Get Your Location" = "アプリが位置情報を取得することを許可してください";
+"Settings" = "設定";
+"Pull to refresh" = "引っ張ってリフレッシュ";
+"Store's Deals" = "お店のセール";
+
+"Your Email isn't verified." = "メールアドレスが確認されていません.";
+"Send confirmation email again?" = "確認メールを再度送信する?";
+
+
+"Login Now." = "ここでログイン";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "あなたに送信された電子メール。 迷惑メールフォルダもご確認ください。 メールアドレス確認後、ログインできます";
+
+"Profile" = "プロフィール";
+"User's Deals" = "ユーザーの取引";
+"Deals" = "お買い得";
+"Likes" = "評判";
+"Map" = "地図";
+"Log Out" = "ログアウト";
+"Change" = "変化する";
+
+"Write Something About Yourself" = "自分について何か書く";
+"Done!" = "終わり!";
+"Your Bio Has Been Changed" = "あなたの略歴が変更されました";
+"Change User Name" = "ユーザー名の変更";
+"Delete Your Account" = "アカウントを削除する";
+"Sure?" = "もちろん？";
+"This can't be undone" = "これは元に戻せません";
+"Login" = "ログイン";
+"Please Enter Your Password" = "パスワードを入力してください";
+"Your Password" = "あなたのパスワード";
+"Enter" = "入る";
+"Blocked Users" = "ブロックされたユーザー";
+"Check Your Email" = "あなたのメールをチェック";
+"Password Reset Email Has Been Sent" = "パスワードリセットメールを送信しました";
+"Upload from Library" = "ライブラリからアップロード";
+"Change Your Profile Picture" = "プロフィール写真を変更する";
+"Unblock?" = "ブロック解除?";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "いらっしゃいませ";
+"Let's Get Started" = "始めましょう";
+
+
+"User Name" = "ユーザー名";
+"Password" = "パスワード";
+"Sign Up" = "サインアップ";
+
+"Log In" = "ログインする";
+"Not a member? Sign Up!" = "メンバーではありませんか？ サインアップ！";
+"Forgot Password" = "パスワードをお忘れですか";
+
+"Reset Your Password?" = "あなたのパスワードをリセット?";
+"Check Your Email" = "あなたのメールをチェック";
+"Password Reset Email Has Been Sent" = "パスワードリセットメールを送信しました";
+"Cancel" = "キャンセル";
+"Done" = "終わり";
+"Yes" = "はい";
+
+
+"Do You Wanna Change Your Password?" = "パスワードを変更しますか?";
+"An Error Occured" = "エラーが発生した";
+"Try Again Later" = "あとでもう一度試してみてください";
+"No" = "いいえ";
+"Your Username" = "あなたのユーザーネーム";
+"Change User Name" = "ユーザー名の変更";
+"Change Password" = "パスワードを変更する";
+
+
+// Deals Content VC
+
+"Congrats!" = "おめでとう";
+"Your deal has been posted." = "あなたの取引が掲載されました";
+"Ok" = "わかった";
+"Delete This Deal?" = "この取引を削除?";
+"Delete" = "消去";
+
+// post deal
+
+"Write a Title" = "タイトルを書く";
+"Deal Description" = "ディールの説明";
+"Post" = "役職";
+"Choose Store" = "ストアを選択";
+"Post Deal" = "ポストディール";
+"Take Pic or Pick From Phone" = "写真を撮るか、電話から選ぶ";
+"Take Photo" = "写真を撮る";
+"Upload from Phone" = "電話からアップロード";
+
+// deal detail
+
+"Deal Detail" = "ディールの詳細";
+"Your Deal Has Been Posted!" = "あなたのディールが掲載されました";
+"Deal Description" = "ディールの説明";
+"Title" = "題名";
+"Deal at ... " = "で取引:";
+"Deal @" = "オファー @";
+"Deals @" = "オファー @";

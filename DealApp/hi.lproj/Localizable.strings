@@ -1,0 +1,115 @@
+"store" = "market";
+"supermarket" = "market";
+"en" = "hi";
+"Supermarket" = "फार्मेसी";
+"Pharmacy" = "फार्मेसी";
+"Restaurant" = "रेस्टोरेंट";
+"Store" = "इकट्ठा करना";
+"Clothing" = "कपड़े";
+"Refresh This When You Change Category" = "जब आप श्रेणी बदलते हैं तो इसे ताज़ा करें";
+"Skip/See All Deals" = "छोड़ें/सभी सौदे देखें";
+"See Brand Deals" = "ब्रांड सौदे देखें";
+
+"Stores Near You" = "आपके आस-पास के स्टोर";
+"All Stores" = "सभी स्टोर";
+"Favorites" = "पसंदीदा";
+"Deals in last 24 hr" = "पिछले 24 घंटे में सौदे";
+"Store Added To Favorites" = "स्टोर पसंदीदा में जोड़ा गया";
+"Store Removed From Favorites" = "स्टोर को पसंदीदा से हटाया गया";
+"Please Authorize The App To Get Your Location" = "कृपया अपना स्थान प्राप्त करने के लिए ऐप को अधिकृत करें";
+"Settings" = "समायोजन";
+"Pull to refresh" = "रीफ़्रेश करने के लिए खींचें";
+"Store's Deals" = "स्टोर के सौदे";
+
+"Your Email isn't verified." = "आपका ईमेल सत्यापित नहीं है।";
+"Send confirmation email again?" = "पुष्टिकरण ईमेल फिर से भेजें?";
+
+
+"Login Now." = "अब प्रवेश करें।";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "आपको एक ईमेल भेजा गया है। कृपया जंक/स्पैम फ़ोल्डर भी जांचें। अपना ईमेल सत्यापित करने के बाद आप लॉग इन कर सकते हैं।";
+
+"Profile" = "प्रोफ़ाइल";
+"User's Deals" = "उपयोगकर्ता के सौदे";
+"Deals" = "सौदा";
+"Likes" = "प्रतिष्ठा";
+"Map" = "नक्शा";
+"Log Out" = "लॉग आउट";
+"Change" = "परिवर्तन";
+
+"Write Something About Yourself" = "अपने बारे में कुछ लिखो";
+"Done!" = "पूर्ण!";
+"Your Bio Has Been Changed" = "आपका बायो बदल दिया गया है";
+"Change User Name" = "उपयोगकर्ता नाम परिवर्तन करें";
+"Delete Your Account" = "अपने खाते को नष्ट करो";
+"Sure?" = "ज़रूर?";
+"This can't be undone" = "इसे पूर्ववत नहीं किया जा सकता";
+"Login" = "लॉग इन करें";
+"Please Enter Your Password" = "अपना पासवर्ड दर्ज करें";
+"Your Password" = "आपका पासवर्ड";
+"Enter" = "प्रवेश करना";
+"Blocked Users" = "रोके गए उपयोगकर्ता";
+"Check Your Email" = "अपने ईमेल की जाँच करें";
+"Password Reset Email Has Been Sent" = "पासवर्ड रीसेट ईमेल भेज दिया गया है";
+"Upload from Library" = "लाइब्रेरी से अपलोड करें";
+"Change Your Profile Picture" = "अपनी प्रोफाइल फ़ोटो बदलें";
+"Unblock?" = "अनब्लॉक करें?";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "डेपल में आपका स्वागत है";
+"Let's Get Started" = "आएँ शुरू करें";
+
+
+"User Name" = "उपयोगकर्ता नाम";
+"Password" = "पासवर्ड";
+"Sign Up" = "साइन अप करें";
+
+"Log In" = "लॉग इन करें";
+"Not a member? Sign Up!" = "सदस्य नहीं हैं? साइन अप करें!";
+"Forgot Password" = "पासवर्ड भूल गए";
+
+"Reset Your Password?" = "अपना पासवर्ड रीसेट करें?";
+"Check Your Email" = "अपने ईमेल की जाँच करें";
+"Password Reset Email Has Been Sent" = "पासवर्ड रीसेट ईमेल भेज दिया गया है";
+"Cancel" = "रद्द करना";
+"Done" = "पूर्ण";
+"Yes" = "हाँ";
+
+
+"Do You Wanna Change Your Password?" = "क्या आप अपना पासवर्ड बदलना चाहते हैं?";
+"An Error Occured" = "एक त्रुटि हुई";
+"Try Again Later" = "बाद में पुन: प्रयास";
+"No" = "नहीं";
+"Your Username" = "तुम्हारा प्रयोगकर्ती नाम";
+"Change User Name" = "उपयोगकर्ता नाम परिवर्तन करें";
+"Change Password" = "पासवर्ड बदलें";
+
+
+// Deals Content VC
+
+"Congrats!" = "बधाई!";
+"Your deal has been posted." = "आपका सौदा पोस्ट कर दिया गया है।";
+"Ok" = "ठीक";
+"Delete This Deal?" = "यह डील हटाएं?";
+"Delete" = "मिटाना";
+
+// post deal
+
+"Write a Title" = "एक शीर्षक लिखें";
+"Deal Description" = "डील विवरण";
+"Post" = "पद";
+"Choose Store" = "स्टोर चुनें";
+"Post Deal" = "पोस्ट डील";
+"Take Pic or Pick From Phone" = "तस्वीर लें या फोन से चुनें";
+"Take Photo" = "फोटो लो";
+"Upload from Phone" = "फोन से अपलोड करें";
+
+// deal detail
+
+"Deal Detail" = "डील विवरण";
+"Your Deal Has Been Posted!" = "आपका सौदा पोस्ट कर दिया गया है";
+"Deal Description" = "डील विवरण";
+"Title" = "शीर्षक";
+"Deal at ... " = "डील पर...";
+"Deal @" = "सौदा @";
+"Deals @" = "";

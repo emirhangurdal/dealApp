@@ -1,0 +1,120 @@
+// localized keyword
+
+"store" = "mercado";
+"supermarket" = "mercado";
+"Supermarket" = "Mercado";
+"Pharmacy" = "Farmacia";
+"Restaurant" = "Restaurante";
+"Store" = "Armazenar";
+"Clothing" = "Confecções";
+"Refresh This When You Change Category" = "Atualize quando mudar de categoria";
+"Skip/See All Deals" = "Ignorar/ver todas as ofertas";
+"See Brand Deals" = "Ver ofertas de marca";
+
+
+"en" = "pt-BR";
+
+"Stores Near You" = "Lojas perto de você";
+"All Stores" = "Todas as lojas";
+"Favorites" = "Favoritos";
+"Deals in last 24 hr" = "Ofertas nas últimas 24 horas";
+"Store Added To Favorites" = "Loja adicionada aos favoritos";
+"Store Removed From Favorites" = "Loja removida dos favoritos";
+"Please Authorize The App To Get Your Location" = "Autorize o aplicativo a obter sua localização";
+"Settings" = "Definições";
+"Pull to refresh" = "Puxe para atualizar";
+"Store's Deals" = "Ofertas da loja";
+
+"Your Email isn't verified." = "Seu e-mail não foi verificado.";
+"Send confirmation email again?" = "Enviar e-mail de confirmação novamente?";
+
+
+"Login Now." = "Conecte-se agora";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "Um e-mail enviado para você. Verifique também a pasta de lixo eletrônico/spam. Você pode fazer login depois de verificar seu e-mail.";
+
+"Profile" = "Perfil";
+"User's Deals" = "Ofertas do usuário";
+"Deals" = "Ofertas";
+"Likes" = "Reputação";
+"Map" = "Mapa";
+"Log Out" = "Sair";
+"Change" = "Mudar";
+
+"Write Something About Yourself" = "Escreva algo sobre você";
+"Done!" = "Feito!";
+"Your Bio Has Been Changed" = "Sua biografia foi alterada";
+"Change User Name" = "Mudar nome de usuário";
+"Delete Your Account" = "Deletar sua conta";
+"Sure?" = "Claro?";
+"This can't be undone" = "Isso não pode ser desfeito";
+"Login" = "Conecte-se";
+"Please Enter Your Password" = "Por favor, insira sua senha";
+"Your Password" = "Sua senha";
+"Enter" = "Digitar";
+"Blocked Users" = "Usuários bloqueados";
+"Check Your Email" = "Verifique seu e-mail";
+"Password Reset Email Has Been Sent" = "O e-mail de redefinição de senha foi enviado";
+"Upload from Library" = "Carregar da Biblioteca";
+"Change Your Profile Picture" = "Mude sua foto de perfil";
+"Unblock?" = "Desbloquear?";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "Bem-vindo à Depple";
+"Let's Get Started" = "Vamos começar";
+
+
+"User Name" = "Nome de usuário";
+"Password" = "Senha";
+"Sign Up" = "Inscrever-se";
+
+"Log In" = "Conecte-se";
+"Not a member? Sign Up!" = "Não é um membro? Inscrever-se!";
+"Forgot Password" = "Esqueceu a senha";
+
+"Reset Your Password?" = "Redefinir sua senha?";
+"Check Your Email" = "Verifique seu e-mail";
+"Password Reset Email Has Been Sent" = "O e-mail de redefinição de senha foi enviado";
+"Cancel" = "Cancelar";
+"Done" = "Feito";
+"Yes" = "Sim";
+
+
+"Do You Wanna Change Your Password?" = "Você quer alterar sua senha?";
+"An Error Occured" = "Um erro ocorreu";
+"Try Again Later" = "Tente mais tarde";
+"No" = "Não";
+"Your Username" = "Seu nome de usuário";
+"Change User Name" = "Mudar nome de usuário";
+"Change Password" = "Mudar senha";
+
+
+// Deals Content VC
+
+"Congrats!" = "Parabéns";
+"Your deal has been posted." = "Sua oferta foi postada!";
+"Ok" = "OK";
+"Delete This Deal?" = "Excluir esta oferta?";
+"Delete" = "Excluir";
+
+// post deal
+
+"Write a Title" = "Escreva um título";
+"Deal Description" = "Descrição da oferta";
+"Post" = "Publicar";
+"Choose Store" = "Escolha a loja";
+"Post Deal" = "Pós-negociação";
+"Take Pic or Pick From Phone" = "Tire foto ou escolha do telefone";
+"Take Photo" = "Tirar fotos";
+"Upload from Phone" = "Carregar do telefone";
+
+// deal detail
+
+"Deal Detail" = "Detalhe da transação";
+"Your Deal Has Been Posted!" = "Sua oferta foi publicada";
+"Deal Description" = "Descrição da oferta";
+"Title" = "Título";
+"Deal at ... " = "Negociar em...";
+"Deal @" = "Negociar @";
+"Deals @" = "Ofertas";
+

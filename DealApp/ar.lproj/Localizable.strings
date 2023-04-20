@@ -1,0 +1,116 @@
+
+"store" = "supermarket";
+"supermarket" = "supermarket";
+"Supermarket" = "سوبر ماركت";
+"Pharmacy" = "مقابل";
+"Restaurant" = "مطعم";
+"Store" = "متجر";
+"Clothing" = "ملابس";
+"Refresh This When You Change Category" = "قم بتحديث هذا عند تغيير الفئة";
+"Skip/See All Deals" = "تخطي / مشاهدة جميع الصفقات";
+"See Brand Deals" = "انظر صفقات العلامات التجارية";
+"en" = "ar";
+
+"Stores Near You" = "المتاجر القريبة منك";
+"All Stores" = "جميع المتاجر";
+"Favorites" = "المفضلة";
+"Deals in last 24 hr" = "العروض في آخر 24 ساعة";
+"Store Added To Favorites" = "تمت إضافة المتجر إلى المفضلة";
+"Store Removed From Favorites" = "تمت إزالة المتجر من المفضلة";
+"Please Authorize The App To Get Your Location" = "يرجى السماح للتطبيق للحصول على موقعك";
+"Settings" = "إعدادات";
+"Pull to refresh" = "سحب لتحديث";
+"Store's Deals" = "صفقات المتجر";
+
+"Your Email isn't verified." = "لم يتم التحقق من بريدك الإلكتروني";
+"Send confirmation email again?" = "هل تريد إرسال بريد إلكتروني للتأكيد مرة أخرى؟?";
+
+
+"Login Now." = "تسجيل الدخول الآن.";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "تم إرسال بريد إلكتروني لك. يرجى التحقق من مجلد البريد العشوائي / البريد العشوائي أيضًا. يمكنك تسجيل الدخول بعد التحقق من بريدك الإلكتروني.";
+
+"Profile" = "الملف الشخصي";
+"User's Deals" = "صفقات المستخدم";
+"Deals" = "صفقات";
+"Likes" = "الإعجابات";
+"Map" = "خريطة";
+"Log Out" = "تسجيل خروج";
+"Change" = "يتغيرون";
+
+"Write Something About Yourself" = "أكتب شيئا عن نفسك";
+"Done!" = "فعله!";
+"Your Bio Has Been Changed" = "تم تغيير سيرتك الذاتية";
+"Change User Name" = "غير اسم المستخدم";
+"Delete Your Account" = "حذف حسابك";
+"Sure?" = "بالتأكيد؟";
+"This can't be undone" = "لا يمكن التراجع عن هذا";
+"Login" = "تسجيل الدخول";
+"Please Enter Your Password" = "من فضلك أدخل رقمك السري";
+"Your Password" = "كلمة السر خاصتك";
+"Enter" = "يدخل";
+"Blocked Users" = "مستخدمين محجوبين";
+"Check Your Email" = "تحقق من بريدك الالكتروني";
+"Password Reset Email Has Been Sent" = "تم إرسال البريد الإلكتروني الخاص بإعادة تعيين كلمة المرور";
+"Upload from Library" = "تحميل من المكتبة";
+"Change Your Profile Picture" = "تغيير صورة ملفك الشخصي";
+"Unblock?" = "رفع الحظر؟";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "مرحبا بكم في ديبل";
+"Let's Get Started" = "هيا بنا نبدأ";
+
+
+"User Name" = "اسم االمستخدم";
+"Password" = "كلمة المرور";
+"Sign Up" = "اشتراك";
+
+"Log In" = "تسجيل الدخول";
+"Not a member? Sign Up!" = "ليس عضوا؟ اشتراك!";
+"Forgot Password" = "هل نسيت كلمة السر";
+
+"Reset Your Password?" = "اعد ضبط كلمه السر؟";
+"Check Your Email" = "تحقق من بريدك الالكتروني";
+"Password Reset Email Has Been Sent" = "تم إرسال البريد الإلكتروني الخاص بإعادة تعيين كلمة المرور";
+"Cancel" = "يلغي";
+"Done" = "فعله";
+"Yes" = "نعم";
+
+
+"Do You Wanna Change Your Password?" = "هل تريد تغيير كلمة المرور الخاصة بك؟";
+"An Error Occured" = "حدث خطأ";
+"Try Again Later" = "حاول مرة أخرى في وقت لاحق";
+"No" = "رقم";
+"Your Username" = "اسم المستخدم الخاص بك";
+"Change User Name" = "غير اسم المستخدم";
+"Change Password" = "غير كلمة السر";
+
+
+// Deals Content VC
+
+"Congrats!" = "تهاني!";
+"Your deal has been posted." = "تم نشر صفقتك";
+"Ok" = "موافق";
+"Delete This Deal?" = "حذف هذه الصفقة؟";
+"Delete" = "حذف";
+
+// post deal
+
+"Write a Title" = "اكتب عنوانًا";
+"Deal Description" = "وصف الصفقة";
+"Post" = "بريد";
+"Choose Store" = "اختر المتجر";
+"Post Deal" = "بعد الصفقة";
+"Take Pic or Pick From Phone" = "خذ صورة أو اختر من الهاتف";
+"Take Photo" = "تصوير";
+"Upload from Phone" = "تحميل من الهاتف";
+
+// deal detail
+
+"Deal Detail" = "تفاصيل الصفقة";
+"Your Deal Has Been Posted!" = "تم نشر صفقتك";
+"Deal Description" = "وصف الصفقة";
+"Title" = "عنوان";
+"Deal at ... " = "صفقة في ...";
+"Deal @" = "صفقة @";
+"Deals @" = "صفقات @";

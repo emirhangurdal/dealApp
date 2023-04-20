@@ -1,0 +1,15 @@
+/* 
+  InfoPlist.strings
+  DealApp
+
+  Created by Emir Gurdal on 17.10.2022.
+  
+*/
+
+Privacy - Tracking Usage Description = "Autorisez Depple pour le suivi à vous montrer des publicités personnalisées.";
+Privacy - Photo Library Additions Usage Description = "Depple a besoin d'accéder à vos photos pour que vous puissiez définir une photo de profil et télécharger des photos de l'offre. Les autres utilisateurs peuvent voir votre photo de profil.";
+Privacy - Photo Library Usage Description = "Depple a besoin d'accéder à vos photos pour que vous puissiez définir une photo de profil et télécharger des photos de l'offre. Les autres utilisateurs peuvent voir votre photo de profil.";
+
+Privacy - Location Always and When In Use Usage Description = "Autoriser les informations de localisation pour répertorier les entreprises à proximité";
+
+Privacy - Location When In Use Usage Description = "Autoriser les informations de localisation pour répertorier les entreprises à proximité";

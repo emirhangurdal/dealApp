@@ -1,0 +1,114 @@
+"store" = "lebensmittelmarkt";
+"supermarket" = "lebensmittelmarkt";
+"Supermarket" = "Lebensmittelmarkt";
+"Pharmacy" = "Apotheke";
+"Restaurant" = "Restaurant";
+"Store" = "Speichern";
+"Clothing" = "Kleidung";
+"en" = "de";
+"Refresh This When You Change Category" = "Aktualisieren Sie dies, wenn Sie die Kategorie wechseln";
+"Stores Near You" = "Geschäfte in Ihrer Nähe";
+"All Stores" = "Alle Geschäfte";
+"Favorites" = "Favoriten";
+"Deals in last 24 hr" = "Angebote in den letzten 24 Std";
+"Store Added To Favorites" = "Shop zu Favoriten hinzugefügt";
+"Store Removed From Favorites" = "Shop aus Favoriten entfernt";
+"Please Authorize The App To Get Your Location" = "Bitte autorisieren Sie die App, Ihren Standort abzurufen";
+"Settings" = "Einstellungen";
+"Pull to refresh" = "Aktualisierung";
+"Store's Deals" = "Angebote des Shops";
+"Skip/See All Deals" = "Alle Angebote überspringen/sehen";
+"See Brand Deals" = "Siehe Markenangebote";
+
+"Your Email isn't verified." = "Ihre E-Mail wurde nicht bestätigt.";
+"Send confirmation email again?" = "Bestätigungs-E-Mail erneut senden?";
+
+
+"Login Now." = "Jetzt einloggen.";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "Eine an Sie gesendete E-Mail. Bitte überprüfen Sie auch den Junk-/Spam-Ordner. Sie können sich anmelden, nachdem Sie Ihre E-Mail bestätigt haben.";
+
+"Profile" = "Profil";
+"User's Deals" = "Angebote des Benutzers";
+"Deals" = "Angebote";
+"Likes" = "Reputation";
+"Map" = "Karte";
+"Log Out" = "Ausloggen";
+"Change" = "Veränderung";
+
+"Write Something About Yourself" = "Beschreibe Dich selbst";
+"Done!" = "Fertig!";
+"Your Bio Has Been Changed" = "Ihre Biografie wurde geändert";
+"Change User Name" = "Benutzernamen ändern";
+"Delete Your Account" = "Lösche deinen Account";
+"Sure?" = "Sicher?";
+"This can't be undone" = "Dies kann nicht rückgängig gemacht werden";
+"Login" = "Anmeldung";
+"Please Enter Your Password" = "Bitte geben Sie Ihr Passwort ein";
+"Your Password" = "Ihr Passwort";
+"Enter" = "Eintreten";
+"Blocked Users" = "Blockierte Benutzer";
+"Check Your Email" = "Überprüfen Sie Ihren Posteingang";
+"Password Reset Email Has Been Sent" = "E-Mail zum Zurücksetzen des Passworts wurde gesendet";
+"Upload from Library" = "Aus Bibliothek hochladen";
+"Change Your Profile Picture" = "Ändere dein Profilbild";
+"Unblock?" = "Entsperren?";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "Willkommen bei Depple";
+"Let's Get Started" = "Lass uns anfangen";
+
+
+"User Name" = "Nutzername";
+"Password" = "Passwort";
+"Sign Up" = "Anmeldung";
+
+"Log In" = "Einloggen";
+"Not a member? Sign Up!" = "Kein Mitglied? Anmeldung!";
+"Forgot Password" = "Passwort vergessen";
+
+"Reset Your Password?" = "Setze dein Passwort zurück?";
+"Check Your Email" = "Überprüfen Sie Ihren Posteingang";
+"Password Reset Email Has Been Sent" = "E-Mail zum Zurücksetzen des Passworts wurde gesendet";
+"Cancel" = "Absagen";
+"Done" = "Fertig";
+"Yes" = "Ja";
+
+
+"Do You Wanna Change Your Password?" = "Möchten Sie Ihr Passwort ändern";
+"An Error Occured" = "Es ist ein Fehler aufgetreten";
+"Try Again Later" = "Versuchen Sie es später noch einmal";
+"No" = "Nein";
+"Your Username" = "Dein Benutzername";
+"Change User Name" = "Benutzernamen ändern";
+"Change Password" = "Passwort ändern";
+
+
+// Deals Content VC
+
+"Congrats!" = "Herzlichen Glückwunsch!";
+"Your deal has been posted." = "Ihr Angebot wurde veröffentlicht.";
+"Ok" = "OK";
+"Delete This Deal?" = "Diesen Deal löschen?";
+"Delete" = "Löschen";
+
+// post deal
+
+"Write a Title" = "Schreiben Sie einen Titel";
+"Deal Description" = "Deal-Beschreibung";
+"Post" = "Verbuchen";
+"Choose Store" = "Wählen Sie Shop";
+"Post Deal" = "Post-Deal";
+"Take Pic or Pick From Phone" = "Machen Sie ein Bild oder wählen Sie vom Telefon aus";
+"Take Photo" = "Foto machen";
+"Upload from Phone" = "Vom Telefon hochladen";
+
+// deal detail
+
+"Deal Detail" = "Deal-Detail";
+"Your Deal Has Been Posted!" = "Ihr Angebot wurde veröffentlicht!";
+"Deal Description" = "Deal-Beschreibung";
+"Title" = "Titel";
+"Deal at ... " = "Deal bei ...";
+"Deal @" = "Angebot @";
+"Deals @" = "Angebote @";

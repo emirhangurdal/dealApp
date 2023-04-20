@@ -1,0 +1,120 @@
+// localized keyword
+
+"store" = "convenience-store";
+"en" = "ko";
+"supermarket" = "convenience-store";
+"Supermarket" = "슈퍼마켓";
+"Pharmacy" = "약국";
+"Restaurant" = "레스토랑";
+"Store" = "가게";
+"Clothing" = "의류";
+"Refresh This When You Change Category" = "범주를 변경할 때 새로 고침";
+
+"Skip/See All Deals" = "건너뛰기/모든 거래 보기";
+"See Brand Deals" = "브랜드 특가 보기";
+
+
+"Stores Near You" = "가까운 매장";
+"All Stores" = "모든";
+"Favorites" = "즐겨찾기";
+"Deals in last 24 hr" = "지난 24시간 동안의 거래";
+"Store Added To Favorites" = "즐겨찾기에 추가된 상점";
+"Store Removed From Favorites" = "즐겨찾기에서 스토어 제거됨";
+"Please Authorize The App To Get Your Location" = "내 위치를 가져오려면 앱을 승인하세요.";
+"Settings" = "설정";
+"Pull to refresh" = "새로 고치다";
+"Store's Deals" = "상점의 거래";
+
+"Your Email isn't verified." = "이메일이 확인되지 않았습니다.";
+"Send confirmation email again?" = "확인 이메일 다시 보내기?";
+
+
+"Login Now." = "지금 로그인하십시오";
+"An email sent to you. Please check junk/spam folder, too. You can log in after you verify your email." = "귀하에게 발송된 이메일입니다. 정크/스팸 폴더도 확인해주세요. 이메일 인증 후 로그인 가능.";
+
+"Profile" = "프로필";
+"User's Deals" = "사용자의 거래";
+"Deals" = "거래";
+"Likes" = "평판";
+"Map" = "지도";
+"Log Out" = "로그 아웃";
+"Change" = "변화";
+
+"Write Something About Yourself" = "자신에 대해 쓰기";
+"Done!" = "완료!";
+"Your Bio Has Been Changed" = "약력이 변경되었습니다";
+"Change User Name" = "사용자 이름 변경";
+"Delete Your Account" = "계정 삭제";
+"Sure?" = "확신하는?";
+"This can't be undone" = "취소할 수 없습니다.";
+"Login" = "로그인";
+"Please Enter Your Password" = "비밀번호를 입력하세요";
+"Your Password" = "너의 비밀번호";
+"Enter" = "입력하다";
+"Blocked Users" = "차단된 사용자";
+"Check Your Email" = "이메일을 확인";
+"Password Reset Email Has Been Sent" = "비밀번호 재설정 이메일이 전송되었습니다";
+"Upload from Library" = "라이브러리에서 업로드";
+"Change Your Profile Picture" = "프로필 사진 변경";
+"Unblock?" = "차단 해제?";
+
+
+// Sign Up - Login
+"Welcome to Depple" = "어서 오십시오";
+"Let's Get Started" = "시작하자";
+
+
+"User Name" = "사용자 이름";
+"Password" = "비밀번호";
+"Sign Up" = "가입하기";
+
+"Log In" = "로그인";
+"Not a member? Sign Up!" = "회원이 아니신가요? 가입하기!";
+"Forgot Password" = "비밀번호를 잊으 셨나요";
+
+"Reset Your Password?" = "비밀번호를 재설정?";
+"Check Your Email" = "이메일을 확인";
+"Password Reset Email Has Been Sent" = "비밀번호 재설정 이메일이 전송되었습니다";
+"Cancel" = "취소";
+"Done" = "완료";
+"Yes" = "예";
+
+
+"Do You Wanna Change Your Password?" = "비밀번호를 변경하시겠습니까?";
+"An Error Occured" = "오류가 발생했습니다";
+"Try Again Later" = "나중에 다시 시도";
+"No" = "아니";
+"Your Username" = "귀하의 사용자 이름";
+"Change User Name" = "사용자 이름 변경";
+"Change Password" = "비밀번호 변경";
+"Email" = "이메일";
+
+
+// Deals Content VC
+
+"Congrats!" = "축하해요";
+"Your deal has been posted." = "거래가 게시되었습니다.";
+"Ok" = "확인";
+"Delete This Deal?" = "이 거래를 삭제하시겠습니까?";
+"Delete" = "삭제";
+
+// post deal
+
+"Write a Title" = "제목 쓰기";
+"Deal Description" = "거래 설명";
+"Post" = "게시하다";
+"Choose Store" = "스토어 선택";
+"Post Deal" = "포스트 딜";
+"Take Pic or Pick From Phone" = "사진을 찍거나 전화에서 선택";
+"Take Photo" = "사진을 찍다";
+"Upload from Phone" = "전화에서 업로드";
+
+// deal detail
+
+"Deal Detail" = "거래 세부 정보";
+"Your Deal Has Been Posted!" = "거래가 게시되었습니다!";
+"Deal Description" = "거래 설명";
+"Title" = "제목";
+"Deal at ... " = "거래";
+"Deal @" = "권하다 @";
+"Deals @" = "제안 @";
