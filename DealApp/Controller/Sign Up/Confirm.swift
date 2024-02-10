@@ -24,9 +24,10 @@ class Confirm: UIViewController {
     func configureMessage() {
         confirmationMessage.text = text()
         confirmationMessage.numberOfLines = 0
-        self.confirmationMessage.textColor =  .black
+        self.confirmationMessage.textColor = .black
         let underlineAttriString = NSMutableAttributedString(string: text())
-        let range1 = (text() as NSString).range(of: loginText) 
+        let range1 = (text() as NSString).range(of: loginText)
+        
         underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range1)
         underlineAttriString.addAttribute(.foregroundColor, value: UIColor.red, range: range1)
         confirmationMessage.attributedText = underlineAttriString

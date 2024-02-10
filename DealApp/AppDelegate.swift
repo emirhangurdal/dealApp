@@ -49,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-        
         if #available(iOS 13, *) {
             // do only pure app launch stuff, not interface stuff
         } else {

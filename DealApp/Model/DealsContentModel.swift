@@ -47,6 +47,7 @@ class DealsData {
     static let shared = DealsData()
 //    let dealsData : BehaviorRelay<[DealModel]> = BehaviorRelay(value: [])
     let dealsData : BehaviorRelay<[SectionOfCustomData]> = BehaviorRelay(value: [])
+    
     var dealsArray = [SectionOfCustomData]()
     var id: String?
     var lat = Double()

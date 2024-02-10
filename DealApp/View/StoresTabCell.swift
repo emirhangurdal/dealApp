@@ -298,24 +298,11 @@ class StoresTabCell: UITableViewCell, RemoveDeleteButton {
             phoneButton.top.equalTo(contentView).offset(1)
             phoneButton.right.equalTo(contentView).offset(-10)
         }
-        
-//        addFavButton.snp.makeConstraints { addFavButton in
-//            addFavButton.height.equalTo(25)
-//            addFavButton.width.equalTo(25)
-//            addFavButton.left.equalTo(storeImage.snp.right).offset(5)
-//            addFavButton.top.equalTo(contentViewSeparator)
-//        }
-//        deleteFromFavsButton.snp.makeConstraints { deleteFromFavsButton in
-//            deleteFromFavsButton.height.equalTo(25)
-//            deleteFromFavsButton.width.equalTo(25)
-//            deleteFromFavsButton.left.equalTo(storeImage.snp.right).offset(5)
-//            deleteFromFavsButton.top.equalTo(contentViewSeparator)
-//        }
+
     }
     //MARK: - Configure with Data
     func configureWithData(dataModel: StoresFeedModel) {
         storeName.text = dataModel.title
-//        self.storeImage.downloaded(from: dataModel.image)
         storeid = dataModel.id // use this id to recall api
         distance = dataModel.distance // use this to list only the deals nearby
     }

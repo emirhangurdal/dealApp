@@ -144,6 +144,7 @@ class LogIn: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     let userDefaults = UserDefaults.standard
+    
     func savedEmailandPass(){
         let savedEmail = userDefaults.object(forKey: "email") as? String
         let savedPassword = userDefaults.object(forKey: "password") as? String

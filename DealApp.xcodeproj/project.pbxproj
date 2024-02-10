@@ -12,44 +12,43 @@
 		5813320B28CB5C3800F9A92B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5813320D28CB5C3800F9A92B /* Localizable.strings */; };
 		581472392881A7E500A8CBD6 /* SegmentExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581472382881A7E500A8CBD6 /* SegmentExample.swift */; };
 		5814723B2881D28200A8CBD6 /* VericalTopAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5814723A2881D28200A8CBD6 /* VericalTopAlignLabel.swift */; };
+		581622ED2B77CF940058662C /* SearchCouponFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581622EC2B77CF940058662C /* SearchCouponFile.swift */; };
+		58170F972B703BA000299564 /* DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58170F962B703BA000299564 /* DownloadImage.swift */; };
 		581811B128C5EC4B006F6DD3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581811B028C5EC4B006F6DD3 /* AppUtility.swift */; };
 		581C2BF92843C0F100A8D2B0 /* Pods_DealApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEE2B7B4D2FF55651DA5D763 /* Pods_DealApp.framework */; };
 		582F9C5528253E7700082C38 /* StoreDealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F9C5428253E7700082C38 /* StoreDealsModel.swift */; };
 		58320E11274682EC00AFA044 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58320E10274682EC00AFA044 /* LogIn.swift */; };
 		5837B4B7282A614400EDAD16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5837B4B6282A614400EDAD16 /* SceneDelegate.swift */; };
-		583BA15A2754C95E002E8821 /* YelpAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 583BA1592754C95D002E8821 /* YelpAPIManager.swift */; };
 		58400392278B75F4000ABBCB /* StoreDeals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400391278B75F4000ABBCB /* StoreDeals.swift */; };
 		58400394278C25CF000ABBCB /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400393278C25CF000ABBCB /* TabBarVC.swift */; };
 		58400397278C28A3000ABBCB /* DealsContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58400396278C28A3000ABBCB /* DealsContentVC.swift */; };
 		584007512851C90B006E965D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584007502851C90B006E965D /* Constants.swift */; };
-		5843C9C829701F8300ABC548 /* BrandDealsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5843C9C729701F8300ABC548 /* BrandDealsCollection.swift */; };
+		5843C9C829701F8300ABC548 /* CouponView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5843C9C729701F8300ABC548 /* CouponView.swift */; };
 		5845C2A82749151F00DF3D6B /* StoresTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5845C2A72749151F00DF3D6B /* StoresTabCell.swift */; };
-		5848C81D29434F3B007660B8 /* AllDealsCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5848C81C29434F3B007660B8 /* AllDealsCCell.swift */; };
-		5848C81F29437F96007660B8 /* BrandDeals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5848C81E29437F96007660B8 /* BrandDeals.swift */; };
-		5848C8212943810C007660B8 /* BrandDealsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5848C8202943810C007660B8 /* BrandDealsCell.swift */; };
+		5848C81D29434F3B007660B8 /* BrandCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5848C81C29434F3B007660B8 /* BrandCollectionCell.swift */; };
+		5848C8212943810C007660B8 /* BrandCouponsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5848C8202943810C007660B8 /* BrandCouponsCell.swift */; };
 		584AEA1F28EB000000C21AFF /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584AEA1E28EB000000C21AFF /* TermsVC.swift */; };
 		5850DC3627466409007D0D34 /* Confirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5850DC3527466409007D0D34 /* Confirm.swift */; };
-		585B702829F15034005C556B /* impactDeals.json in Resources */ = {isa = PBXBuildFile; fileRef = 585B702729F15034005C556B /* impactDeals.json */; };
 		58642F8E29A64A1F0065A49C /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58642F8629A6475D0065A49C /* AuthenticationServices.framework */; };
-		586B881C29421C8E0076686C /* AllDealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586B881B29421C8E0076686C /* AllDealsVC.swift */; };
+		586B881C29421C8E0076686C /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586B881B29421C8E0076686C /* CategoryView.swift */; };
 		587016C42747C42000BEAFB9 /* StoresFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 587016C32747C42000BEAFB9 /* StoresFeed.swift */; };
 		5870DFDE2795D76A00C85AC6 /* DealsContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */; };
 		5870DFE12796DC1100C85AC6 /* DealTabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5870DFE02796DC1100C85AC6 /* DealTabCell.swift */; };
 		5886315E27A8057600DF4382 /* MGPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5886315D27A8057600DF4382 /* MGPhotoHelper.swift */; };
 		588ADDFF28CB35A600AD057E /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588ADDFE28CB35A600AD057E /* Translate.swift */; };
-		5891C98F284396E700D38C49 /* GoogleAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5891C98E284396E700D38C49 /* GoogleAPIManager.swift */; };
+		5891C98F284396E700D38C49 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5891C98E284396E700D38C49 /* ImageCache.swift */; };
 		58925D9E286B0832003F4E4E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58925D9D286B0832003F4E4E /* Cache.swift */; };
 		589638A0299932240081FC7E /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5896389F299932240081FC7E /* Credential.swift */; };
 		589638A229993EA90081FC7E /* AppleAccountDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589638A129993EA90081FC7E /* AppleAccountDelete.swift */; };
 		589D9F81298D201000AF4E10 /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589D9F80298D201000AF4E10 /* Help.swift */; };
 		58B2123928084108007722BD /* ProfileDealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B2123828084107007722BD /* ProfileDealsModel.swift */; };
-		58B30AFF294272B400D56351 /* ImpactDealData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B30AFE294272B400D56351 /* ImpactDealData.swift */; };
-		58B30B0629428AF400D56351 /* JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B30B0529428AF400D56351 /* JsonParse.swift */; };
 		58B9985628F6E2950049B3EF /* GoogleAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B9985528F6E2950049B3EF /* GoogleAds.swift */; };
-		58BEE648284379550060FDC1 /* StoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BEE647284379550060FDC1 /* StoreData.swift */; };
-		58CA299D2758BC8A0044AB5D /* StoresFeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */; };
+		58BFAFCD2B6BC580009AAA17 /* CouponDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFAFCC2B6BC580009AAA17 /* CouponDetail.swift */; };
+		58BFAFCF2B6BFD6E009AAA17 /* CouponWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BFAFCE2B6BFD6E009AAA17 /* CouponWebView.swift */; };
 		58CA299F2758BDAF0044AB5D /* StoresFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */; };
 		58D09E4D28D07CF900AB1277 /* MapChoose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D09E4C28D07CF900AB1277 /* MapChoose.swift */; };
+		58D3B5B22B4C113E00AEEBB3 /* AllDealsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B5B12B4C113E00AEEBB3 /* AllDealsTVCell.swift */; };
+		58D3B5B82B4C27BD00AEEBB3 /* CouponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3B5B72B4C27BD00AEEBB3 /* CouponModel.swift */; };
 		58DC9B9E29B7D078004519BD /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DC9B9D29B7D078004519BD /* Settings.swift */; };
 		58DD45CF283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DD45CE283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift */; };
 		58EE13C7280A18F900283F98 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EE13C6280A18F900283F98 /* MapVC.swift */; };
@@ -74,7 +73,9 @@
 		5813320E28CB5C3900F9A92B /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		581472382881A7E500A8CBD6 /* SegmentExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentExample.swift; sourceTree = "<group>"; };
 		5814723A2881D28200A8CBD6 /* VericalTopAlignLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VericalTopAlignLabel.swift; sourceTree = "<group>"; };
+		581622EC2B77CF940058662C /* SearchCouponFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCouponFile.swift; sourceTree = "<group>"; };
 		5816963F28CCCD9F00308BB6 /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		58170F962B703BA000299564 /* DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadImage.swift; sourceTree = "<group>"; };
 		581811B028C5EC4B006F6DD3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		5821D4D028CCCDCD00AF6B0C /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5821D4D128CCCF2100AF6B0C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -92,23 +93,20 @@
 		5838579128CE3B5000734D3B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5838579228CF0E0900734D3B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5838579328CF0E0900734D3B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
-		583BA1592754C95D002E8821 /* YelpAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAPIManager.swift; sourceTree = "<group>"; };
 		58400391278B75F4000ABBCB /* StoreDeals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDeals.swift; sourceTree = "<group>"; };
 		58400393278C25CF000ABBCB /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		58400396278C28A3000ABBCB /* DealsContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsContentVC.swift; sourceTree = "<group>"; };
 		584007502851C90B006E965D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		58425DFE2995087300038DB9 /* DealAppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DealAppDebug.entitlements; sourceTree = "<group>"; };
-		5843C9C729701F8300ABC548 /* BrandDealsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDealsCollection.swift; sourceTree = "<group>"; };
+		5843C9C729701F8300ABC548 /* CouponView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponView.swift; sourceTree = "<group>"; };
 		5845C2A72749151F00DF3D6B /* StoresTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTabCell.swift; sourceTree = "<group>"; };
-		5848C81C29434F3B007660B8 /* AllDealsCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDealsCCell.swift; sourceTree = "<group>"; };
-		5848C81E29437F96007660B8 /* BrandDeals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDeals.swift; sourceTree = "<group>"; };
-		5848C8202943810C007660B8 /* BrandDealsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDealsCell.swift; sourceTree = "<group>"; };
+		5848C81C29434F3B007660B8 /* BrandCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionCell.swift; sourceTree = "<group>"; };
+		5848C8202943810C007660B8 /* BrandCouponsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCouponsCell.swift; sourceTree = "<group>"; };
 		584AEA1E28EB000000C21AFF /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
 		5850DC3527466409007D0D34 /* Confirm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirm.swift; sourceTree = "<group>"; };
 		585B702129F14938005C556B /* Applications */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Applications; path = ../../../Applications; sourceTree = "<group>"; };
-		585B702729F15034005C556B /* impactDeals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = impactDeals.json; sourceTree = "<group>"; };
 		58642F8629A6475D0065A49C /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
-		586B881B29421C8E0076686C /* AllDealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDealsVC.swift; sourceTree = "<group>"; };
+		586B881B29421C8E0076686C /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		587016C32747C42000BEAFB9 /* StoresFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeed.swift; sourceTree = "<group>"; };
 		5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealsContentModel.swift; sourceTree = "<group>"; };
 		5870DFE02796DC1100C85AC6 /* DealTabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealTabCell.swift; sourceTree = "<group>"; };
@@ -117,19 +115,19 @@
 		588ADDFE28CB35A600AD057E /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
 		588F838928CDE17F0014B5DB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		588F838A28CDE1800014B5DB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		5891C98E284396E700D38C49 /* GoogleAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPIManager.swift; sourceTree = "<group>"; };
+		5891C98E284396E700D38C49 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		58925D9D286B0832003F4E4E /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		5896389F299932240081FC7E /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		589638A129993EA90081FC7E /* AppleAccountDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAccountDelete.swift; sourceTree = "<group>"; };
 		589D9F80298D201000AF4E10 /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		58B2123828084107007722BD /* ProfileDealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDealsModel.swift; sourceTree = "<group>"; };
-		58B30AFE294272B400D56351 /* ImpactDealData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactDealData.swift; sourceTree = "<group>"; };
-		58B30B0529428AF400D56351 /* JsonParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParse.swift; sourceTree = "<group>"; };
 		58B9985528F6E2950049B3EF /* GoogleAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAds.swift; sourceTree = "<group>"; };
-		58BEE647284379550060FDC1 /* StoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreData.swift; sourceTree = "<group>"; };
-		58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeedData.swift; sourceTree = "<group>"; };
+		58BFAFCC2B6BC580009AAA17 /* CouponDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetail.swift; sourceTree = "<group>"; };
+		58BFAFCE2B6BFD6E009AAA17 /* CouponWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponWebView.swift; sourceTree = "<group>"; };
 		58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresFeedModel.swift; sourceTree = "<group>"; };
 		58D09E4C28D07CF900AB1277 /* MapChoose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapChoose.swift; sourceTree = "<group>"; };
+		58D3B5B12B4C113E00AEEBB3 /* AllDealsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDealsTVCell.swift; sourceTree = "<group>"; };
+		58D3B5B72B4C27BD00AEEBB3 /* CouponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponModel.swift; sourceTree = "<group>"; };
 		58DC9B9D29B7D078004519BD /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		58DD45CE283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicPhotoHelper.swift; sourceTree = "<group>"; };
 		58EE13C6280A18F900283F98 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -173,7 +171,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		5805C5A328058A1500D0A937 /* Tab3 - User Profile */ = {
+		5805C5A328058A1500D0A937 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				5805C5A428058B7800D0A937 /* Profile.swift */,
@@ -181,37 +179,24 @@
 				58FEE5FC28B570C8001E3FC1 /* BlockedUsers.swift */,
 				589638A129993EA90081FC7E /* AppleAccountDelete.swift */,
 				58DC9B9D29B7D078004519BD /* Settings.swift */,
-			);
-			path = "Tab3 - User Profile";
-			sourceTree = "<group>";
-		};
-		580B42E6278EFFEC00000FD2 /* PostDeal - MiddleButton */ = {
-			isa = PBXGroup;
-			children = (
-				580B42E2278E2D5F00000FD2 /* PostDeal.swift */,
-				58F1D9702795594D00165420 /* DealDetail.swift */,
 				5886315D27A8057600DF4382 /* MGPhotoHelper.swift */,
-				5814723A2881D28200A8CBD6 /* VericalTopAlignLabel.swift */,
-				58D09E4C28D07CF900AB1277 /* MapChoose.swift */,
 			);
-			path = "PostDeal - MiddleButton";
+			path = Profile;
 			sourceTree = "<group>";
 		};
-		58400395278C2853000ABBCB /* Tab1 - StoresFeed */ = {
+		58400395278C2853000ABBCB /* Stores */ = {
 			isa = PBXGroup;
 			children = (
 				587016C32747C42000BEAFB9 /* StoresFeed.swift */,
 				58400391278B75F4000ABBCB /* StoreDeals.swift */,
-				581472382881A7E500A8CBD6 /* SegmentExample.swift */,
 			);
-			path = "Tab1 - StoresFeed";
+			path = Stores;
 			sourceTree = "<group>";
 		};
 		58400398278C47BD000ABBCB /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				58400393278C25CF000ABBCB /* TabBarVC.swift */,
-				580B42E6278EFFEC00000FD2 /* PostDeal - MiddleButton */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -219,8 +204,9 @@
 		5848C81B29434F27007660B8 /* View Cell */ = {
 			isa = PBXGroup;
 			children = (
-				5848C81C29434F3B007660B8 /* AllDealsCCell.swift */,
-				5848C8202943810C007660B8 /* BrandDealsCell.swift */,
+				5848C81C29434F3B007660B8 /* BrandCollectionCell.swift */,
+				5848C8202943810C007660B8 /* BrandCouponsCell.swift */,
+				58D3B5B12B4C113E00AEEBB3 /* AllDealsTVCell.swift */,
 			);
 			path = "View Cell";
 			sourceTree = "<group>";
@@ -228,12 +214,10 @@
 		5850DC3227466391007D0D34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				58BEE646284379440060FDC1 /* Google */,
 				58B2123828084107007722BD /* ProfileDealsModel.swift */,
 				5870DFDD2795D76A00C85AC6 /* DealsContentModel.swift */,
 				58CA299E2758BDAE0044AB5D /* StoresFeedModel.swift */,
 				582F9C5428253E7700082C38 /* StoreDealsModel.swift */,
-				58EEDF23284B5A7E0050144D /* YelpAPI */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,39 +236,35 @@
 			isa = PBXGroup;
 			children = (
 				5896389E299931DA0081FC7E /* Sign Up */,
-				586B881A29421C7C0076686C /* NoSignUp */,
-				58B9985428F6E28A0049B3EF /* Google Ads */,
-				58EE13C5280A18D200283F98 /* Tab4 - Map */,
-				5870DFE22796DF5B00C85AC6 /* Tab2 - DealsFeed */,
-				5805C5A328058A1500D0A937 /* Tab3 - User Profile */,
+				586B881A29421C7C0076686C /* Coupons */,
+				58EE13C5280A18D200283F98 /* Map */,
+				5870DFE22796DF5B00C85AC6 /* Deals */,
+				5805C5A328058A1500D0A937 /* Profile */,
 				58400398278C47BD000ABBCB /* TabBar */,
-				58400395278C2853000ABBCB /* Tab1 - StoresFeed */,
-				58FFFACE2782F304001E47DB /* Spinner.swift */,
-				588ADDFE28CB35A600AD057E /* Translate.swift */,
+				58400395278C2853000ABBCB /* Stores */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		586B881A29421C7C0076686C /* NoSignUp */ = {
+		586B881A29421C7C0076686C /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
+				58D3B5B42B4C279200AEEBB3 /* Data */,
+				58D3B5B32B4C1B2200AEEBB3 /* Screens */,
 				5848C81B29434F27007660B8 /* View Cell */,
-				58B30B0429428ADA00D56351 /* JsonParsing */,
-				586B881B29421C8E0076686C /* AllDealsVC.swift */,
-				58B30AFE294272B400D56351 /* ImpactDealData.swift */,
-				5848C81E29437F96007660B8 /* BrandDeals.swift */,
-				5843C9C729701F8300ABC548 /* BrandDealsCollection.swift */,
-				589D9F80298D201000AF4E10 /* Help.swift */,
 			);
-			path = NoSignUp;
+			path = Coupons;
 			sourceTree = "<group>";
 		};
-		5870DFE22796DF5B00C85AC6 /* Tab2 - DealsFeed */ = {
+		5870DFE22796DF5B00C85AC6 /* Deals */ = {
 			isa = PBXGroup;
 			children = (
 				58400396278C28A3000ABBCB /* DealsContentVC.swift */,
+				58F1D9702795594D00165420 /* DealDetail.swift */,
+				580B42E2278E2D5F00000FD2 /* PostDeal.swift */,
+				58D09E4C28D07CF900AB1277 /* MapChoose.swift */,
 			);
-			path = "Tab2 - DealsFeed";
+			path = Deals;
 			sourceTree = "<group>";
 		};
 		5896389E299931DA0081FC7E /* Sign Up */ = {
@@ -299,15 +279,6 @@
 			path = "Sign Up";
 			sourceTree = "<group>";
 		};
-		58B30B0429428ADA00D56351 /* JsonParsing */ = {
-			isa = PBXGroup;
-			children = (
-				585B702729F15034005C556B /* impactDeals.json */,
-				58B30B0529428AF400D56351 /* JsonParse.swift */,
-			);
-			path = JsonParsing;
-			sourceTree = "<group>";
-		};
 		58B9985428F6E28A0049B3EF /* Google Ads */ = {
 			isa = PBXGroup;
 			children = (
@@ -316,30 +287,50 @@
 			path = "Google Ads";
 			sourceTree = "<group>";
 		};
-		58BEE646284379440060FDC1 /* Google */ = {
+		58BEE646284379440060FDC1 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				58BEE647284379550060FDC1 /* StoreData.swift */,
-				5891C98E284396E700D38C49 /* GoogleAPIManager.swift */,
+				58B9985428F6E28A0049B3EF /* Google Ads */,
+				58FFFACE2782F304001E47DB /* Spinner.swift */,
+				5814723A2881D28200A8CBD6 /* VericalTopAlignLabel.swift */,
+				581472382881A7E500A8CBD6 /* SegmentExample.swift */,
+				588ADDFE28CB35A600AD057E /* Translate.swift */,
+				5891C98E284396E700D38C49 /* ImageCache.swift */,
+				584007502851C90B006E965D /* Constants.swift */,
+				58170F962B703BA000299564 /* DownloadImage.swift */,
+				58925D9D286B0832003F4E4E /* Cache.swift */,
+				581811B028C5EC4B006F6DD3 /* AppUtility.swift */,
 			);
-			path = Google;
+			path = Supporting;
 			sourceTree = "<group>";
 		};
-		58EE13C5280A18D200283F98 /* Tab4 - Map */ = {
+		58D3B5B32B4C1B2200AEEBB3 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				586B881B29421C8E0076686C /* CategoryView.swift */,
+				5843C9C729701F8300ABC548 /* CouponView.swift */,
+				589D9F80298D201000AF4E10 /* Help.swift */,
+				58BFAFCC2B6BC580009AAA17 /* CouponDetail.swift */,
+				58BFAFCE2B6BFD6E009AAA17 /* CouponWebView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		58D3B5B42B4C279200AEEBB3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				58D3B5B72B4C27BD00AEEBB3 /* CouponModel.swift */,
+				581622EC2B77CF940058662C /* SearchCouponFile.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		58EE13C5280A18D200283F98 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				58EE13C6280A18F900283F98 /* MapVC.swift */,
 			);
-			path = "Tab4 - Map";
-			sourceTree = "<group>";
-		};
-		58EEDF23284B5A7E0050144D /* YelpAPI */ = {
-			isa = PBXGroup;
-			children = (
-				58CA299C2758BC8A0044AB5D /* StoresFeedData.swift */,
-				583BA1592754C95D002E8821 /* YelpAPIManager.swift */,
-			);
-			path = YelpAPI;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		58FCA418273FE62500F3569D = {
@@ -366,18 +357,16 @@
 			children = (
 				58425DFE2995087300038DB9 /* DealAppDebug.entitlements */,
 				5886ADAE289FFA8E0083ED28 /* DealApp.entitlements */,
+				58FCA424273FE62500F3569D /* AppDelegate.swift */,
+				5837B4B6282A614400EDAD16 /* SceneDelegate.swift */,
 				5850DC342746639B007D0D34 /* Controller */,
 				5850DC3327466396007D0D34 /* View */,
 				5850DC3227466391007D0D34 /* Model */,
-				58FCA424273FE62500F3569D /* AppDelegate.swift */,
-				5837B4B6282A614400EDAD16 /* SceneDelegate.swift */,
+				58BEE646284379440060FDC1 /* Supporting */,
 				58FCA430273FE62700F3569D /* Assets.xcassets */,
 				58FCA432273FE62700F3569D /* LaunchScreen.storyboard */,
 				58FCA435273FE62700F3569D /* Info.plist */,
 				58FCA42D273FE62500F3569D /* DealApp.xcdatamodeld */,
-				584007502851C90B006E965D /* Constants.swift */,
-				58925D9D286B0832003F4E4E /* Cache.swift */,
-				581811B028C5EC4B006F6DD3 /* AppUtility.swift */,
 				5813320D28CB5C3800F9A92B /* Localizable.strings */,
 			);
 			path = DealApp;
@@ -469,7 +458,6 @@
 			files = (
 				5813320B28CB5C3800F9A92B /* Localizable.strings in Resources */,
 				58FCA434273FE62700F3569D /* LaunchScreen.storyboard in Resources */,
-				585B702829F15034005C556B /* impactDeals.json in Resources */,
 				58FCA431273FE62700F3569D /* Assets.xcassets in Resources */,
 				58F059F52743D05700F689E6 /* GoogleService-Info.plist in Resources */,
 			);
@@ -525,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58400397278C28A3000ABBCB /* DealsContentVC.swift in Sources */,
+				58BFAFCF2B6BFD6E009AAA17 /* CouponWebView.swift in Sources */,
 				58DD45CF283E57BD00CBDE6B /* ProfilePicPhotoHelper.swift in Sources */,
 				581811B128C5EC4B006F6DD3 /* AppUtility.swift in Sources */,
 				5814723B2881D28200A8CBD6 /* VericalTopAlignLabel.swift in Sources */,
@@ -535,39 +524,38 @@
 				58FEE5FF28B57988001E3FC1 /* ListCell.swift in Sources */,
 				5805C5A528058B7800D0A937 /* Profile.swift in Sources */,
 				58320E11274682EC00AFA044 /* LogIn.swift in Sources */,
-				5848C8212943810C007660B8 /* BrandDealsCell.swift in Sources */,
+				5848C8212943810C007660B8 /* BrandCouponsCell.swift in Sources */,
 				5870DFE12796DC1100C85AC6 /* DealTabCell.swift in Sources */,
 				58B2123928084108007722BD /* ProfileDealsModel.swift in Sources */,
-				58B30AFF294272B400D56351 /* ImpactDealData.swift in Sources */,
-				5843C9C829701F8300ABC548 /* BrandDealsCollection.swift in Sources */,
+				5843C9C829701F8300ABC548 /* CouponView.swift in Sources */,
 				58FCA425273FE62500F3569D /* AppDelegate.swift in Sources */,
+				58D3B5B82B4C27BD00AEEBB3 /* CouponModel.swift in Sources */,
+				58D3B5B22B4C113E00AEEBB3 /* AllDealsTVCell.swift in Sources */,
+				581622ED2B77CF940058662C /* SearchCouponFile.swift in Sources */,
 				580B42E3278E2D5F00000FD2 /* PostDeal.swift in Sources */,
 				589638A229993EA90081FC7E /* AppleAccountDelete.swift in Sources */,
 				584AEA1F28EB000000C21AFF /* TermsVC.swift in Sources */,
-				586B881C29421C8E0076686C /* AllDealsVC.swift in Sources */,
-				58CA299D2758BC8A0044AB5D /* StoresFeedData.swift in Sources */,
+				586B881C29421C8E0076686C /* CategoryView.swift in Sources */,
 				589638A0299932240081FC7E /* Credential.swift in Sources */,
-				58B30B0629428AF400D56351 /* JsonParse.swift in Sources */,
 				589D9F81298D201000AF4E10 /* Help.swift in Sources */,
 				584007512851C90B006E965D /* Constants.swift in Sources */,
 				58CA299F2758BDAF0044AB5D /* StoresFeedModel.swift in Sources */,
 				5886315E27A8057600DF4382 /* MGPhotoHelper.swift in Sources */,
 				58EE13C7280A18F900283F98 /* MapVC.swift in Sources */,
-				58BEE648284379550060FDC1 /* StoreData.swift in Sources */,
 				587016C42747C42000BEAFB9 /* StoresFeed.swift in Sources */,
 				58FEE5FD28B570C8001E3FC1 /* BlockedUsers.swift in Sources */,
-				5891C98F284396E700D38C49 /* GoogleAPIManager.swift in Sources */,
+				5891C98F284396E700D38C49 /* ImageCache.swift in Sources */,
 				5870DFDE2795D76A00C85AC6 /* DealsContentModel.swift in Sources */,
 				588ADDFF28CB35A600AD057E /* Translate.swift in Sources */,
 				58B9985628F6E2950049B3EF /* GoogleAds.swift in Sources */,
+				58BFAFCD2B6BC580009AAA17 /* CouponDetail.swift in Sources */,
 				58400392278B75F4000ABBCB /* StoreDeals.swift in Sources */,
 				58FFFACF2782F304001E47DB /* Spinner.swift in Sources */,
-				5848C81F29437F96007660B8 /* BrandDeals.swift in Sources */,
 				5845C2A82749151F00DF3D6B /* StoresTabCell.swift in Sources */,
 				58F1D9712795594E00165420 /* DealDetail.swift in Sources */,
 				5837B4B7282A614400EDAD16 /* SceneDelegate.swift in Sources */,
-				583BA15A2754C95E002E8821 /* YelpAPIManager.swift in Sources */,
-				5848C81D29434F3B007660B8 /* AllDealsCCell.swift in Sources */,
+				58170F972B703BA000299564 /* DownloadImage.swift in Sources */,
+				5848C81D29434F3B007660B8 /* BrandCollectionCell.swift in Sources */,
 				58FCA42F273FE62500F3569D /* DealApp.xcdatamodeld in Sources */,
 				582F9C5528253E7700082C38 /* StoreDealsModel.swift in Sources */,
 				58DC9B9E29B7D078004519BD /* Settings.swift in Sources */,

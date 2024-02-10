@@ -33,7 +33,7 @@ class DealTabCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureConstraints()
-        
+
         runTimer()
         let tapViewGesture = UITapGestureRecognizer(target: self, action: #selector(self.senderTapped))
         sender.addGestureRecognizer(tapViewGesture)
@@ -45,7 +45,6 @@ class DealTabCell: UITableViewCell {
     @objc func stopTimer(){
         timer.invalidate()
     }
-    
 
     override func prepareForReuse() {
         disposeBag = DisposeBag()
@@ -240,10 +239,8 @@ class DealTabCell: UITableViewCell {
         print("senderUID = \(senderUID)")
         let profilepage = Profile(senderUID: senderUID ?? "")
         profilepage.tableView.isHidden = true
-
         profilepage.profilePic.isUserInteractionEnabled = false
-
-
+        
         profilepage.latestPostsby.text = ""
         profilepage.devlin = true
         self.delegate3?.pushProfilePage(vc: profilepage)
@@ -260,8 +257,6 @@ class DealTabCell: UITableViewCell {
         
         let ref = db.collection("favStoreCollection").document(senderUID ?? "")
         ref.updateData(["Likes" : FieldValue.increment(Int64(1))])
-        
-        
         
         }
     @objc func shareTapped(){
@@ -426,7 +421,7 @@ class DealTabCell: UITableViewCell {
         }
     }
 //MARK: - Timer
-
+    
     func runTimer() {
          timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
 //        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
@@ -434,7 +429,6 @@ class DealTabCell: UITableViewCell {
 //                }
         RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
     }
-    
     
     @objc func loadSavedTime(){
         var howManySecondsPassedinBackground = Double()
@@ -468,7 +462,6 @@ class DealTabCell: UITableViewCell {
         dealTitle.text = dataModel.dealTitle
         dealDesc.text = dataModel.dealDesc
         
-        
         if dataModel.sender != currentEmail {
             self.deleteDealFromFirebase.isHidden = true
             block.isHidden = false
@@ -499,7 +492,15 @@ class DealTabCell: UITableViewCell {
 }
 //MARK: - Below is a custom section header taken from Apple doc.
 class MyCustomHeader: UITableViewHeaderFooterView {
-    let title = UILabel()
+
+    var title: UILabel = {
+        let lbl = UILabel()
+        lbl.font = UIFont.boldSystemFont(ofSize: 15)
+        lbl.textColor = .black
+        lbl.textAlignment = .left
+        lbl.layer.masksToBounds = true
+        return lbl
+    }()
     let image = UIImageView()
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -515,12 +516,10 @@ class MyCustomHeader: UITableViewHeaderFooterView {
         title.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(title)
         contentView.backgroundColor = .white
-
-        
         title.snp.makeConstraints { title in
             title.top.equalTo(contentView.safeAreaLayoutGuide)
             title.bottom.equalTo(contentView.safeAreaLayoutGuide)
-            title.centerX.equalTo(contentView.safeAreaLayoutGuide)
+            title.left.equalTo(contentView.safeAreaLayoutGuide).offset(5)
         }
     }
 }

@@ -1,9 +1,13 @@
 // localized keyword
 
-"grocery" = "supermarket";
+"grocery" = "süpermarket";
 "Supermarket" = "Market";
+"Submit Deal" = "İndirim Gönder";
+"Sorry. An error occured. Try closing app and opening again" = "Bir sorun oldu. Lütfen uygulamayı kapatıp açmayı deneyin";
+"Search A Coupon with Product Name" = "Ürün ismiyle ara";
 "Pharmacy" = "Eczane";
 "Restaurant" = "Kafe";
+"Coupons" = "Kuponlar";
 "Store" = "Mağaza";
 "Clothing" = "Giyim";
 "Refresh This When You Change Category" = "Kategori Değiştirdiğinizde Burayı Yenileyin";
@@ -107,6 +111,7 @@
 "Take Pic or Pick From Phone" = "Bir Fotoğraf Çek ya da Cihazdan Seç";
 "Take Photo" = "Bir Fotoğraf Çek";
 "Upload from Phone" = "Cihazdan Seç";
+"You should choose a store from 'Choose Store' button first. Then you can edit this part for your deal's description" = "Önce bir mağaza seçin ve daha sonra burayı düzenleyip indiriminizi yollayabilirsiniz";
 
 // deal detail
 

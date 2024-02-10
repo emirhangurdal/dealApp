@@ -3,7 +3,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxDataSources
-
 import Firebase
 import FirebaseAuth
 
@@ -42,10 +41,7 @@ class StoresData {
     var delegate: NewDataDelegate?
     var chooseStoreData = [StoresFeedModel]()
     let businesses: BehaviorRelay<[StoresFeedModel]> = BehaviorRelay(value: [])
-    var favIDsCoreData : [StoreIDs] = [] {
-        didSet {
-        }
-    }
+   
     let cache = NSCache<NSString, DataStructHolder>()
 
     let images = NSCache<NSString, NSData>()
@@ -81,18 +77,6 @@ class StoresData {
                 } else {
                     querySnapshot!.documents.enumerated().forEach { indexS, storeDocument in
                         self.favStoreDocID = storeDocument.documentID
-                        
-                        
-//                        GoogleApiManager.shared.getFavStoreInfo(id: self.favStoreDocID) { favData in
-//                            completionData.append(favData)
-//                            completion(completionData.removingDuplicates())
-//                        }
-                        
-                        
-    //                    YelpAPIManager.shared.getFavStoreInfo(id: self.favStoreDocID) { favData in
-    //                        completionData.append(favData)
-    //                        completion(completionData.removingDuplicates())
-    //                    }
                         
                     }
                 }

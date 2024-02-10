@@ -9,26 +9,15 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
         super.viewDidLoad()
         self.title = "tabbar"
         delegate = self
-//        UITabBar.appearance().barTintColor = UIColor(red: 44/255, green: 62/255, blue: 75/255, alpha: 1.0)
         UITabBar.appearance().barTintColor = .white
         AppUtility.lockOrientation(.portrait)
-
-//        self.tabBar.isTranslucent = false
         configureTabs()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        tabBar.frame.size.height = 85
-//        tabBar.frame.origin.y = view.frame.height - 85
-        
-    }
-//    override func viewWillAppear(_ animated: Bool) {
-//    }
-    
     let photoHelper = MGPhotoHelper()
-    var firstTabNavigationController : UINavigationController!
-    var dealContentNav : UINavigationController!
+    var stores : UINavigationController!
+    var dealsVC : UINavigationController!
+    var coupons : UINavigationController!
     var middleTabNavigationController : UINavigationController!
     var profileNavBar: UINavigationController!
     var mapNavBar: UINavigationController!
@@ -37,8 +26,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
     var selectedImage: UIImage?
     
     func configureTabs(){
-        
-        // style:
         
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
@@ -53,70 +40,60 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate, UIIm
         
         let tab1 = StoresFeed()
         let tab2 = DealsContentVC()
+        let tab2alt = CategoryView()
         
-        let middleButtonVC = UIViewController()
         let tab3 = Profile(senderUID: Auth.auth().currentUser?.uid ?? "")
         let tab4 = MapVC()
         
-        middleButtonVC.title = "middleButton"
         tab1.delegate = tab4
         tab1.delegate2 = tab2
         
         //TABS
-
-        let tab1bar = UITabBarItem(title: "", image: UIImage(named: "stores-tab-unselected"), selectedImage: UIImage(named: "stores-tab-unselected"))
+        let tabCouponsbar = UITabBarItem(title: "", image: UIImage(named: "icons8-coupon-100"), selectedImage: UIImage(named: "icons8-coupon-100"))
+        
+        let storesBar = UITabBarItem(title: "", image: UIImage(named: "stores-tab-unselected"), selectedImage: UIImage(named: "stores-tab-unselected"))
                 
-        let tab2bar = UITabBarItem(title: "", image: UIImage(named: "deas-tab-unselected"), selectedImage: UIImage(named: "deas-tab-unselected"))
+        let dealsBar = UITabBarItem(title: "", image: UIImage(named: "deas-tab-unselected"), selectedImage: UIImage(named: "deas-tab-unselected"))
         
-        let tab3bar = UITabBarItem(title: "", image: UIImage(named: "profile-tab-unselected"), selectedImage: UIImage(named: "profile-selected"))
+        let profileBar = UITabBarItem(title: "", image: UIImage(named: "profile-tab-unselected"), selectedImage: UIImage(named: "profile-selected"))
         
-        let tab4bar = UITabBarItem(title: "", image: UIImage(named: "map-tab-unselected"), selectedImage: UIImage(named: "map-tab-unselected"))
+        let mapBar = UITabBarItem(title: "", image: UIImage(named: "map-tab-unselected"), selectedImage: UIImage(named: "map-tab-unselected"))
         
-        let middleButtonTap = UITabBarItem(title: "", image: UIImage(named: "add-deal"), selectedImage: UIImage(named: "add-deal"))
-//        let tab1bar = UITabBarItem()
-//        let tab2bar = UITabBarItem()
-//        let tab3bar = UITabBarItem()
-//        let tab4bar = UITabBarItem()
-//        let middleButtonTap = UITabBarItem()
+        tab2alt.tabBarItem = tabCouponsbar
+        tab1.tabBarItem = storesBar
+        tab2.tabBarItem  = dealsBar
+        tab3.tabBarItem = profileBar
+        tab4.tabBarItem = mapBar
         
-        tab1.tabBarItem = tab1bar
-        tab2.tabBarItem = tab2bar
-        tab4.tabBarItem = tab4bar
-        tab3.tabBarItem = tab3bar
-        middleButtonVC.tabBarItem = middleButtonTap
-        
-//        tab1.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-//        tab2.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-//        middleButtonVC.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-//        tab3.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-//        tab4.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-        
-        firstTabNavigationController = UINavigationController.init(rootViewController: tab1)
-        dealContentNav = UINavigationController.init(rootViewController: tab2)
-        middleTabNavigationController = UINavigationController.init(rootViewController: middleButtonVC)
+        stores = UINavigationController.init(rootViewController: tab1)
+        dealsVC = UINavigationController.init(rootViewController: tab2)
+        coupons = UINavigationController.init(rootViewController: tab2alt)
         profileNavBar = UINavigationController.init(rootViewController: tab3)
         mapNavBar = UINavigationController.init(rootViewController: tab4)
-        self.viewControllers = [firstTabNavigationController, dealContentNav, middleButtonVC, profileNavBar, mapNavBar]
+        self.viewControllers = [stores,
+                                coupons,
+                                dealsVC,
+                                profileNavBar,
+                                mapNavBar]
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
     }
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController.title == "middleButton" {
-//            photoHelper.presentActionSheet(from: self)
-            let postDeal = PostDealVC()
-            
-            postDeal.postDeal.isEnabled = false
-            postDeal.modalPresentationStyle = .fullScreen
-            self.present(postDeal, animated: true, completion: nil)
-            
-            return false
-        } else {
-            return true
-        }
-   
+//        if viewController.title == "middleButton" {
+////            photoHelper.presentActionSheet(from: self)
+//            let postDeal = PostDealVC()
+//
+//            postDeal.postDeal.isEnabled = false
+//            postDeal.modalPresentationStyle = .fullScreen
+//            self.present(postDeal, animated: true, completion: nil)
+//
+//            return false
+//        } else {
+//            return true
+//        }
+        return true
     }
-
   
     func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
         let size = image.size

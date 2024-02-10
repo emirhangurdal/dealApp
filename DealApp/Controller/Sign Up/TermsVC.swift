@@ -6,7 +6,6 @@ class TermsVC: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupWebView()
-        
     }
     var myURL = String()
     var webView: WKWebView!

@@ -227,9 +227,9 @@
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-8557954373328089~1505065151</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CFBundleVersion</key>
-	<string>1.7</string>
+	<string>1.0</string>
 	<key>CFBundleName</key>
 	<string>Depple</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>

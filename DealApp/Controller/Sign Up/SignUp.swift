@@ -73,19 +73,7 @@ class SignUp: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizati
         return bttn
     }()
     
-    private var continueWithoutSignUp: UIButton = {
-        var bttn = UIButton()
-        bttn.setTitle("Skip/See All Deals".localized(), for: .normal)
-        bttn.setTitleColor(UIColor.init(white: 1, alpha: 0.3), for: .highlighted)
-        //        bttn.titleLabel?.font = UIFont.systemFont(ofSize: 20)
-        bttn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        bttn.backgroundColor = UIColor(red: 82/255, green: 150/255, blue: 213/255, alpha: 1.0)
-        bttn.layer.cornerRadius = 5
-        bttn.addTarget(self, action: #selector(continueWithoutSigning), for: .touchUpInside)
-        return bttn
-    }()
-    
-
+   
     
     private var googleSignIn: GIDSignInButton = {
         var bttn = GIDSignInButton()
@@ -170,10 +158,9 @@ class SignUp: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizati
     @objc func continueWithoutSigning() {
         print("continueWithoutSignUp")
         if #available(iOS 13, *) {
-            let allDeals = AllDealsVC()
-            self.navigationController?.pushViewController(allDeals, animated: true)
+            let coupons = CategoryView()
+            self.navigationController?.pushViewController(coupons, animated: true)
         }
-        
     }
     //MARK: - Dismiss keyboard
     func addGestureToView(){
@@ -258,6 +245,7 @@ class SignUp: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizati
     }
     private var termsOfUse = "Terms of Use".localized()
     private var privacyPolicy = "Privacy Policy".localized()
+    
     func text() -> String {
         let text = "You have to agree \(termsOfUse) and \(privacyPolicy) when you sign up."
         return text
@@ -280,8 +268,7 @@ class SignUp: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizati
         view.addSubview(yesAgreeView)
         view.addSubview(termsAndPrivacy)
         view.addSubview(googleSignIn)
-   
-        view.addSubview(continueWithoutSignUp)
+        
         tapAgree()
         yesAgreeView.addSubview(yesAgreeLabel)
         yesAgreeLabel.addSubview(tickBox)
@@ -300,18 +287,7 @@ class SignUp: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizati
             welcomeMessage.centerX.equalTo(view.safeAreaLayoutGuide)
             welcomeMessage.bottom.equalTo(textFieldUserName.snp.top).offset(-40)
         }
-        if #available(iOS 13, *) {
-            continueWithoutSignUp.snp.makeConstraints { continueWithoutSignUp in
-                continueWithoutSignUp.height.equalTo(35)
-                continueWithoutSignUp.width.equalTo(250)
-                continueWithoutSignUp.centerX.equalTo(view.safeAreaLayoutGuide)
-                continueWithoutSignUp.bottom.equalTo(textFieldUserName.snp.top).offset(-2)
-            }
-        } else {
-            continueWithoutSignUp.isHidden = true
-        }
         
-  
         textFieldUserName.snp.makeConstraints { textFieldUserName in
             textFieldUserName.height.equalTo(35)
             textFieldUserName.width.equalTo(250)
@@ -447,7 +423,6 @@ extension SignUp: UITextFieldDelegate {
         yesAgreeView.isHidden = true
         termsAndPrivacy.isHidden = true
         googleSignIn.isHidden = true
-        continueWithoutSignUp.isHidden = true
         authorizationButton.isHidden = true
     }
     
@@ -581,7 +556,6 @@ extension SignUp: UITextFieldDelegate {
         request.requestedScopes = [.fullName, .email]
         request.nonce = sha256(nonce)
         
-        
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
@@ -590,6 +564,7 @@ extension SignUp: UITextFieldDelegate {
   
     @available(iOS 13.0, *)
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             guard let nonce = currentNonce else {
@@ -604,8 +579,8 @@ extension SignUp: UITextFieldDelegate {
                 return
             }
             let userIdentifier = appleIDCredential.user
-                    let fullName = appleIDCredential.fullName
-                    let email = appleIDCredential.email
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
             
             let authorizationCode = appleIDCredential.authorizationCode!
             refreshToken(authorizationCode: authorizationCode)
@@ -621,10 +596,12 @@ extension SignUp: UITextFieldDelegate {
                     return
                   }
                     guard authResult?.user != nil else {return}
+                    
                     if authResult?.user.displayName == nil {
                         print("authResult?.user.displayName nil")
                         let changeRequest = authResult?.user.createProfileChangeRequest()
                         changeRequest?.displayName = "Apple User"
+                        
                         changeRequest?.commitChanges(completion: { error in
                             if let err = error {
                                 print("error with userName = \(err)")
@@ -657,7 +634,7 @@ extension SignUp: UITextFieldDelegate {
                 let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
                     
                     if let data = data {
-                        print("MyPreciousResponse = \(response)")
+                       
                         print("MyPreviousData = \(data)")
                         let refreshToken = String(data: data, encoding: .utf8) ?? ""
                         
@@ -679,7 +656,6 @@ extension SignUp: UITextFieldDelegate {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = string.data(using: .utf8)
-        
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
@@ -721,7 +697,6 @@ extension SignUp: UITextFieldDelegate {
         authorizationController.performRequests()
     }
 
-    
     @available(iOS 13.0, *)
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return self.view.window!
@@ -744,7 +719,7 @@ extension SignUp: UITextFieldDelegate {
         Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
       var result = ""
       var remainingLength = length
-
+        
       while remainingLength > 0 {
         let randoms: [UInt8] = (0 ..< 16).map { _ in
           var random: UInt8 = 0
@@ -756,7 +731,7 @@ extension SignUp: UITextFieldDelegate {
           }
           return random
         }
-
+          
         randoms.forEach { random in
           if remainingLength == 0 {
             return
@@ -861,7 +836,6 @@ extension SignUp: UITextFieldDelegate {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
     
     func isPasswordValid(_ password : String) -> Bool{
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$")
